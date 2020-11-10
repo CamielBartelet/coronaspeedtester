@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom"; // https://reactrouter.com/web/guides/quick-start
-// import Counter from "./components/Counter";
 import "./Home.css";
 
 const Home = () => {

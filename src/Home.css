@@ -1,3 +1,17 @@
+.homeButton {
+  padding: 20px;
+  position: absolute;
+}
+
+.homeButton a {
+  padding: 20px;
+  text-decoration: none;
+}
+
+.homeButton:hover {
+  background-color: aliceblue;
+}
+
 .list {
   padding: 0;
   margin: 0;
