@@ -6,7 +6,9 @@ const Home = () => {
   return (
     <main className="Home">
       {/* <Counter /> */}
-
+      <div className="projectTitle">
+        <h1>Corona Speedtester App</h1>
+      </div>
       <ol className="list">
         {/* <li>
           <Link to="/">Home</Link>
