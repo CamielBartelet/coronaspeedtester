@@ -12,13 +12,13 @@ const Home = () => {
           <Link to="/">Home</Link>
         </li> */}
         <li>
-          <Link to="/camielproto/protoidx">Prototypes Camiel</Link>
+          <Link to="/camielproto/index">Prototypes Camiel</Link>
         </li>
         <li>
-          <Link to="/svenproto/protoidx">Prototypes Sven</Link>
+          <Link to="/svenproto/index">Prototypes Sven</Link>
         </li>
         <li>
-          <Link to="/nigelproto/protoidx">Prototypes Nigel</Link>
+          <Link to="/nigelproto/index">Prototypes Nigel</Link>
         </li>
       </ol>
     </main>
