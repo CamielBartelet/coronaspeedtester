@@ -4,17 +4,17 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Home from "./Home";
-import CamielPrototypes from "./camielproto/protoidx";
-import SvenPrototypes from "./camielproto/protoidx";
-import NigelPrototypes from "./camielproto/protoidx";
+import CamielPrototypes from "./camielproto/cprotoidx";
+import SvenPrototypes from "./camielproto/cprotoidx";
+import NigelPrototypes from "./camielproto/cprotoidx";
 
 const App = () => {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/camielproto/protoidx" component={CamielPrototypes} />
-      <Route exact path="/svenproto/protoidx" component={SvenPrototypes} />
-      <Route exact path="/nigelproto/protoidx" component={NigelPrototypes} />
+      <Route exact path="/camielproto/cprotoidx" component={CamielPrototypes} />
+      <Route exact path="/svenproto/sprotoidx" component={SvenPrototypes} />
+      <Route exact path="/nigelproto/nprotoidx" component={NigelPrototypes} />
 
       {/* catch all */}
       <Route render={() => <Redirect to="/" />} />
