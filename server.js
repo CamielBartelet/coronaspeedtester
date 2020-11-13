@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const path = require("path");
-const Users = require("models/users");
+const Schema = mongoose.Schema;
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -25,6 +25,17 @@ mongoose.connection
   .on("error", function () {
     console.log("Connection error:", error);
   });
+
+const UserData = new Schema({
+  userName: String,
+  userAge: Number,
+  date: {
+    type: String,
+    default: Date.now(),
+  },
+});
+
+const Users = mongoose.model("User", UserData);
 
 const data = {
   userName: "Frans Harrie",

@@ -7,7 +7,6 @@ import Home from "./Home";
 import CamielPrototypes from "./camielproto/index";
 import SvenPrototypes from "./svenproto/index";
 import NigelPrototypes from "./nigelproto/index";
-import Users from "./models/users";
 
 const App = () => {
   return (
