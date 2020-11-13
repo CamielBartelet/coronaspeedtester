@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const path = require("path");
-const Schema = mongoose.Schema;
+const Users = require("models/users");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -16,6 +16,8 @@ mongoose.connect(MONGO_URL || "mongodb://localhost/coronaspeedtestapi", {
   useCreateIndex: true,
 });
 
+console.log("reall?");
+
 mongoose.connection
   .once("connected", function () {
     console.log("Connection succesful");
@@ -23,17 +25,6 @@ mongoose.connection
   .on("error", function () {
     console.log("Connection error:", error);
   });
-
-const UserData = new Schema({
-  userName: String,
-  userAge: Number,
-  date: {
-    type: String,
-    default: Date.now(),
-  },
-});
-
-const Users = mongoose.model("User", UserData);
 
 const data = {
   userName: "Frans Harrie",

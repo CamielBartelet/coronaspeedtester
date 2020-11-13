@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const newUser = new Schema({
+const UserData = new Schema({
   userName: String,
   userAge: Number,
   date: {
@@ -9,6 +9,6 @@ const newUser = new Schema({
   },
 });
 
-const Users = mongoose.model("User", newUser);
+const Users = mongoose.model("User", UserData);
 
-export default Users;
+module.exports = Users;
