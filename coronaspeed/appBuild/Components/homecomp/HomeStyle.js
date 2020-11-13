@@ -4,6 +4,7 @@ export default css`
   .homeButton {
     padding: 20px;
     position: absolute;
+    cursor: pointer;
   }
 
   .homeButton a {
@@ -30,6 +31,7 @@ export default css`
 
   .list li {
     padding: 20px;
+    cursor: pointer;
   }
 
   .list li a {

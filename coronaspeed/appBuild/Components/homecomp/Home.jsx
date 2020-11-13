@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "next/link"; // https://reactrouter.com/web/guides/quick-start
+import Link from "next/link"; // https://reactrouter.com/web/guides/quick-start
 import HomeStyle from "./HomeStyle";
 
 const Home = () => {
@@ -12,15 +12,15 @@ const Home = () => {
           <h1>Corona Speedtester App</h1>
         </div>
         <ol className="list">
-          <li>
-            <Link href="/camielindex">Prototypes Camiel</Link>
-          </li>
-          <li>
-            <Link href="/svenindex">Prototypes Sven</Link>
-          </li>
-          <li>
-            <Link href="/nigelindex">Prototypes Nigel</Link>
-          </li>
+          <Link href="/camielindex">
+            <li>Prototypes Camiel</li>
+          </Link>
+          <Link href="/svenindex">
+            <li>Prototypes Sven</li>
+          </Link>
+          <Link href="/nigelindex">
+            <li>Prototypes Nigel</li>
+          </Link>
         </ol>
       </main>
     </>

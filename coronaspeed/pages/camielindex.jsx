@@ -1,10 +1,8 @@
-import HomeButton from "../Homebutton";
-import Styling from "appBuild/camielproto/camielprot";
+import HomeButton from "../appBuild/Components/homecomp/Homebutton";
 
 const CamielProto = () => {
   return (
     <>
-      <style jsx>{Styling}</style>
       <HomeButton />
       <main className="container">
         <p>Hi there Camiel</p>

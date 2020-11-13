@@ -1,11 +1,9 @@
-import Globalstyle from "../appBuild/style/index";
 import React from "react";
-import Home from "../appBuild/Components/homebutton/Home";
+import Home from "../appBuild/Components/homecomp/Home";
 
 const Index = () => {
   return (
     <>
-      <style jsx>{Globalstyle}</style>
       <Home />
     </>
   );

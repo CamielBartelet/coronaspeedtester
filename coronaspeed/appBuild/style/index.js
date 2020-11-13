@@ -1,6 +1,6 @@
 import css from "styled-jsx/css";
 
-export default css`
+export default css.global`
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",

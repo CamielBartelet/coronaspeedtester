@@ -1,10 +1,8 @@
-import HomeButton from "../Homebutton";
-import Styling from "appBuild/svenproto/svenprot";
+import HomeButton from "../appBuild/Components/homecomp/Homebutton";
 
 const SvenProto = () => {
   return (
     <>
-      <style jsx>{Styling}</style>
       <HomeButton />
       <main className="container">
         <p>Hi there Sven</p>

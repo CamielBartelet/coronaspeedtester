@@ -1,10 +1,8 @@
-import HomeButton from "../Homebutton";
-import Styling from "appBuild/nigelproto/nigelprot";
+import HomeButton from "../appBuild/Components/homecomp/Homebutton";
 
 const NigelProto = () => {
   return (
     <>
-      <style jsx>{Styling}</style>
       <HomeButton />
       <main className="container">
         <p>Hi there Nigel</p>
