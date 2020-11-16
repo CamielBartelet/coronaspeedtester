@@ -21,4 +21,8 @@ export default css.global`
     align-items: center;
     height: 100vh;
   }
+
+  .toggleBox {
+    width: 60vw;
+  }
 `;

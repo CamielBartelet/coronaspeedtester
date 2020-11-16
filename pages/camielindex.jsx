@@ -1,11 +1,27 @@
+import { useState } from "react";
 import HomeButton from "../appBuild/Components/homecomp/Homebutton";
-import useSWR from "swr";
+import { connectToDatabase } from "../util/mongodb";
 // import "../lib/server";
 
-const CamielProto = () => {
-  const baseUrl = "/api/users";
-  const users = useSWR(baseUrl).data?.Users;
-  console.log(users);
+export async function getStaticProps() {
+  const { db } = await connectToDatabase();
+
+  const users = await db
+    .collection("users")
+    .find({})
+    .sort({ metacritic: -1 })
+    .limit(1000)
+    .toArray();
+
+  return {
+    props: {
+      users: JSON.parse(JSON.stringify(users)),
+    },
+  };
+}
+
+export default function CamielProto({ users }) {
+  const [toggled, setToggled] = useState(false);
 
   return (
     <>
@@ -14,15 +30,16 @@ const CamielProto = () => {
         <p>Hi there Camiel</p>
         <button
           style={{ width: "100px", height: "25px" }}
-          onClick={() => {
-            JSON.stringify(users, null, 2);
-          }}
+          onClick={
+            toggled === false ? () => setToggled(true) : () => setToggled(false)
+          }
         >
           Show data
         </button>
+        <div className="toggleBox">
+          {toggled === true ? `${JSON.stringify(users)}` : ""}
+        </div>
       </main>
     </>
   );
-};
-
-export default CamielProto;
+}
