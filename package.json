@@ -8,14 +8,11 @@
     "start": "next start"
   },
   "dependencies": {
-    "axios": "^0.21.0",
-    "express": "^4.17.1",
+    "mongodb": "^3.5.9",
     "mongoose": "^5.10.14",
-    "morgan": "^1.10.0",
     "next": "10.0.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "swr": "^0.3.8",
-    "mongodb": "^3.5.9"
+    "swr": "^0.3.8"
   }
 }
