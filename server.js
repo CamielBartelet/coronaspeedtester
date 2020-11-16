@@ -10,13 +10,13 @@ const PORT = process.env.PORT || 8080;
 const MONGO_URL =
   "mongodb+srv://Camiel:Speedtest123@coronaspeedtester.nxy8x.mongodb.net/Users";
 
-mongoose.connect(MONGO_URL || "mongodb://localhost/coronaspeedtestapi", {
+mongoose.connect(MONGO_URL || "mongodb://localhost:27017/coronaspeedtestapi", {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useCreateIndex: true,
 });
 
-console.log("reall?");
+console.log("really?");
 
 mongoose.connection
   .once("connected", function () {
@@ -38,7 +38,7 @@ const UserData = new Schema({
 const Users = mongoose.model("User", UserData);
 
 const data = {
-  userName: "Frans Harrie",
+  userName: "Frans Anita",
   userAge: 17,
 };
 
