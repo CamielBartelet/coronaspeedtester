@@ -25,4 +25,8 @@ export default css.global`
   .toggleBox {
     width: 60vw;
   }
+
+  .filterOptions {
+    display: flex;
+  }
 `;

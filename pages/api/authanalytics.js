@@ -1,6 +1,6 @@
 const initAuth = () => {
   const client_ID = process.env.GOOGLE_CLIENT_ID;
-  console.log(client_ID);
+  // console.log(client_ID);
   return window.gapi.auth2.init({
     client_id:
       client_ID ===

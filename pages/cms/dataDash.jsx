@@ -4,16 +4,26 @@ import Report from "./report";
 
 function DataDashboard() {
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [amountDays, setDays] = useState(10);
+  const [number2, setNumber2] = useState(+1);
+  const [totalAmount, setTotal] = useState(amountDays + number2);
+  const [sendUpdate, setSender] = useState(amountDays);
+
+  function calculateTotal() {
+    setTotal(amountDays + number2);
+  }
+
+  function sending() {
+    useEffect(() => setSender(amountDays));
+  }
 
   const updateSignin = (signedIn) => {
     //(3)
     setIsSignedIn(signedIn);
     if (!signedIn) {
       renderButton();
-      console.log("yess");
     } else {
       renderButton();
-      console.log("yessssss");
     }
   };
 
@@ -35,7 +45,27 @@ function DataDashboard() {
   return (
     <div className="dataContainer">
       <div id="signin-button"></div>
-      {!isSignedIn ? <div id="signin-button"></div> : <Report />}
+      <div className="filterOptions">
+        <input
+          id="typeinp"
+          type="range"
+          min="0"
+          max="50"
+          value={amountDays}
+          onChange={(event) => {
+            setDays(+event.target.value);
+            calculateTotal();
+          }}
+          step="1"
+        />
+        <button onClick={sending()}>Change</button>
+        <div>Previous day amount: {amountDays}</div>
+      </div>
+      {!isSignedIn ? (
+        <div id="signin-button"></div>
+      ) : (
+        <Report days={sendUpdate} />
+      )}
     </div>
   );
 }
