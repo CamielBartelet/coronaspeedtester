@@ -3,12 +3,14 @@ import { google } from "googleapis";
 let auth;
 const googleEnvs = {
   credentials: {
-    client_email: process.env.GOOGLE_CLIENT_EMAIL,
     client_id: process.env.GOOGLE_CLIENT_ID,
+    client_email: process.env.GOOGLE_CLIENT_EMAIL,
     private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/gm, "\n"),
   },
   scopes: ["https://www.googleapis.com/auth/analytics.readonly"],
 };
+
+console.log(googleEnvs);
 
 export default async (_, res) => {
   auth = new google.auth.GoogleAuth(googleEnvs);

@@ -8,7 +8,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "googleapis": "^65.0.0",
     "mongodb": "^3.5.9",
     "mongoose": "^5.10.14",
     "next": "10.0.1",
