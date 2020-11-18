@@ -2,7 +2,9 @@ const initAuth = () => {
   const client_ID = process.env.GOOGLE_CLIENT_ID;
   console.log(client_ID);
   return window.gapi.auth2.init({
-    client_id: client_ID, //paste your client ID here
+    client_id: client_ID
+      ? client_ID
+      : "1042464211805-09fv7ess4b9qarsdi55qnpcck3ikjniv.apps.googleusercontent.com", //paste your client ID here
     scope: "https://www.googleapis.com/auth/analytics.readonly",
   });
 };
