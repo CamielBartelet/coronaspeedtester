@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { renderButton, checkSignedIn } from "../util/authAnalytics";
+import { renderButton, checkSignedIn } from "../api/authanalytics";
+import Report from "./report";
 
 function DataDashboard() {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -9,6 +10,10 @@ function DataDashboard() {
     setIsSignedIn(signedIn);
     if (!signedIn) {
       renderButton();
+      console.log("yess");
+    } else {
+      renderButton();
+      console.log("yessssss");
     }
   };
 
@@ -28,8 +33,9 @@ function DataDashboard() {
   });
 
   return (
-    <div className="App">
-      {!isSignedIn ? <div id="signin-button"></div> : <div>Coming soon...</div>}
+    <div className="dataContainer">
+      <div id="signin-button"></div>
+      {!isSignedIn ? <div id="signin-button"></div> : <Report />}
     </div>
   );
 }

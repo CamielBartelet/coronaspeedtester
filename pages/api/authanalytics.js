@@ -1,6 +1,8 @@
 const initAuth = () => {
+  const client_ID = process.env.GOOGLE_CLIENT_ID;
+  console.log(client_ID);
   return window.gapi.auth2.init({
-    client_id: process.env.GOOGLE_CLIENT_ID, //paste your client ID here
+    client_id: client_ID, //paste your client ID here
     scope: "https://www.googleapis.com/auth/analytics.readonly",
   });
 };
