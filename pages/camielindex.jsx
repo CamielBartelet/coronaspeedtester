@@ -10,7 +10,6 @@ export async function getStaticProps() {
     .collection("users")
     .find({})
     .sort({ metacritic: -1 })
-    .limit(1000)
     .toArray();
 
   return {
@@ -37,7 +36,7 @@ export default function CamielProto({ users }) {
           Show data
         </button>
         <div className="toggleBox">
-          {toggled === true ? `${JSON.stringify(users)}` : ""}
+          {toggled === true ? `${JSON.stringify(users, null, 2)}` : ""}
         </div>
       </main>
     </>
