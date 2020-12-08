@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import Link from "next/link";
 import Form from "../../appBuild/Components/camielproto/inputEvent";
 
 const fetcher = (url) =>
@@ -27,7 +28,18 @@ const EditEvent = () => {
   };
 
   return (
-    <Form formId="edit-event-form" eventForm={eventForm} forNewEvent={false} />
+    <>
+      <Link href="/camielindex">
+        <div className="backbutton">Back</div>
+      </Link>
+      <div className="editEvent">
+        <Form
+          formId="edit-event-form"
+          eventForm={eventForm}
+          forNewEvent={false}
+        />
+      </div>
+    </>
   );
 };
 

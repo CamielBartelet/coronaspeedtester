@@ -25,7 +25,10 @@ const Index = ({ events }) => {
     <>
       <HomeButton />
       <main className="container">
-        {events.map((event) => (
+        <Link href="/new">
+          <div className="createNew">Create new event</div>
+        </Link>
+        {events.reverse().map((event) => (
           <div key={event._id}>
             <div className="card">
               <img src={event.image} />

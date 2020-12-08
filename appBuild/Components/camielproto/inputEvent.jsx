@@ -96,64 +96,71 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
     return err;
   };
   return (
-    <div className={camielStyles.inputEv}>
-      <form id={formId} onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          maxLength="20"
-          name="name"
-          value={form.name}
-          onChange={handleChange}
-          required
-        />
+    <>
+      <style jsx>{camielStyles}</style>
+      <div className="inputEv">
+        <form
+          id={formId}
+          onSubmit={handleSubmit}
+          style={{ display: "flex", flexDirection: "column" }}
+        >
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            maxLength="20"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            required
+          />
 
-        <label htmlFor="owner_name">Owner</label>
-        <input
-          type="text"
-          maxLength="20"
-          name="owner_name"
-          value={form.owner_name}
-          onChange={handleChange}
-          required
-        />
+          <label htmlFor="owner_name">Owner</label>
+          <input
+            type="text"
+            maxLength="20"
+            name="owner_name"
+            value={form.owner_name}
+            onChange={handleChange}
+            required
+          />
 
-        <label htmlFor="date">Date</label>
-        <input
-          name="date"
-          maxLength="60"
-          value={form.date}
-          onChange={handleChange}
-        />
+          <label htmlFor="date">Date</label>
+          <input
+            name="date"
+            maxLength="60"
+            value={form.date}
+            onChange={handleChange}
+          />
 
-        <label htmlFor="email">E-mail</label>
-        <input
-          name="email"
-          maxLength="60"
-          value={form.email}
-          onChange={handleChange}
-        />
+          <label htmlFor="email">E-mail</label>
+          <input
+            name="email"
+            maxLength="60"
+            value={form.email}
+            onChange={handleChange}
+          />
 
-        <label htmlFor="image">Image URL</label>
-        <input
-          type="url"
-          name="image"
-          value={form.image}
-          onChange={handleChange}
-          required
-        />
+          <label htmlFor="image">Image URL</label>
+          <input
+            type="url"
+            name="image"
+            value={form.image}
+            onChange={handleChange}
+            required
+          />
 
-        <button type="submit" className="btn">
-          Submit
-        </button>
-      </form>
-      <p>{message}</p>
-      <div>
-        {Object.keys(errors).map((err, index) => (
-          <li key={index}>{err}</li>
-        ))}
+          <button type="submit" className="btn">
+            Submit
+          </button>
+        </form>
+        <p>{message}</p>
+        <div>
+          {Object.keys(errors).map((err, index) => (
+            <li key={index}>{err}</li>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

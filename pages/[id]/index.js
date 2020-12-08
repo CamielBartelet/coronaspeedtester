@@ -21,26 +21,33 @@ const EventPage = ({ event }) => {
   };
 
   return (
-    <div key={event._id}>
-      <div className="card">
-        <img src={event.image} />
-        <h5 className="event-name">{event.name}</h5>
-        <div className="main-content">
-          <p className="event-name">{event.name}</p>
-          <p className="owner">Owner: {event.owner_name}</p>
+    <>
+      <Link href="/camielindex">
+        <div className="backbutton">Back</div>
+      </Link>
+      <div className="viewEvent">
+        <div key={event._id}>
+          <div className="card">
+            <img src={event.image} />
+            <h5 className="event-name">{event.name}</h5>
+            <div className="main-content">
+              <p className="event-name">{event.name}</p>
+              <p className="owner">Owner: {event.owner_name}</p>
 
-          <div className="btn-container">
-            <Link href="/[id]/edit" as={`/${event._id}/edit`}>
-              <button className="btn edit">Edit</button>
-            </Link>
-            <button className="btn delete" onClick={handleDelete}>
-              Delete
-            </button>
+              <div className="btn-container">
+                <Link href="/[id]/edit" as={`/${event._id}/edit`}>
+                  <button className="btn edit">Edit</button>
+                </Link>
+                <button className="btn delete" onClick={handleDelete}>
+                  Delete
+                </button>
+              </div>
+            </div>
           </div>
+          {message && <p>{message}</p>}
         </div>
       </div>
-      {message && <p>{message}</p>}
-    </div>
+    </>
   );
 };
 
