@@ -1,4 +1,4 @@
-import { connectToDatabase } from "../util/mongodb";
+import dbConnect from "../util/mongodb";
 
 export default function Top({ users }) {
   return (
@@ -20,7 +20,7 @@ export default function Top({ users }) {
 }
 
 export async function getStaticProps() {
-  const { db } = await connectToDatabase();
+  const { db } = await dbConnect();
 
   const users = await db
     .collection("users")
