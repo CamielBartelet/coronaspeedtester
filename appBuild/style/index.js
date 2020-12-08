@@ -19,12 +19,13 @@ export default css.global`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
   }
 
-  .toggleBox {
-    width: 60vw;
-  }
+  // .toggleBox {
+  //   width: 60vw;
+  // }
 
   .filterOptions {
     display: flex;
