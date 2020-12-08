@@ -14,7 +14,7 @@ const EventPage = ({ event }) => {
       await fetch(`/api/events/${eventID}`, {
         method: "Delete",
       });
-      router.push("/");
+      router.push("/camielindex");
     } catch (error) {
       setMessage("Failed to delete the event.");
     }
