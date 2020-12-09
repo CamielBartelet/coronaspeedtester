@@ -3,9 +3,10 @@ import css from "styled-jsx/css";
 export default css.global`
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-      "Helvetica Neue", sans-serif;
+    // font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    //   "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    //   "Helvetica Neue", sans-serif;
+    font-family: "Poppins";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -31,9 +32,46 @@ export default css.global`
     background: none;
   }
 
+  .mainApp {
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+    height: 640px;
+    align-items: center;
+    justify-content: center;
+    background: #f9f9f9;
+  }
+
+  .headerWrap {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .headerWrap img {
+    width: 90%;
+  }
+
+  .mainContent {
+    width: 90%;
+    height: 70%;
+  }
+
+  .passTruBtn {
+    display: flex;
+    justify-content: center;
+    color: #000;
+    background: #86e4d9;
+    padding: 10px 0;
+    width: 90%;
+    border-radius: 10px;
+  }
+
   .container {
     display: flex;
-    // justify-content: center;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     height: 100vh;

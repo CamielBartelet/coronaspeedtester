@@ -13,13 +13,16 @@ const Home = () => {
         </div>
         <ol className="list">
           <Link href="/camielindex">
-            <li>Prototypes Camiel</li>
+            <li>Prototypes Camiel/API</li>
           </Link>
           <Link href="/svenindex">
             <li>Prototypes Sven</li>
           </Link>
           <Link href="/nigelindex">
             <li>Prototypes Nigel</li>
+          </Link>
+          <Link href="/coronaApp">
+            <li>ClientSide App</li>
           </Link>
         </ol>
       </main>
