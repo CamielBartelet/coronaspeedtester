@@ -44,7 +44,7 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
       const { data } = await res.json();
 
       mutate(`/api/events/${id}`, data, false); // Update the local data without a revalidation
-      router.push("/camielindex");
+      router.push(`/${id}`);
     } catch (error) {
       setMessage("Failed to update event");
     }
@@ -93,8 +93,6 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
     const value = target.value;
     const name = target.name;
 
-    console.log(form);
-
     setForm({
       ...form,
       [name]: value,
@@ -125,14 +123,16 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
     return err;
   };
 
-  const regionCheck = () => {
-    options.find((e) => {
-      return e.value === form.location;
-    })
-      ? (form.capacity = options.find(
-          (e) => e.value === form.location
-        ).capacity)
-      : (form.capacity = 0);
+  const regionCheck = (e) => {
+    const target = e.target;
+    const value = target.value;
+    setForm({
+      ...form,
+      location: value,
+      capacity: options.find((e) => e.value === value).capacity,
+    });
+
+    console.log("Yay" + value + form.capacity);
   };
 
   return (
@@ -169,7 +169,7 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
             name="location"
             onChange={(e) => {
               handleChange(e);
-              regionCheck();
+              regionCheck(e);
             }}
             value={form.location}
             required
@@ -185,13 +185,17 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
             ""
           ) : (
             <>
-              <label htmlFor="maxcap">Maximum capacity:</label>
+              <label htmlFor="maxcap">
+                Maximum capacity:
+                {options.find((e) => e.value === form.location).capacity}
+              </label>
 
               <input
                 name="capacity"
                 type="number"
-                defaultValue={form.capacity}
+                // defaultValue={form.capacity}
                 min="0"
+                value={form.capacity}
                 max={options.find((e) => e.value === form.location).capacity}
                 onChange={handleChange}
                 required
