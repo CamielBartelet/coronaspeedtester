@@ -26,7 +26,7 @@ const EventSchema = new mongoose.Schema({
     type: Number,
   },
   capacity: {
-    type: String,
+    type: Number,
   },
   image: {
     type: String,

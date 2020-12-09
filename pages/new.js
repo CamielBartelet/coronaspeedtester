@@ -10,6 +10,7 @@ const NewEvent = () => {
     date: "",
     phone: "",
     image: "",
+    capacity: "",
   };
 
   return (

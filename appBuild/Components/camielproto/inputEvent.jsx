@@ -18,8 +18,10 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
     email: eventForm.email,
     phone: eventForm.phone,
     image: eventForm.image,
-    capacity: 0,
+    capacity: eventForm.capacity,
   });
+
+  console.log(form);
 
   const putData = async (form) => {
     const { id } = router.query;
@@ -91,6 +93,8 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
     const value = target.value;
     const name = target.name;
 
+    console.log(form);
+
     setForm({
       ...form,
       [name]: value,
@@ -131,8 +135,6 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
       : (form.capacity = 0);
   };
 
-  useEffect(regionCheck);
-
   return (
     <>
       <style jsx>{camielStyles}</style>
@@ -165,7 +167,10 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
           <label htmlFor="location">Location</label>
           <select
             name="location"
-            onChange={handleChange}
+            onChange={(e) => {
+              handleChange(e);
+              regionCheck();
+            }}
             value={form.location}
             required
           >
@@ -183,12 +188,9 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
               <label htmlFor="maxcap">Maximum capacity:</label>
 
               <input
-                name="maxcap"
+                name="capacity"
                 type="number"
-                name="maxcap"
-                defaultValue={
-                  options.find((e) => e.value === form.location).capacity
-                }
+                defaultValue={form.capacity}
                 min="0"
                 max={options.find((e) => e.value === form.location).capacity}
                 onChange={handleChange}
