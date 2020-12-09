@@ -27,20 +27,22 @@ const EventPage = ({ event }) => {
       </Link>
       <div className="viewEvent">
         <div key={event._id}>
-          <div className="card">
+          <div>
             <img src={event.image} />
-            <h5 className="event-name">{event.name}</h5>
-            <div className="main-content">
-              <p className="event-name">{event.name}</p>
-              <p className="owner">Owner: {event.owner_name}</p>
+            <h5>{event.name}</h5>
+            <div>
+              <p>{event.name}</p>
+              <p>Owner: {event.owner_name}</p>
+              <p>Capacity:{event.capacity}</p>
+              <p>Date: {event.date}</p>
+              <p>Email: {event.email}</p>
+              <p>Phone: {event.phone}</p>
 
-              <div className="btn-container">
+              <div>
                 <Link href="/[id]/edit" as={`/${event._id}/edit`}>
-                  <button className="btn edit">Edit</button>
+                  <button>Edit</button>
                 </Link>
-                <button className="btn delete" onClick={handleDelete}>
-                  Delete
-                </button>
+                <button onClick={handleDelete}>Delete</button>
               </div>
             </div>
           </div>

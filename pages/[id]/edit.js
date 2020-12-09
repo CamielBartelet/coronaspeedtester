@@ -22,9 +22,12 @@ const EditEvent = () => {
   const eventForm = {
     name: event.name,
     owner_name: event.owner_name,
+    location: event.location,
     date: event.date,
     email: event.email,
+    phone: event.phone,
     image: event.image,
+    capacity: event.capacity,
   };
 
   return (

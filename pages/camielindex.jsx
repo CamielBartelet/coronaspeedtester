@@ -34,7 +34,7 @@ const Index = ({ events }) => {
               <img src={event.image} />
               <h5 className="event-name">{event.name}</h5>
               <div className="main-content">
-                <p className="event-name">{event.name}</p>
+                <p className="event-location">{event.location}</p>
                 <p className="owner">Owner: {event.owner_name}</p>
 
                 <div className="btn-container">

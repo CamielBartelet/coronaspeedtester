@@ -5,8 +5,10 @@ const NewEvent = () => {
   const eventForm = {
     name: "",
     owner_name: "",
+    location: "",
     email: "",
     date: "",
+    phone: "",
     image: "",
   };
 

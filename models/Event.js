@@ -11,6 +11,10 @@ const EventSchema = new mongoose.Schema({
     required: [true, "Please provide the owner's name"],
     maxlength: [20, "Owner's Name cannot be more than 60 characters"],
   },
+  location: {
+    required: [true, "Please provide a location"],
+    type: String,
+  },
   date: {
     required: [true, "Please provide a date for this Event"],
     type: String,
@@ -18,8 +22,13 @@ const EventSchema = new mongoose.Schema({
   email: {
     type: String,
   },
+  phone: {
+    type: Number,
+  },
+  capacity: {
+    type: String,
+  },
   image: {
-    required: [true, "Please provide an image"],
     type: String,
   },
 });

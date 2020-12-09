@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
 import camielStyles from "./camielStyles";
+import Select from "react-select";
 
 const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
   const router = useRouter();
@@ -12,9 +13,12 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
   const [form, setForm] = useState({
     name: eventForm.name,
     owner_name: eventForm.owner_name,
+    location: eventForm.location,
     date: eventForm.date,
     email: eventForm.email,
+    phone: eventForm.phone,
     image: eventForm.image,
+    capacity: 0,
   });
 
   const putData = async (form) => {
@@ -38,7 +42,7 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
       const { data } = await res.json();
 
       mutate(`/api/events/${id}`, data, false); // Update the local data without a revalidation
-      router.push("/");
+      router.push("/camielindex");
     } catch (error) {
       setMessage("Failed to update event");
     }
@@ -61,11 +65,26 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
         throw new Error(res.status);
       }
 
-      router.push("/");
+      router.push("/camielindex");
     } catch (error) {
       setMessage("Failed to add event");
     }
   };
+
+  const options = [
+    { value: "Eindhoven", label: "Eindhoven", capacity: "500" },
+    { value: "Amsterdam", label: "Amsterdam", capacity: "1000" },
+    { value: "Maastricht", label: "Maastricht", capacity: "250" },
+  ];
+
+  // const formatOptionLabel = ({ value, label, customAbbreviation }) => (
+  //   <div style={{ display: "flex" }}>
+  //     <div>{label}</div>
+  //     <div style={{ marginLeft: "10px", color: "#ccc" }}>
+  //       {customAbbreviation}
+  //     </div>
+  //   </div>
+  // );
 
   const handleChange = (e) => {
     const target = e.target;
@@ -77,6 +96,12 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
       [name]: value,
     });
   };
+
+  // const handleChangeSelect = (selectedOptions) => {
+  //   setForm({ [form.location]: selectedOptions.value });
+  //   console.log(selectedOptions.value);
+  //   console.log({ [form.location]: selectedOptions.value });
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -95,6 +120,19 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
     if (!form.image) err.image = "Image URL is required";
     return err;
   };
+
+  const regionCheck = () => {
+    options.find((e) => {
+      return e.value === form.location;
+    })
+      ? (form.capacity = options.find(
+          (e) => e.value === form.location
+        ).capacity)
+      : (form.capacity = 0);
+  };
+
+  useEffect(regionCheck);
+
   return (
     <>
       <style jsx>{camielStyles}</style>
@@ -124,6 +162,49 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
             required
           />
 
+          <label htmlFor="location">Location</label>
+          <select
+            name="location"
+            onChange={handleChange}
+            value={form.location}
+            required
+          >
+            {options.map((option) => (
+              <option value={option.value} key={option.label}>
+                {option.value}
+              </option>
+            ))}
+          </select>
+
+          {!form.location ? (
+            ""
+          ) : (
+            <>
+              <label htmlFor="maxcap">Maximum capacity:</label>
+
+              <input
+                name="maxcap"
+                type="number"
+                name="maxcap"
+                defaultValue={
+                  options.find((e) => e.value === form.location).capacity
+                }
+                min="0"
+                max={options.find((e) => e.value === form.location).capacity}
+                onChange={handleChange}
+                required
+              ></input>
+            </>
+          )}
+
+          {/* <Select
+            formatOptionLabel={formatOptionLabel}
+            value={form.location}
+            // options={options}
+            // multi={true}
+            onChange={(...options) => handleChangeSelect(...options)}
+          /> */}
+
           <label htmlFor="date">Date</label>
           <input
             name="date"
@@ -140,13 +221,20 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
             onChange={handleChange}
           />
 
+          <label htmlFor="phone">Phone</label>
+          <input
+            name="phone"
+            maxLength="60"
+            value={form.phone}
+            onChange={handleChange}
+          />
+
           <label htmlFor="image">Image URL</label>
           <input
             type="url"
             name="image"
             value={form.image}
             onChange={handleChange}
-            required
           />
 
           <button type="submit" className="btn">
