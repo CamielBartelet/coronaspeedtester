@@ -50,7 +50,7 @@ export default css.global`
     align-items: center;
   }
 
-  .headerWrap img {
+  .renormLogo {
     width: 90%;
   }
 
@@ -63,10 +63,20 @@ export default css.global`
     display: flex;
     justify-content: center;
     color: #000;
-    background: #86e4d9;
-    padding: 10px 0;
     width: 90%;
+    height: 15%;
+    align-items: center;
+  }
+
+  .btnCont {
+    display: flex;
+    justify-content: center;
+    width: 100%;
     border-radius: 10px;
+    background: #86e4d9;
+    cursor: pointer;
+    height: 60%;
+    align-items: center;
   }
 
   .container {
