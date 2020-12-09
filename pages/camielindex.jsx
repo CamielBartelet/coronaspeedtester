@@ -25,30 +25,46 @@ const Index = ({ events }) => {
     <>
       <HomeButton />
       <main className="container">
-        <Link href="/new">
-          <div className="createNew">Create new event</div>
-        </Link>
-        {events.reverse().map((event) => (
-          <div key={event._id}>
-            <div className="card">
-              <img src={event.image} />
-              <h5 className="event-name">{event.name}</h5>
-              <div className="main-content">
-                <p className="event-location">{event.location}</p>
-                <p className="owner">Owner: {event.owner_name}</p>
-
-                <div className="btn-container">
-                  <Link href="/[id]/edit" as={`/${event._id}/edit`}>
-                    <button className="btn edit">Edit</button>
-                  </Link>
-                  <Link href="/[id]" as={`/${event._id}`}>
-                    <button className="btn view">View</button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+        <table className="table">
+          <thead className="table_head">
+            <tr className="eventTable">
+              <th>EventName</th>
+              <th>EventOrganiser</th>
+              <th>Date</th>
+              <th>Region</th>
+              <th>Capacity</th>
+              <th>
+                {" "}
+                <Link href="/new">
+                  <div className="createNew">
+                    <p>Create new event</p>
+                  </div>
+                </Link>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {events.reverse().map((event) => (
+              <tr key={event._id}>
+                <td>{event.name}</td>
+                <td>{event.owner_name}</td>
+                <td>{event.date}</td>
+                <td>{event.location}</td>
+                <td>{event.capacity}</td>
+                <td>
+                  <div className="editOpt">
+                    <Link href="/[id]/edit" as={`/${event._id}/edit`}>
+                      <a>Edit</a>
+                    </Link>
+                    <Link href="/[id]" as={`/${event._id}`}>
+                      <a>View</a>
+                    </Link>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </main>
     </>
   );

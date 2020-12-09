@@ -15,6 +15,22 @@ export default css.global`
     padding: 0;
   }
 
+  td,
+  th {
+    border: 1px solid #fff;
+    width: 10%;
+    height: 40px;
+  }
+
+  th {
+    border-radius: 10px;
+    background: #2d7dd2;
+  }
+
+  th:last-child {
+    background: none;
+  }
+
   .container {
     display: flex;
     // justify-content: center;
@@ -32,9 +48,13 @@ export default css.global`
   }
 
   .createNew {
-    padding: 20px 30px;
-    background-color: #e9f4fd;
+    background-color: #214f4b;
+    height: 100%;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
   }
 
   .backbutton {
@@ -46,7 +66,41 @@ export default css.global`
 
   .createNew:hover,
   .backbutton:hover {
-    background-color: #dee8f1;
+    background-color: #77a4b1;
+  }
+
+  .table_head {
+    color: #fff;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .eventTable {
+    white-space: nowrap;
+  }
+
+  td {
+    justify-content: center;
+  }
+
+  .editOpt {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .editOpt a {
+    width: 50%;
+    padding: 6px 0;
+    display: block;
+    text-align: center;
+    border: 1px solid #daebfb;
+  }
+
+  .editOpt a:hover {
+    background-color: #daebfb;
   }
 
   // .toggleBox {

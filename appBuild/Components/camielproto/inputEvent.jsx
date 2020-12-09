@@ -142,9 +142,10 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
         <form
           id={formId}
           onSubmit={handleSubmit}
+          className="inputForm"
           style={{ display: "flex", flexDirection: "column" }}
         >
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Naam</label>
           <input
             type="text"
             maxLength="20"
@@ -154,7 +155,7 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
             required
           />
 
-          <label htmlFor="owner_name">Owner</label>
+          <label htmlFor="owner_name">Organisatie</label>
           <input
             type="text"
             maxLength="20"
@@ -164,7 +165,7 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
             required
           />
 
-          <label htmlFor="location">Location</label>
+          <label htmlFor="location">Locatie/Regio</label>
           <select
             name="location"
             onChange={(e) => {
@@ -186,8 +187,8 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
           ) : (
             <>
               <label htmlFor="maxcap">
-                Maximum capacity:
-                {options.find((e) => e.value === form.location).capacity}
+                Bezoekersaantal (max:
+                {options.find((e) => e.value === form.location).capacity})
               </label>
 
               <input
@@ -211,7 +212,7 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
             onChange={(...options) => handleChangeSelect(...options)}
           /> */}
 
-          <label htmlFor="date">Date</label>
+          <label htmlFor="date">Datum</label>
           <input
             name="date"
             maxLength="60"
@@ -227,7 +228,7 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
             onChange={handleChange}
           />
 
-          <label htmlFor="phone">Phone</label>
+          <label htmlFor="phone">Telefoon</label>
           <input
             name="phone"
             maxLength="60"
@@ -235,7 +236,7 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
             onChange={handleChange}
           />
 
-          <label htmlFor="image">Image URL</label>
+          <label htmlFor="image">Afbeelding evenement</label>
           <input
             type="url"
             name="image"
@@ -243,8 +244,8 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
             onChange={handleChange}
           />
 
-          <button type="submit" className="btn">
-            Submit
+          <button type="submit" className="btnSub">
+            Opslaan
           </button>
         </form>
         <p>{message}</p>
