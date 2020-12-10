@@ -66,7 +66,7 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
         throw new Error(res.status);
       }
 
-      router.push("/APIindex");
+      router.push("/backindex");
     } catch (error) {
       setMessage("Failed to add event");
     }

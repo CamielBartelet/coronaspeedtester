@@ -12,7 +12,7 @@ const Home = () => {
           <h1>Corona Speedtester App</h1>
         </div>
         <ol className="list">
-          <Link href="/APIindex">
+          <Link href="/backindex">
             <li>API</li>
           </Link>
           {/* <Link href="/svenindex">
