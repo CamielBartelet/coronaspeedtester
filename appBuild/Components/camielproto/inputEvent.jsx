@@ -67,7 +67,7 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
         throw new Error(res.status);
       }
 
-      router.push("/camielindex");
+      router.push("/APIindex");
     } catch (error) {
       setMessage("Failed to add event");
     }

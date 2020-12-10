@@ -12,15 +12,15 @@ const Home = () => {
           <h1>Corona Speedtester App</h1>
         </div>
         <ol className="list">
-          <Link href="/camielindex">
-            <li>Prototypes Camiel/API</li>
+          <Link href="/APIindex">
+            <li>API</li>
           </Link>
-          <Link href="/svenindex">
+          {/* <Link href="/svenindex">
             <li>Prototypes Sven</li>
           </Link>
           <Link href="/nigelindex">
             <li>Prototypes Nigel</li>
-          </Link>
+          </Link> */}
           <Link href="/coronaApp">
             <li>ClientSide App</li>
           </Link>
