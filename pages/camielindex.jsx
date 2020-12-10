@@ -25,46 +25,83 @@ const Index = ({ events }) => {
     <>
       <HomeButton />
       <main className="container">
-        <table className="table">
-          <thead className="table_head">
-            <tr className="eventTable">
-              <th>EventName</th>
-              <th>EventOrganiser</th>
-              <th>Date</th>
-              <th>Region</th>
-              <th>Capacity</th>
-              <th>
-                {" "}
-                <Link href="/new">
-                  <div className="createNew">
-                    <p>Create new event</p>
-                  </div>
-                </Link>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {events.reverse().map((event) => (
-              <tr key={event._id}>
-                <td>{event.name}</td>
-                <td>{event.owner_name}</td>
-                <td>{event.date}</td>
-                <td>{event.location}</td>
-                <td>{event.capacity}</td>
-                <td>
-                  <div className="editOpt">
-                    <Link href="/[id]/edit" as={`/${event._id}/edit`}>
-                      <a>Edit</a>
-                    </Link>
-                    <Link href="/[id]" as={`/${event._id}`}>
-                      <a>View</a>
-                    </Link>
-                  </div>
-                </td>
+        <div className="ogsMng">
+          <h2>Organisatie</h2>
+          <table>
+            <thead className="table_head">
+              <tr className="eventTable">
+                <th>Organisatienaam</th>
+                <th>Regio</th>
+                <th>Contact</th>
+                <th>
+                  {" "}
+                  <Link href="/new">
+                    <div className="createNew">
+                      <p>Nieuwe organisatie</p>
+                    </div>
+                  </Link>
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+          </table>
+        </div>
+        <div className="eventMng">
+          <h2>Evenementen:</h2>
+          <table className="table">
+            <thead className="table_head">
+              <tr className="eventTable">
+                <th>Evenement naam</th>
+                <th>Organisatie</th>
+                <th>Datum</th>
+                <th>Regio</th>
+                <th>Capaciteit</th>
+                <th>
+                  {" "}
+                  <Link href="/new">
+                    <div className="createNew">
+                      <p>Creeëer nieuw evenement</p>
+                    </div>
+                  </Link>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {events.reverse().map((event) => (
+                <tr key={event._id}>
+                  <td>{event.name}</td>
+                  <td>{event.owner_name}</td>
+                  <td>{event.date}</td>
+                  <td>{event.location}</td>
+                  <td>{event.capacity}</td>
+                  <td>
+                    <div className="editOpt">
+                      <Link href="/[id]/edit" as={`/${event._id}/edit`}>
+                        <a>Edit</a>
+                      </Link>
+                      <Link href="/[id]" as={`/${event._id}`}>
+                        <a>View</a>
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="userMng">
+          <h2>Gebruikers:</h2>
+          <table>
+            <thead className="table_head">
+              <tr className="eventTable">
+                <th>Naam</th>
+                <th>Email</th>
+                <th>Telefoon</th>
+                <th>Regio</th>
+                <th>Testresultaat</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
       </main>
     </>
   );

@@ -28,7 +28,7 @@ export default css.global`
     background: #2d7dd2;
   }
 
-  th:last-child {
+  .eventMng th:last-child, .ogsMng th:last-child {
     background: none;
   }
 
@@ -115,6 +115,14 @@ export default css.global`
   .createNew:hover,
   .backbutton:hover {
     background-color: #77a4b1;
+  }
+
+  .ogsMng, .eventMng, .userMng {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify content: center
+    align-items: center;
   }
 
   .table_head {
