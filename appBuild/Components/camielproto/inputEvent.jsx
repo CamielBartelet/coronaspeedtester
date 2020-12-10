@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
 import camielStyles from "./camielStyles";
-import Select from "react-select";
 
 const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
   const router = useRouter();
@@ -98,12 +97,6 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
       [name]: value,
     });
   };
-
-  // const handleChangeSelect = (selectedOptions) => {
-  //   setForm({ [form.location]: selectedOptions.value });
-  //   console.log(selectedOptions.value);
-  //   console.log({ [form.location]: selectedOptions.value });
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -203,14 +196,6 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
               ></input>
             </>
           )}
-
-          {/* <Select
-            formatOptionLabel={formatOptionLabel}
-            value={form.location}
-            // options={options}
-            // multi={true}
-            onChange={(...options) => handleChangeSelect(...options)}
-          /> */}
 
           <label htmlFor="date">Datum</label>
           <input
