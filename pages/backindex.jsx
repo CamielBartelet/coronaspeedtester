@@ -1,9 +1,10 @@
-import { useState } from "react";
+// import { useState } from "react";
 import HomeButton from "../appBuild/Components/homecomp/Homebutton";
-import EventInput from "../appBuild/Components/camielproto/inputEvent";
+// import EventInput from "../appBuild/Components/camielproto/inputEvent";
 import Link from "next/link";
 import dbConnect from "../util/mongodb";
 import Event from "../models/Event";
+import Account from "../models/accounts";
 // import "../lib/server";
 
 // export async function getStaticProps() {
@@ -20,7 +21,7 @@ import Event from "../models/Event";
 // };
 // }
 
-const Index = ({ events }) => {
+const Index = ({ events, accounts }) => {
   return (
     <>
       <HomeButton />
@@ -35,7 +36,7 @@ const Index = ({ events }) => {
                 <th>Contact</th>
                 <th>
                   {" "}
-                  <Link href="/new">
+                  <Link href="/newOrganisation">
                     <div className="createNew">
                       <p>Nieuwe organisatie</p>
                     </div>
@@ -94,12 +95,21 @@ const Index = ({ events }) => {
             <thead className="table_head">
               <tr className="eventTable">
                 <th>Naam</th>
+                <th>Achternaam</th>
                 <th>Email</th>
-                <th>Telefoon</th>
                 <th>Regio</th>
                 <th>Testresultaat</th>
               </tr>
             </thead>
+            <tbody>
+              {accounts.reverse().map((account) => (
+                <tr key={account._id}>
+                  <td>{account.name}</td>
+                  <td>{account.lastname}</td>
+                  <td>{account.email}</td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       </main>
@@ -118,7 +128,14 @@ export async function getServerSideProps() {
     return event;
   });
 
-  return { props: { events: events } };
+  const resultAcc = await Account.find({});
+  const accounts = resultAcc.map((doc) => {
+    const account = doc.toObject();
+    account._id = account._id.toString();
+    return account;
+  });
+
+  return { props: { events: events, accounts: accounts } };
 }
 
 export default Index;

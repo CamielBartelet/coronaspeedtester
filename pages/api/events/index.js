@@ -12,7 +12,7 @@ export default async function handler(req, res) {
         const event = await Event.find(
           {}
         ); /* find all the data in our database */
-        res.status(200).json({ success: true, data: events });
+        res.status(200).json({ success: true, data: event });
       } catch (error) {
         res.status(400).json({ success: false });
       }

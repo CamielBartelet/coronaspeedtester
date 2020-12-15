@@ -13,9 +13,12 @@ const userFormat = ({ formId, accountForm, forNewAccount = true }) => {
     name: accountForm.name,
     lastname: accountForm.name,
     email: accountForm.email,
+    password: accountForm.password,
+    postalCode: accountForm.postalCode,
+    postalNumber: accountForm.postalNumber,
+    phone: accountForm.phone,
+    bsnnumber: accountForm.bsnnumber,
   });
-
-  console.log(form);
 
   const putData = async (form) => {
     const { id } = router.query;
@@ -130,6 +133,41 @@ const userFormat = ({ formId, accountForm, forNewAccount = true }) => {
             name="email"
             maxLength="60"
             value={form.email}
+            onChange={handleChange}
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            name="password"
+            maxLength="60"
+            value={form.password}
+            onChange={handleChange}
+          />
+          <label htmlFor="postalCode">Postcode</label>
+          <input
+            name="postalCode"
+            maxLength="60"
+            value={form.postalCode}
+            onChange={handleChange}
+          />
+          <label htmlFor="postalNumber">Huisnummer</label>
+          <input
+            name="postalNumber"
+            maxLength="60"
+            value={form.postalNumber}
+            onChange={handleChange}
+          />
+          <label htmlFor="phone">Telefoon</label>
+          <input
+            name="phone"
+            maxLength="60"
+            value={form.phone}
+            onChange={handleChange}
+          />
+          <label htmlFor="bsnnumber">BSN-nummer</label>
+          <input
+            name="bsnnumber"
+            maxLength="60"
+            value={form.bsnnumber}
             onChange={handleChange}
           />
 

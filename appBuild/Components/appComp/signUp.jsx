@@ -1,19 +1,23 @@
-import Accounts from "./userFormat";
+import SignUpForm from "./signUpform";
 
 const SignUp = () => {
   const accountForm = {
     name: "",
     lastname: "",
     email: "",
+    password: "",
+    postalCode: "",
+    postalNumber: "",
+    phone: "",
+    bsnnumber: "",
   };
 
   return (
     <>
       <div>
-        <Accounts formId="add-account-form" accountForm={accountForm} />
+        <SignUpForm formId="add-account-form" accountForm={accountForm} />
       </div>
     </>
   );
 };
-
 export default SignUp;

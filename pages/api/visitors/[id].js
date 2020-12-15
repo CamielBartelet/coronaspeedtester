@@ -1,6 +1,5 @@
 import dbConnect from "../../../util/mongodb";
 import Account from "../../../models/accounts";
-import accounts from "../../../models/accounts";
 
 export default async function handler(req, res) {
   const {
