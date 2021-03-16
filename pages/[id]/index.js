@@ -14,7 +14,7 @@ const EventPage = ({ event }) => {
       await fetch(`/api/events/${eventID}`, {
         method: "Delete",
       });
-      router.push("/APIcms");
+      router.push("/apicms");
     } catch (error) {
       setMessage("Failed to delete the event.");
     }
@@ -22,7 +22,7 @@ const EventPage = ({ event }) => {
 
   return (
     <>
-      <Link href="/APIcms">
+      <Link href="/apicms">
         <div className="backbutton">Back</div>
       </Link>
       <div className="viewEvent">
