@@ -21,7 +21,7 @@ const Home = () => {
           <Link href="/nigelindex">
             <li>Prototypes Nigel</li>
           </Link> */}
-          <Link href="/coronaApp">
+          <Link href="/apicms">
             <li>ClientSide App</li>
           </Link>
         </ol>

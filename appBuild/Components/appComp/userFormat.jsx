@@ -64,7 +64,7 @@ const userFormat = ({ formId, accountForm, forNewAccount = true }) => {
         throw new Error(res.status);
       }
 
-      router.push("/coronaApp");
+      router.push("/apicms");
     } catch (error) {
       setMessage("Failed to add user");
     }

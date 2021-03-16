@@ -40,7 +40,7 @@ const SignUpForm = ({ formId, accountForm, forNewAccount = true }) => {
         throw new Error(res.status);
       }
 
-      router.push(`/coronaapp/verify`);
+      router.push(`/apicms/verify`);
     } catch (error) {
       setMessage("Failed to add user");
     }
