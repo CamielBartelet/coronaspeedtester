@@ -1,7 +1,3 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
-import dbConnect from "../../util/mongodb";
-
 const UserCheck = () => {
   return (
     <>

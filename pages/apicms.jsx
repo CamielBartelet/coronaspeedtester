@@ -21,10 +21,10 @@ import Account from "../models/accounts";
 // };
 // }
 
-const Index = ({ events, accounts }) => {
+const APIIndex = ({ events, accounts }) => {
   return (
     <>
-      <HomeButton />
+      {/* <HomeButton /> */}
       <main className="container">
         <div className="ogsMng">
           <h2>Organisatie</h2>
@@ -36,11 +36,11 @@ const Index = ({ events, accounts }) => {
                 <th>Contact</th>
                 <th>
                   {" "}
-                  <Link href="/newOrganisation">
-                    <div className="createNew">
-                      <p>Nieuwe organisatie</p>
-                    </div>
-                  </Link>
+                  {/* <Link href="/newOrganisation"> */}
+                  <div className="createNew">
+                    <p>Nieuwe organisatie</p>
+                  </div>
+                  {/* </Link> */}
                 </th>
               </tr>
             </thead>
@@ -138,7 +138,7 @@ export async function getServerSideProps() {
   return { props: { events: events, accounts: accounts } };
 }
 
-export default Index;
+export default APIIndex;
 
 // export default function CamielProto({ users }) {
 //   const [toggled, setToggled] = useState(false);
