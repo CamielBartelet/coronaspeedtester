@@ -78,15 +78,6 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
     { value: "Maastricht", label: "Maastricht", capacity: "250" },
   ];
 
-  // const formatOptionLabel = ({ value, label, customAbbreviation }) => (
-  //   <div style={{ display: "flex" }}>
-  //     <div>{label}</div>
-  //     <div style={{ marginLeft: "10px", color: "#ccc" }}>
-  //       {customAbbreviation}
-  //     </div>
-  //   </div>
-  // );
-
   const handleChange = (e) => {
     const target = e.target;
     const value = target.value;
