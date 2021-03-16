@@ -66,7 +66,7 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
         throw new Error(res.status);
       }
 
-      router.push("/cms");
+      router.push("/APIcms");
     } catch (error) {
       setMessage("Failed to add event");
     }
