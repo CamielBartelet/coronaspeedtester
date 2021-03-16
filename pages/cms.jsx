@@ -36,11 +36,11 @@ const Index = ({ events, accounts }) => {
                 <th>Contact</th>
                 <th>
                   {" "}
-                  <Link href="/newOrganisation">
-                    <div className="createNew">
-                      <p>Nieuwe organisatie</p>
-                    </div>
-                  </Link>
+                  {/* <Link href="/newOrganisation"> */}
+                  <div className="createNew">
+                    <p>Nieuwe organisatie</p>
+                  </div>
+                  {/* </Link> */}
                 </th>
               </tr>
             </thead>

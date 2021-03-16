@@ -15,7 +15,7 @@ const NewEvent = () => {
 
   return (
     <>
-      <Link href="/backindex">
+      <Link href="/cms">
         <div className="backbutton">Back</div>
       </Link>
       <div className="addNew">
