@@ -15,12 +15,6 @@ const Home = () => {
           <Link href="/apicms">
             <li>API</li>
           </Link>
-          {/* <Link href="/svenindex">
-            <li>Prototypes Sven</li>
-          </Link>
-          <Link href="/nigelindex">
-            <li>Prototypes Nigel</li>
-          </Link> */}
           <Link href="/apicms">
             <li>ClientSide App</li>
           </Link>

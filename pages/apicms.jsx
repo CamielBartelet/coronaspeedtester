@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import HomeButton from "../appBuild/Components/homecomp/Homebutton";
 // import EventInput from "../appBuild/Components/camielproto/inputEvent";
 import Link from "next/link";
@@ -7,6 +6,7 @@ import Event from "../models/Event";
 import Account from "../models/accounts";
 // import "../lib/server";
 
+//setting up connection with db separate server
 // export async function getStaticProps() {
 // const { db } = await dbConnect();
 // const users = await db
