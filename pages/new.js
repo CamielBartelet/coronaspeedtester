@@ -15,7 +15,7 @@ const NewEvent = () => {
 
   return (
     <>
-      <Link href="/APIcms">
+      <Link href="/apicms">
         <div className="backbutton">Back</div>
       </Link>
       <div className="addNew">
