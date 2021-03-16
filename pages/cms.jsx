@@ -24,7 +24,7 @@ import Account from "../models/accounts";
 const Index = ({ events, accounts }) => {
   return (
     <>
-      <HomeButton />
+      {/* <HomeButton /> */}
       <main className="container">
         <div className="ogsMng">
           <h2>Organisatie</h2>
