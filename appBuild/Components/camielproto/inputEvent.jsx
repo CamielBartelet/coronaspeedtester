@@ -20,8 +20,6 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
     capacity: eventForm.capacity,
   });
 
-  console.log(form);
-
   const putData = async (form) => {
     const { id } = router.query;
 
@@ -116,7 +114,7 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
       capacity: options.find((e) => e.value === value).capacity,
     });
 
-    console.log("Yay" + value + form.capacity);
+    // console.log("Yay" + value + form.capacity);
   };
 
   return (

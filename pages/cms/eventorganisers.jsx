@@ -43,29 +43,27 @@ const Eventorganisers = ({ organisers }) => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>DiscoOrg</td>
-                <td>Eindhoven</td>
-                <td>12344566</td>
-                <td>
-                  <div className="editOpt">
-                    {/* <Link href="/cms/eventorganiser/[id]/edit" as={`/cms/eventorganiser/1234545/edit`}>
-                      <a>Edit</a>
-                    </Link> */}
-                    <Link
-                      href="/cms/eventorganiser/[id]"
-                      as={`/cms/eventorganiser/1234545`}
-                    >
-                      <a>View</a>
-                    </Link>
-                  </div>
-                </td>
-              </tr>
               {organisers.reverse().map((org) => (
                 <tr key={org._id}>
                   <td>{org.name}</td>
                   <td>{org.region}</td>
                   <td>{org.phone}</td>
+                  <td>
+                    <div className="editOpt">
+                      <Link
+                        href="/cms/eventorganiser/[id]/edit"
+                        as={`/cms/eventorganiser/${org._id}/edit`}
+                      >
+                        <a>Edit</a>
+                      </Link>
+                      <Link
+                        href="/cms/eventorganiser/[id]"
+                        as={`/cms/eventorganiser/${org._id}`}
+                      >
+                        <a>View</a>
+                      </Link>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>

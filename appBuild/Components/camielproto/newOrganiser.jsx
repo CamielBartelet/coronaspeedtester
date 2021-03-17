@@ -13,11 +13,9 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
     name: eventForm.name,
     region: eventForm.region,
     email: eventForm.email,
-    phone: eventForm.date,
+    phone: eventForm.phone,
     capacity: eventForm.capacity,
   });
-
-  console.log(form);
 
   const putData = async (form) => {
     const { id } = router.query;
@@ -40,7 +38,7 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
       const { data } = await res.json();
 
       mutate(`/api/organisations/${id}`, data, false); // Update the local data without a revalidation
-      router.push(`/${id}`);
+      router.push(`/cms/eventorganiser/${id}`);
     } catch (error) {
       setMessage("Failed to update organisation");
     }
@@ -64,6 +62,7 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
       }
 
       router.push("/cms/eventorganisers");
+      saveModal();
     } catch (error) {
       setMessage("Failed to add organisation");
     }
@@ -91,7 +90,6 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
     const errs = formValidate();
     if (Object.keys(errs).length === 0) {
       forNewEvent ? postData(form) : putData(form);
-      saveModal();
     } else {
       setErrors({ errs });
     }
@@ -111,8 +109,6 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
       region: value,
       capacity: options.find((e) => e.value === value).capacity,
     });
-
-    console.log("Yay" + value + form.capacity);
   };
 
   return (

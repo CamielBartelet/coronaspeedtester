@@ -1,7 +1,7 @@
 import Link from "next/link";
-import dbConnect from "../util/mongodb";
-import Event from "../models/Event";
-import Account from "../models/accounts";
+// import dbConnect from "../util/mongodb";
+// import Event from "../models/Event";
+// import Account from "../models/accounts";
 
 const APIIndex = () => {
   return (
@@ -26,25 +26,25 @@ const APIIndex = () => {
   );
 };
 
-export async function getServerSideProps() {
-  await dbConnect();
+// export async function getServerSideProps() {
+//   await dbConnect();
 
-  /* find all the data in our database */
-  const result = await Event.find({});
-  const events = result.map((doc) => {
-    const event = doc.toObject();
-    event._id = event._id.toString();
-    return event;
-  });
+//   /* find all the data in our database */
+//   const result = await Event.find({});
+//   const events = result.map((doc) => {
+//     const event = doc.toObject();
+//     event._id = event._id.toString();
+//     return event;
+//   });
 
-  const resultAcc = await Account.find({});
-  const accounts = resultAcc.map((doc) => {
-    const account = doc.toObject();
-    account._id = account._id.toString();
-    return account;
-  });
+//   const resultAcc = await Account.find({});
+//   const accounts = resultAcc.map((doc) => {
+//     const account = doc.toObject();
+//     account._id = account._id.toString();
+//     return account;
+//   });
 
-  return { props: { events: events, accounts: accounts } };
-}
+//   return { props: { events: events, accounts: accounts } };
+// }
 
 export default APIIndex;

@@ -10,7 +10,6 @@ const NewEvent = ({ newId, toggleModal }) => {
     toggleModal();
   };
   const [formDef, setForm] = useState(newId);
-  console.log(newId);
 
   const eventForm = {
     name: "",
@@ -51,14 +50,6 @@ const NewEvent = ({ newId, toggleModal }) => {
             </div>
           </>
         )}
-
-        <div
-          onClick={() => {
-            toggleModal();
-          }}
-        >
-          Doe maar weg
-        </div>
       </DialogContent>
     </>
   );
