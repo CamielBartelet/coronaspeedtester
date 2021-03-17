@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import dbConnect from "../../util/mongodb";
-import Event from "../../models/Event";
+import dbConnect from "../../../../util/mongodb";
+import Event from "../../../../models/Event";
 
 const EventPage = ({ event }) => {
   const router = useRouter();

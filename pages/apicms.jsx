@@ -1,116 +1,25 @@
-import HomeButton from "../appBuild/Components/homecomp/Homebutton";
-// import EventInput from "../appBuild/Components/camielproto/inputEvent";
 import Link from "next/link";
 import dbConnect from "../util/mongodb";
 import Event from "../models/Event";
 import Account from "../models/accounts";
-// import "../lib/server";
 
-//setting up connection with db separate server
-// export async function getStaticProps() {
-// const { db } = await dbConnect();
-// const users = await db
-//   .collection("users")
-//   .find({})
-//   .sort({ metacritic: -1 })
-//   .toArray();
-// return {
-//   props: {
-//     users: JSON.parse(JSON.stringify(users)),
-//   },
-// };
-// }
-
-const APIIndex = ({ events, accounts }) => {
+const APIIndex = () => {
   return (
     <>
-      {/* <HomeButton /> */}
       <main className="container">
-        <div className="ogsMng">
-          <h2>Organisatie</h2>
-          <table>
-            <thead className="table_head">
-              <tr className="eventTable">
-                <th>Organisatienaam</th>
-                <th>Regio</th>
-                <th>Contact</th>
-                <th>
-                  {" "}
-                  {/* <Link href="/newOrganisation"> */}
-                  <div className="createNew">
-                    <p>Nieuwe organisatie</p>
-                  </div>
-                  {/* </Link> */}
-                </th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-        <div className="eventMng">
-          <h2>Evenementen:</h2>
-          <table className="table">
-            <thead className="table_head">
-              <tr className="eventTable">
-                <th>Evenement naam</th>
-                <th>Organisatie</th>
-                <th>Datum</th>
-                <th>Regio</th>
-                <th>Capaciteit</th>
-                <th>
-                  {" "}
-                  <Link href="/new">
-                    <div className="createNew">
-                      <p>Creeëer nieuw evenement</p>
-                    </div>
-                  </Link>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {events.reverse().map((event) => (
-                <tr key={event._id}>
-                  <td>{event.name}</td>
-                  <td>{event.owner_name}</td>
-                  <td>{event.date}</td>
-                  <td>{event.location}</td>
-                  <td>{event.capacity}</td>
-                  <td>
-                    <div className="editOpt">
-                      <Link href="/[id]/edit" as={`/${event._id}/edit`}>
-                        <a>Edit</a>
-                      </Link>
-                      <Link href="/[id]" as={`/${event._id}`}>
-                        <a>View</a>
-                      </Link>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className="userMng">
-          <h2>Gebruikers:</h2>
-          <table>
-            <thead className="table_head">
-              <tr className="eventTable">
-                <th>Naam</th>
-                <th>Achternaam</th>
-                <th>Email</th>
-                <th>Regio</th>
-                <th>Testresultaat</th>
-              </tr>
-            </thead>
-            <tbody>
-              {accounts.reverse().map((account) => (
-                <tr key={account._id}>
-                  <td>{account.name}</td>
-                  <td>{account.lastname}</td>
-                  <td>{account.email}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="wrappingCont">
+          <Link href="/cms/eventorganisers">
+            <div className="maincmsBtn">Event Organisers</div>
+          </Link>
+          <Link href="/cms/testservices">
+            <div className="maincmsBtn">Test Locaties</div>
+          </Link>
+          <Link href="/cms/users">
+            <div className="maincmsBtn">Gebruikers</div>
+          </Link>
+          <Link href="/cms/appcms">
+            <div className="maincmsBtn">App CMS</div>
+          </Link>
         </div>
       </main>
     </>
