@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import Link from "next/link";
-import Form from "../../appBuild/Components/camielproto/inputEvent";
+import Form from "../../../../../appBuild/Components/camielproto/inputEvent";
 
 const fetcher = (url) =>
   fetch(url)
@@ -10,6 +9,7 @@ const fetcher = (url) =>
 
 const EditEvent = () => {
   const router = useRouter();
+  console.log(router.query);
   const { id } = router.query;
   const { data: event, error } = useSWR(
     id ? `/api/events/${id}` : null,
@@ -32,9 +32,9 @@ const EditEvent = () => {
 
   return (
     <>
-      <Link href="/cms/eventorganiser/1234545">
-        <div className="backbutton">Back</div>
-      </Link>
+      <div className="backbutton" onClick={() => router.back()}>
+        Back
+      </div>
       <div className="editEvent">
         <Form
           formId="edit-event-form"

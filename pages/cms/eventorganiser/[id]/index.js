@@ -2,12 +2,14 @@ import React from "react";
 import Link from "next/link";
 import dbConnect from "../../../../util/mongodb";
 import Event from "../../../../models/Event";
+import NewOrg from "../../../../appBuild/Components/camielproto/new";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Organisation from "../../../../models/Organisation";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
+import Close from "@material-ui/icons/Close";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
@@ -17,16 +19,22 @@ const ScheduledEvents = ({ events }) => {
   const router = useRouter();
   const [message, setMessage] = useState(false);
   const [warning, setWarning] = useState(false);
+  const [modalState, setModal] = useState(false);
+
+  const orgID = router.query.id;
+
+  const toggleModalstate = () => {
+    setModal(false);
+  };
 
   const handleDelete = async () => {
-    const organiserID = router.query.id;
     try {
-      await fetch(`/api/organisations/${organiserID}`, {
+      await fetch(`/api/organisations/${orgID}`, {
         method: "Delete",
       });
       router.push("/cms/eventorganisers");
     } catch (error) {
-      setMessage("Failed to delete the event.");
+      setMessage("Failed to delete the organiser.");
     }
   };
 
@@ -50,11 +58,9 @@ const ScheduledEvents = ({ events }) => {
                 <th>Regio</th>
                 <th>Capaciteit</th>
                 <th>
-                  <Link href="/new" newId="new-event">
-                    <div className="createNew">
-                      <p>Creeëer nieuw evenement</p>
-                    </div>
-                  </Link>
+                  <div className="createNew" onClick={() => setModal(true)}>
+                    <p>Creeëer nieuw evenement</p>
+                  </div>
                 </th>
               </tr>
             </thead>
@@ -68,10 +74,16 @@ const ScheduledEvents = ({ events }) => {
                   <td>{event.capacity}</td>
                   <td>
                     <div className="editOpt">
-                      <Link href="/[id]/edit" as={`/${event._id}/edit`}>
+                      <Link
+                        href="/cms/eventorganiser/[id]/[idx]/edit"
+                        as={`/cms/eventorganiser/${orgID}/${event._id}/edit`}
+                      >
                         <a>Edit</a>
                       </Link>
-                      <Link href="/[id]" as={`/${event._id}`}>
+                      <Link
+                        href="/cms/eventorganiser/[id]/[idx]"
+                        as={`/cms/eventorganiser/${orgID}/${event._id}`}
+                      >
                         <a>View</a>
                       </Link>
                     </div>
@@ -99,6 +111,30 @@ const ScheduledEvents = ({ events }) => {
           </DialogTitle>
           <Button onClick={handleDelete}>Yes</Button>
           <Button onClick={() => setWarning(false)}>Cancel</Button>
+        </Dialog>
+        <Dialog
+          // classes={dialogClasses}
+          open={modalState}
+          transition={Transition}
+          keepMounted
+          onClose={() => setModal(false)}
+          aria-labelledby="modal-slide-title"
+          aria-describedby="modal-slide-description"
+        >
+          <DialogTitle
+            id="classic-modal-slide-title"
+            disableTypography
+            // className={classes.modalHeader}
+          ></DialogTitle>
+          <Button
+            // className={classes.modalCloseButton}
+            key="close"
+            aria-label="Close"
+            onClick={() => setModal(false)}
+          >
+            <Close />
+          </Button>
+          <NewOrg newId="new-event" toggleModal={toggleModalstate}></NewOrg>
         </Dialog>
       </main>
     </>

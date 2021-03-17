@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import dbConnect from "../../util/mongodb";
-import Event from "../../models/Event";
+import dbConnect from "../../../../../util/mongodb";
+import Event from "../../../../../models/Event";
 
 const EventPage = ({ event }) => {
   const router = useRouter();
@@ -22,9 +22,9 @@ const EventPage = ({ event }) => {
 
   return (
     <>
-      <Link href="/cms/eventorganiser/1234545">
-        <div className="backbutton">Back</div>
-      </Link>
+      <div className="backbutton" onClick={() => router.back()}>
+        Back
+      </div>
       <div className="viewEvent">
         <div key={event._id}>
           <div>

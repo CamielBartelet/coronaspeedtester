@@ -84,11 +84,9 @@ const Eventorganisers = ({ organisers }) => {
             // className={classes.modalHeader}
           ></DialogTitle>
           <Button
-            justIcon
             // className={classes.modalCloseButton}
             key="close"
             aria-label="Close"
-            color="transparent"
             onClick={() => setModal(false)}
           >
             <Close />

@@ -138,9 +138,11 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
               handleChange(e);
               regionCheck(e);
             }}
-            value={form.region}
             required
           >
+            <option disabled selected value>
+              -- select an option --
+            </option>
             {options.map((option) => (
               <option value={option.value} key={option.label}>
                 {option.value}
