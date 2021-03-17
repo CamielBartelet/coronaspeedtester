@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import Link from "next/link";
-import Form from "../../../../appBuild/Components/camielproto/inputEvent";
+import Form from "../../appBuild/Components/camielproto/inputEvent";
 
 const fetcher = (url) =>
   fetch(url)
@@ -32,7 +32,7 @@ const EditEvent = () => {
 
   return (
     <>
-      <Link href="/apicms">
+      <Link href="/cms/eventorganiser/1234545">
         <div className="backbutton">Back</div>
       </Link>
       <div className="editEvent">

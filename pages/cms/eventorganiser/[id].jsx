@@ -1,10 +1,14 @@
 import Link from "next/link";
-import dbConnect from "../util/mongodb";
-import Event from "../models/Event";
+import dbConnect from "../../../util/mongodb";
+import Event from "../../../models/Event";
 
 const ScheduledEvents = ({ events }) => {
   return (
     <>
+      {" "}
+      <Link href="/cms/eventorganisers">
+        <div className="backbutton">Back</div>
+      </Link>
       <main className="container">
         <div className="eventMng">
           <h2>Evenementen:</h2>
@@ -17,8 +21,7 @@ const ScheduledEvents = ({ events }) => {
                 <th>Regio</th>
                 <th>Capaciteit</th>
                 <th>
-                  {" "}
-                  <Link href="/new">
+                  <Link href="/new" newId="new-event">
                     <div className="createNew">
                       <p>Creeëer nieuw evenement</p>
                     </div>
@@ -65,7 +68,7 @@ export async function getServerSideProps() {
     return event;
   });
 
-  return { props: { events: events, accounts: accounts } };
+  return { props: { events: events } };
 }
 
 export default ScheduledEvents;
