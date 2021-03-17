@@ -10,9 +10,9 @@ const fetcher = (url) =>
 const EditEvent = () => {
   const router = useRouter();
   console.log(router.query);
-  const { id } = router.query;
+  const { idx } = router.query;
   const { data: event, error } = useSWR(
-    id ? `/api/events/${id}` : null,
+    idx ? `/api/events/${idx}` : null,
     fetcher
   );
 

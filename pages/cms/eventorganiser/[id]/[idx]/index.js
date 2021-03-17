@@ -6,15 +6,16 @@ import Event from "../../../../../models/Event";
 
 const EventPage = ({ event }) => {
   const router = useRouter();
+  const orgID = router.query.id;
+  const eventID = router.query.idx;
+  console.log(eventID);
   const [message, setMessage] = useState("");
   const handleDelete = async () => {
-    const eventID = router.query.id;
-
     try {
       await fetch(`/api/events/${eventID}`, {
         method: "Delete",
       });
-      router.push("/apicms");
+      router.push(`/cms/eventorganisers/${orgID}`);
     } catch (error) {
       setMessage("Failed to delete the event.");
     }
@@ -39,7 +40,10 @@ const EventPage = ({ event }) => {
               <p>Phone: {event.phone}</p>
 
               <div>
-                <Link href="/[id]/edit" as={`/${event._id}/edit`}>
+                <Link
+                  href="/cms/eventorganiser/[id]/[idx]/edit"
+                  as={`/cms/eventorganiser/${orgID}/${event._id}/edit`}
+                >
                   <button>Edit</button>
                 </Link>
                 <button onClick={handleDelete}>Delete</button>
@@ -55,8 +59,7 @@ const EventPage = ({ event }) => {
 
 export async function getServerSideProps({ params }) {
   await dbConnect();
-  console.log(params);
-  const event = await Event.findById(params.id).lean();
+  const event = await Event.findById(params.idx).lean();
   event._id = event._id.toString();
 
   return { props: { event } };
