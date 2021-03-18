@@ -112,6 +112,28 @@ export default css.global`
     cursor: pointer;
   }
 
+  .wrappingCont {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    height: 40%;
+  }
+
+  .maincmsBtn {
+    cursor: pointer;
+    display: flex;
+    width: 40%;
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #e9f4fd;
+    border-radius: 10px;
+  }
+
+  .maincmsBtn:hover {
+    background-color: aliceblue;
+  }
+
   .createNew:hover,
   .backbutton:hover {
     background-color: #77a4b1;
