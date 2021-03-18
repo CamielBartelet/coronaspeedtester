@@ -98,7 +98,7 @@ const ScheduledEvents = ({ events }) => {
           open={warning}
           transition={Transition}
           keepMounted
-          onClose={() => setwarning(false)}
+          onClose={() => setModal(false)}
           aria-labelledby="modal-slide-title"
           aria-describedby="modal-slide-description"
         >

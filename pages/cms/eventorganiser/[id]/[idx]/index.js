@@ -23,9 +23,12 @@ const EventPage = ({ event }) => {
 
   return (
     <>
-      <div className="backbutton" onClick={() => router.back()}>
-        Back
-      </div>
+      <Link href={`/cms/eventorganiser/${router.query.id}`}>
+        <div className="backbutton">
+          {/* <div className="backbutton" onClick={() => router.back()}> */}
+          Back
+        </div>
+      </Link>
       <div className="viewEvent">
         <div key={event._id}>
           <div>

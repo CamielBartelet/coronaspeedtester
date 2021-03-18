@@ -9,6 +9,8 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
 
+  console.log(router);
+
   const [form, setForm] = useState({
     name: eventForm.name,
     owner_name: eventForm.owner_name,
@@ -24,7 +26,7 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
     const { id } = router.query;
 
     try {
-      const res = await fetch(`/api/events/${id}`, {
+      const res = await fetch(`/api/events/${router.query.idx}`, {
         method: "PUT",
         headers: {
           Accept: contentType,
@@ -40,8 +42,8 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
 
       const { data } = await res.json();
 
-      mutate(`/api/events/${id}`, data, false); // Update the local data without a revalidation
-      router.push(`/${id}`);
+      mutate(`/api/events/${router.query.idx}`, data, false); // Update the local data without a revalidation
+      router.push(`/cms/eventorganiser/${router.query.id}/${router.query.idx}`);
     } catch (error) {
       setMessage("Failed to update event");
     }
@@ -64,7 +66,7 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
         throw new Error(res.status);
       }
 
-      router.push("/apicms");
+      router.push(`/cms/eventorganiser/${router.query.id}`);
     } catch (error) {
       setMessage("Failed to add event");
     }
