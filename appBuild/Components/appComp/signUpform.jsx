@@ -20,8 +20,6 @@ const SignUpForm = ({ formId, accountForm, forNewAccount = true }) => {
     bsnnumber: accountForm.bsnnumber,
   });
 
-  console.log(form);
-
   /* The POST method adds a new entry in the mongodb database. */
   const postData = async (form) => {
     const { id } = router.query;
