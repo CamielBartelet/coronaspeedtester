@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "mongodb": "^3.5.9",
     "mongoose": "^5.10.14",
     "next": "10.0.1",
