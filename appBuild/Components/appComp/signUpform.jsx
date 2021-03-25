@@ -39,7 +39,6 @@ const SignUpForm = ({ onnext, formId, accountForm, forNewAccount = true }) => {
       if (!res.ok) {
         throw new Error(res.status);
       }
-
       goNext();
     } catch (error) {
       setMessage("Failed to add user");
@@ -78,30 +77,27 @@ const SignUpForm = ({ onnext, formId, accountForm, forNewAccount = true }) => {
     <>
       <style jsx>{AppCompstyle}</style>
       <div className="inputEv">
-        <form
-          id={formId}
-          onSubmit={handleSubmit}
-          className="inputForm"
-          style={{ display: "flex", flexDirection: "column" }}
-        >
+        <form id={formId} className="inputForm">
           <label htmlFor="email">E-mail</label>
           <input
             name="email"
             maxLength="60"
             value={form.email}
+            placeholder="johndoe@email.com"
             onChange={handleChange}
           />
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Wachtwoord</label>
           <input
             name="password"
+            type="password"
+            placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
             maxLength="60"
             value={form.password}
             onChange={handleChange}
           />
-
-          <button type="submit" className="btnSub">
-            Creeëer je account
-          </button>
+          <div className="formButton" onClick={handleSubmit}>
+            <div className="formButtonCont">Aanmelden op Renorm</div>
+          </div>
         </form>
         <p>{message}</p>
         <div>

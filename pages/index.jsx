@@ -42,7 +42,7 @@ const CoronaIndex = () => {
       name: "verify",
       pagecont: <Verify />,
       head: <HeadMenu page={page} onprev={setPage} />,
-      buttonNxt: "Creëer je account",
+      buttonNxt: "Vul je persoonlijke gegevens in",
     },
   ];
 
@@ -53,8 +53,14 @@ const CoronaIndex = () => {
         <div className="mainApp">
           <div className="headerWrap">{pages[page].head}</div>
           <div className="mainContent">{pages[page].pagecont}</div>
-          <div className="passTruBtn" onClick={nextPage}>
-            <div className="btnCont">{pages[page].buttonNxt}</div>
+          <div className="optBtn">
+            {pages[page].buttonNxt != "" ? (
+              <div className="passTruBtn" onClick={nextPage}>
+                <div className="btnCont">{pages[page].buttonNxt}</div>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </main>

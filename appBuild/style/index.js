@@ -55,16 +55,26 @@ export default css.global`
   }
 
   .mainContent {
-    width: 90%;
+    width: 95%;
     height: 70%;
+    padding: 10px;
+    background: #fff;
+  }
+
+  .optBtn {
+    height: 15%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .passTruBtn {
     display: flex;
     justify-content: center;
     color: #000;
-    width: 90%;
-    height: 15%;
+    width: 95%;
+    height: 100%;
     align-items: center;
   }
 

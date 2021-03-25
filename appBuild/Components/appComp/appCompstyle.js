@@ -33,6 +33,50 @@ export default css`
     border-radius: 50%;
   }
 
+  .inputForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .inputForm > * {
+    display: flex;
+    align-items: flex-end;
+    min-height: 50px;
+    padding: 5px 0;
+  }
+
+  .inputForm > input {
+    background: #eef5fb;
+    border: none;
+    padding: 0 5px;
+  }
+
+  .inputForm > input:focus {
+    outline: none;
+  }
+
+  .formButton {
+    display: flex;
+    justify-content: center;
+    color: #000;
+    width: 100%;
+    height: 100%;
+    margin-top: 30px;
+    align-items: center;
+  }
+
+  .formButtonCont {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border-radius: 10px;
+    background: #86e4d9;
+    cursor: pointer;
+    height: 60px;
+    align-items: center;
+  }
+
   .faqandMenu {
     display: flex;
     justify-content: space-around;

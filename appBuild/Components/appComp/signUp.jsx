@@ -14,13 +14,20 @@ const SignUp = ({ onnext }) => {
 
   return (
     <>
-      <div>
-        <SignUpForm
-          onnext={onnext}
-          formId="add-account-form"
-          accountForm={accountForm}
-        />
+      <div className="contTitle">
+        <h2>Meld je aan op Renorm</h2>
       </div>
+      <div className="contText">
+        <p>
+          We hebben een account nodig om het proces op lange termijn te
+          versnellen voor jou.
+        </p>
+      </div>
+      <SignUpForm
+        onnext={onnext}
+        formId="add-account-form"
+        accountForm={accountForm}
+      />
     </>
   );
 };
