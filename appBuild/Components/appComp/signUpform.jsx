@@ -24,8 +24,9 @@ const SignUpForm = ({ onnext, formId, accountForm, forNewAccount = true }) => {
 
   /* The POST method adds a new entry in the mongodb database. */
   const postData = async (form) => {
+    const { id } = router.query;
     try {
-      const res = await fetch("/api/visitors", {
+      const res = await fetch("/api/accounts", {
         method: "POST",
         headers: {
           Accept: contentType,
@@ -68,8 +69,8 @@ const SignUpForm = ({ onnext, formId, accountForm, forNewAccount = true }) => {
 
   const formValidate = () => {
     let err = {};
-    if (!form.email) err.email = "Email is required";
-    if (!form.password) err.password = "Password is required";
+    if (!form.email) err.email = "Name is required";
+    if (!form.password) err.password = "Last name is required";
     return err;
   };
 

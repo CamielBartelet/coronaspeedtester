@@ -39,8 +39,8 @@ export default async function handler(req, res) {
 
     case "DELETE" /* Delete a model by its ID */:
       try {
-        const deletedAccount = await Account.deleteOne({ _id: id });
-        if (!deletedAccount) {
+        const deletedAcc = await Account.deleteOne({ _id: id });
+        if (!deletedAcc) {
           return res.status(400).json({ success: false });
         }
         res.status(200).json({ success: true, data: {} });
