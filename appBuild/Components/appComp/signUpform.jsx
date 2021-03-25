@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { mutate } from "swr";
 import AppCompstyle from "./appCompstyle";
 
-const SignUpForm = ({ formId, accountForm, forNewAccount = true }) => {
+const SignUpForm = ({ onnext, formId, accountForm, forNewAccount = true }) => {
   const router = useRouter();
   const contentType = "application/json";
   const [errors, setErrors] = useState({});
@@ -20,9 +20,10 @@ const SignUpForm = ({ formId, accountForm, forNewAccount = true }) => {
     bsnnumber: accountForm.bsnnumber,
   });
 
+  const goNext = () => onnext();
+
   /* The POST method adds a new entry in the mongodb database. */
   const postData = async (form) => {
-    const { id } = router.query;
     try {
       const res = await fetch("/api/visitors", {
         method: "POST",
@@ -38,7 +39,7 @@ const SignUpForm = ({ formId, accountForm, forNewAccount = true }) => {
         throw new Error(res.status);
       }
 
-      router.push(`/apicms/verify`);
+      goNext();
     } catch (error) {
       setMessage("Failed to add user");
     }
@@ -67,8 +68,8 @@ const SignUpForm = ({ formId, accountForm, forNewAccount = true }) => {
 
   const formValidate = () => {
     let err = {};
-    if (!form.email) err.email = "Name is required";
-    if (!form.password) err.password = "Last name is required";
+    if (!form.email) err.email = "Email is required";
+    if (!form.password) err.password = "Password is required";
     return err;
   };
 

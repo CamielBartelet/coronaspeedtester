@@ -1,6 +1,6 @@
 import SignUpForm from "./signUpform";
 
-const SignUp = () => {
+const SignUp = ({ onnext }) => {
   const accountForm = {
     name: "",
     lastname: "",
@@ -15,7 +15,11 @@ const SignUp = () => {
   return (
     <>
       <div>
-        <SignUpForm formId="add-account-form" accountForm={accountForm} />
+        <SignUpForm
+          onnext={onnext}
+          formId="add-account-form"
+          accountForm={accountForm}
+        />
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import dbConnect from "../../../util/mongodb";
-import Accounts from "../../../models/accounts";
+import Accounts from "../../../models/Account";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -19,7 +19,7 @@ export default async function handler(req, res) {
       break;
     case "POST":
       try {
-        const account = await Accounts.create(
+        const account = await Account.create(
           req.body
         ); /* create a new model in the database */
         res.status(201).json({ success: true, data: account });

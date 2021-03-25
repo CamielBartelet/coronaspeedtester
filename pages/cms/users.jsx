@@ -1,5 +1,5 @@
 import dbConnect from "../../util/mongodb";
-import Account from "../../models/accounts";
+import Account from "../../models/Account";
 import Link from "next/link";
 
 const Users = ({ accounts }) => {

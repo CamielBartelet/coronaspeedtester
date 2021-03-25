@@ -6,10 +6,13 @@ import Steps from "../appBuild/Components/appComp/steps";
 import HeadMenu from "../appBuild/Components/appComp/menu";
 import Terms from "../appBuild/Components/appComp/terms";
 import SignUp from "../appBuild/Components/appComp/signUp";
+import Verify from "../appBuild/Components/appComp/verify";
 
 const CoronaIndex = () => {
   const [page, setPage] = useState(0);
-
+  const nextPage = () => {
+    if (page < pages.length - 1) setPage(page + 1);
+  };
   const pages = [
     {
       name: "welcome",
@@ -31,15 +34,17 @@ const CoronaIndex = () => {
     },
     {
       name: "signup",
-      pagecont: <SignUp />,
+      pagecont: <SignUp onnext={nextPage} />,
+      head: <HeadMenu page={page} onprev={setPage} />,
+      buttonNxt: "",
+    },
+    {
+      name: "verify",
+      pagecont: <Verify />,
       head: <HeadMenu page={page} onprev={setPage} />,
       buttonNxt: "Creëer je account",
     },
   ];
-
-  const nextPage = () => {
-    if (page < pages.length - 1) setPage(page + 1);
-  };
 
   return (
     <>
