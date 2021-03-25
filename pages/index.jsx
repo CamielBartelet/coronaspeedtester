@@ -7,6 +7,7 @@ import HeadMenu from "../appBuild/Components/appComp/menu";
 import Terms from "../appBuild/Components/appComp/terms";
 import SignUp from "../appBuild/Components/appComp/signUp";
 import Verify from "../appBuild/Components/appComp/verify";
+import Personaldata from "../appBuild/Components/appComp/persData";
 
 const CoronaIndex = () => {
   const [page, setPage] = useState(0);
@@ -43,6 +44,12 @@ const CoronaIndex = () => {
       pagecont: <Verify />,
       head: <HeadMenu page={page} onprev={setPage} />,
       buttonNxt: "Vul je persoonlijke gegevens in",
+    },
+    {
+      name: "persdata",
+      pagecont: <Personaldata onnext={nextPage} />,
+      head: <HeadMenu page={page} onprev={setPage} />,
+      buttonNxt: "",
     },
   ];
 

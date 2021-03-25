@@ -1,7 +1,6 @@
 import AppCompstyle from "./appCompstyle";
 
-const HeadMenu = ({ page, onprev }) => {
-  const goBack = () => onprev(page - 1);
+const Verify = () => {
   return (
     <>
       <style jsx>{AppCompstyle}</style>
@@ -40,7 +39,7 @@ const HeadMenu = ({ page, onprev }) => {
               x="-16"
               y="0"
               width="100%"
-              height="100%6"
+              height="100%"
               filterUnits="userSpaceOnUse"
               color-interpolation-filters="sRGB"
             >
@@ -81,4 +80,4 @@ const HeadMenu = ({ page, onprev }) => {
   );
 };
 
-export default HeadMenu;
+export default Verify;

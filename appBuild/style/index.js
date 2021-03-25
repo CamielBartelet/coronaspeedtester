@@ -32,11 +32,19 @@ export default css.global`
     background: none;
   }
 
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
   .mainApp {
     display: flex;
     flex-direction: column;
     width: 360px;
-    height: 640px;
+    height: auto;
     align-items: center;
     justify-content: center;
     background: #f9f9f9;
@@ -44,7 +52,7 @@ export default css.global`
 
   .headerWrap {
     width: 100%;
-    height: 15%;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,7 +70,7 @@ export default css.global`
   }
 
   .optBtn {
-    height: 15%;
+    height: 90px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -85,16 +93,8 @@ export default css.global`
     border-radius: 10px;
     background: #86e4d9;
     cursor: pointer;
-    height: 60%;
+    height: 65px;
     align-items: center;
-  }
-
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
   }
 
   .addNew,
@@ -120,6 +120,7 @@ export default css.global`
     padding: 20px 20px;
     background-color: #e9f4fd;
     cursor: pointer;
+    position: absolute;
   }
 
   .wrappingCont {
@@ -133,7 +134,7 @@ export default css.global`
     cursor: pointer;
     display: flex;
     width: 40%;
-    height: 80%;
+    height: 200px;
     justify-content: center;
     align-items: center;
     border: 1px solid #e9f4fd;
