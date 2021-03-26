@@ -9,9 +9,9 @@ const UnauthenticatedComponent = dynamic(() =>
 
 export default function Dashboard({ user }) {
   const isAdmin = useSWR(`../../api/isAdmin`).data?.hasRole;
-  const [loading] = useSession();
+  // const [loading] = useSession();
 
-  if (typeof window !== "undefined" && loading) return <p>Loading...</p>;
+  // if (typeof window !== "undefined" && loading) return <p>Loading...</p>;
 
   return isAdmin != true ? (
     <UnauthenticatedComponent />
