@@ -6,7 +6,7 @@ import Link from "next/link";
 import DialogContent from "@material-ui/core/DialogContent";
 import { useState } from "react";
 
-const NewEvent = ({ newId, toggleModal }) => {
+const NewEvent = ({ newId, toggleModal, org }) => {
   const saveModal = () => {
     toggleModal();
   };
@@ -14,7 +14,7 @@ const NewEvent = ({ newId, toggleModal }) => {
 
   const eventForm = {
     name: "",
-    owner_name: "",
+    owner_name: org,
     location: "",
     email: "",
     date: "",
@@ -42,7 +42,13 @@ const NewEvent = ({ newId, toggleModal }) => {
   const forms = [
     {
       name: "new-event",
-      pagecont: <Events formId="add-event-form" eventForm={eventForm} />,
+      formcont: (
+        <Events
+          formId="add-event-form"
+          eventForm={eventForm}
+          saveModal={saveModal}
+        />
+      ),
     },
     {
       name: "new-organisation",

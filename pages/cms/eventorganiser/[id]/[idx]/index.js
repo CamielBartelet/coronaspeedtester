@@ -31,8 +31,8 @@ const EventPage = ({ event }) => {
       </Link>
       <div className="viewEvent">
         <div key={event._id}>
-          <div>
-            <img src={event.image} />
+          <div className="eventCont">
+            <img src={event.image} width="320px" />
             <h5>{event.name}</h5>
             <div>
               <p>{event.name}</p>

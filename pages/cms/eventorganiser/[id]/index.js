@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import dbConnect from "../../../../util/mongodb";
 import Event from "../../../../models/Event";
-import NewOrg from "../../../../appBuild/Components/camielproto/new";
+import NewEvent from "../../../../appBuild/Components/camielproto/new";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Organisation from "../../../../models/Organisation";
@@ -15,7 +15,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const ScheduledEvents = ({ events }) => {
+const ScheduledEvents = ({ events, organisation }) => {
   const router = useRouter();
   const [message, setMessage] = useState(false);
   const [warning, setWarning] = useState(false);
@@ -38,12 +38,16 @@ const ScheduledEvents = ({ events }) => {
     }
   };
 
+  const orgname = organisation.name;
+  console.log(orgname);
+
   return (
     <>
       <Link href="/cms/eventorganisers">
         <div className="backbutton">Back</div>
       </Link>
       <main className="container">
+        <div className="orgTitle">{organisation.name}</div>
         <div className="menuBar">
           <button onClick={() => setWarning(true)}>Delete Organisation</button>
         </div>
@@ -134,7 +138,11 @@ const ScheduledEvents = ({ events }) => {
           >
             <Close />
           </Button>
-          <NewOrg newId="1" toggleModal={toggleModalstate}></NewOrg>
+          <NewEvent
+            newId="0"
+            toggleModal={toggleModalstate}
+            org={orgname}
+          ></NewEvent>
         </Dialog>
       </main>
     </>
@@ -155,7 +163,7 @@ export async function getServerSideProps({ params }) {
   const organisation = await Organisation.findById(params.id).lean();
   organisation._id = organisation._id.toString();
 
-  return { props: { events: events, organisation } };
+  return { props: { events: events, organisation: organisation } };
 }
 
 export default ScheduledEvents;

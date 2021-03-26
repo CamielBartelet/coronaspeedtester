@@ -15,7 +15,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const ScheduledEvents = ({ events, testlocations }) => {
+const ScheduledEvents = ({ events, testlocation }) => {
   const router = useRouter();
   const [message, setMessage] = useState(false);
   const [warning, setWarning] = useState(false);
@@ -44,6 +44,7 @@ const ScheduledEvents = ({ events, testlocations }) => {
         <div className="backbutton">Back</div>
       </Link>
       <main className="container">
+        <div className="orgTitle">{testlocation.name}</div>
         <div className="menuBar">
           <button onClick={() => setWarning(true)}>Delete Testlocation</button>
         </div>
@@ -138,18 +139,20 @@ const ScheduledEvents = ({ events, testlocations }) => {
 export async function getServerSideProps({ params }) {
   await dbConnect();
 
+  const testlocation = await Testlocation.findById(params.id).lean();
+  testlocation._id = testlocation._id.toString();
+
   /* find all the data in our database */
-  const result = await Event.find({});
+  const result = await Event.find({
+    location: testlocation.region,
+  });
   const events = result.map((doc) => {
     const event = doc.toObject();
     event._id = event._id.toString();
     return event;
   });
 
-  const testLocation = await Testlocation.findById(params.id).lean();
-  testLocation._id = testLocation._id.toString();
-
-  return { props: { events: events, testLocation } };
+  return { props: { events: events, testlocation: testlocation } };
 }
 
 export default ScheduledEvents;

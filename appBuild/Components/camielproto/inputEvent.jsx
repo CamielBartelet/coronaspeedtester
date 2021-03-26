@@ -3,13 +3,13 @@ import { useRouter } from "next/router";
 import { mutate } from "swr";
 import camielStyles from "./camielStyles";
 
-const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
+const inputEvents = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
   const router = useRouter();
   const contentType = "application/json";
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
 
-  console.log(router);
+  console.log(router.query);
 
   const [form, setForm] = useState({
     name: eventForm.name,
@@ -67,6 +67,7 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true }) => {
       }
 
       router.push(`/cms/eventorganiser/${router.query.id}`);
+      saveModal();
     } catch (error) {
       setMessage("Failed to add event");
     }
