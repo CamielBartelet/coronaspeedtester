@@ -9,8 +9,6 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
 
-  console.log(router.query);
-
   const [form, setForm] = useState({
     name: eventForm.name,
     owner_name: eventForm.owner_name,

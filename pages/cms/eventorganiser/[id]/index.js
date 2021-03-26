@@ -39,7 +39,6 @@ const ScheduledEvents = ({ events, organisation }) => {
   };
 
   const orgname = organisation.name;
-  console.log(orgname);
 
   return (
     <>

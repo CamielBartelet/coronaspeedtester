@@ -8,7 +8,6 @@ const EventPage = ({ event }) => {
   const router = useRouter();
   const orgID = router.query.id;
   const eventID = router.query.idx;
-  console.log(eventID);
   const [message, setMessage] = useState("");
   const handleDelete = async () => {
     try {

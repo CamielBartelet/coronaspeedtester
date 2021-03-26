@@ -21,9 +21,6 @@ const Eventorganisers = ({ organisers, user }) => {
   const toggleModalstate = () => {
     setModal(false);
   };
-
-  console.log(user);
-
   return (
     <>
       <Link href="/apicms">

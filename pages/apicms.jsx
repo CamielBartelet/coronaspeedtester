@@ -10,7 +10,6 @@ const UnauthenticatedComponent = dynamic(() =>
 export default function Dashboard({ user }) {
   const isAdmin = useSWR(`../../api/isAdmin`).data?.hasRole;
   const [loading] = useSession();
-  console.log(user.email);
 
   if (typeof window !== "undefined" && loading) return <p>Loading...</p>;
 
