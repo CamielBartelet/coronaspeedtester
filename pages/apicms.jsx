@@ -1,30 +1,23 @@
-import Link from "next/link";
-import Globalstyle from "../appBuild/style/index";
-import { getSession } from "next-auth/client";
+import { getSession, useSession } from "next-auth/client";
+import useSWR from "swr";
+import dynamic from "next/dynamic";
+import CMSDashboard from "../appBuild/Components/cms/dashboard";
+
+const UnauthenticatedComponent = dynamic(() =>
+  import("../appBuild/Components/login/unauthenticated")
+);
 
 export default function Dashboard({ user }) {
-  return (
-    <>
-      <style jsx>{Globalstyle}</style>
-      <main className="container">
-        <div className="wrappingCont">
-          <Link href="/cms/eventorganisers">
-            <div className="maincmsBtn">Event Organisers</div>
-          </Link>
-          <Link href="/cms/testservices">
-            <div className="maincmsBtn">Test Locaties</div>
-          </Link>
-        </div>
-        <div className="wrappingCont">
-          <Link href="/cms/users">
-            <div className="maincmsBtn">Gebruikers</div>
-          </Link>
-          <Link href="/cms/appcms">
-            <div className="maincmsBtn">App CMS</div>
-          </Link>
-        </div>
-      </main>
-    </>
+  const isAdmin = useSWR(`../../api/isAdmin`).data?.hasRole;
+  const [loading] = useSession();
+  console.log(user.email);
+
+  if (typeof window !== "undefined" && loading) return <p>Loading...</p>;
+
+  return isAdmin != true ? (
+    <UnauthenticatedComponent />
+  ) : (
+    <CMSDashboard user={user} />
   );
 }
 
