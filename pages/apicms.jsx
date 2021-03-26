@@ -1,54 +1,36 @@
-import Link from "next/link";
-// import dbConnect from "../util/mongodb";
-// import Event from "../models/Event";
-// import Account from "../models/accounts";
-import Globalstyle from "../appBuild/style/index";
+import { getSession, useSession } from "next-auth/client";
+import useSWR from "swr";
+import dynamic from "next/dynamic";
+import CMSDashboard from "../appBuild/Components/cms/dashboard";
 
-const APIIndex = () => {
-  return (
-    <>
-      <style jsx>{Globalstyle}</style>
-      <main className="container">
-        <div className="wrappingCont">
-          <Link href="/cms/eventorganisers">
-            <div className="maincmsBtn">Event Organisers</div>
-          </Link>
-          <Link href="/cms/testservices">
-            <div className="maincmsBtn">Test Locaties</div>
-          </Link>
-        </div>
-        <div className="wrappingCont">
-          <Link href="/cms/users">
-            <div className="maincmsBtn">Gebruikers</div>
-          </Link>
-          <Link href="/cms/appcms">
-            <div className="maincmsBtn">App CMS</div>
-          </Link>
-        </div>
-      </main>
-    </>
+const UnauthenticatedComponent = dynamic(() =>
+  import("../appBuild/Components/login/unauthenticated")
+);
+
+export default function Dashboard({ user }) {
+  const isAdmin = useSWR(`../../api/isAdmin`).data?.hasRole;
+  // const [loading] = useSession();
+
+  // if (typeof window !== "undefined" && loading) return <p>Loading...</p>;
+
+  return isAdmin != true ? (
+    <UnauthenticatedComponent />
+  ) : (
+    <CMSDashboard user={user} />
   );
-};
+}
 
-// export async function getServerSideProps() {
-//   await dbConnect();
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+  if (!session) {
+    ctx.res.writeHead(302, { Location: "/profile" });
+    ctx.res.end();
+    return {};
+  }
 
-//   /* find all the data in our database */
-//   const result = await Event.find({});
-//   const events = result.map((doc) => {
-//     const event = doc.toObject();
-//     event._id = event._id.toString();
-//     return event;
-//   });
-
-//   const resultAcc = await Account.find({});
-//   const accounts = resultAcc.map((doc) => {
-//     const account = doc.toObject();
-//     account._id = account._id.toString();
-//     return account;
-//   });
-
-//   return { props: { events: events, accounts: accounts } };
-// }
-
-export default APIIndex;
+  return {
+    props: {
+      user: session.user,
+    },
+  };
+}

@@ -7,9 +7,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Layout>
-        <Head>
-          <script src="https://apis.google.com/js/client:platform.js"></script>
-        </Head>
+        <Head></Head>
         <style jsx>{Globalstyle}</style>
         <div className="wrapper">
           <Component {...pageProps} />

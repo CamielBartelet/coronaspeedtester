@@ -9,18 +9,18 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Close from "@material-ui/icons/Close";
 import Button from "@material-ui/core/Button";
 import { useState } from "react";
+import { getSession } from "next-auth/client";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const Eventorganisers = ({ organisers }) => {
+const Eventorganisers = ({ organisers, user }) => {
   const [modalState, setModal] = useState(false);
 
   const toggleModalstate = () => {
     setModal(false);
   };
-
   return (
     <>
       <Link href="/apicms">
@@ -98,7 +98,7 @@ const Eventorganisers = ({ organisers }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx) {
   await dbConnect();
 
   /* find all the data in our database */
@@ -109,7 +109,14 @@ export async function getServerSideProps() {
     return organiser;
   });
 
-  return { props: { organisers: organisers } };
+  const session = await getSession(ctx);
+  if (!session) {
+    ctx.res.writeHead(302, { Location: "/profile" });
+    ctx.res.end();
+    return {};
+  }
+
+  return { props: { organisers: organisers, user: session.user } };
 }
 
 export default Eventorganisers;
