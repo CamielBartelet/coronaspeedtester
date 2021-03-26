@@ -8,6 +8,12 @@ export default css`
     width: 80%;
   }
 
+  .stepList img {
+    background: #dddddd;
+    padding: 9px;
+    border-radius: 12px;
+  }
+
   .appmenu {
     display: flex;
     width: 90%;
