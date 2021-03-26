@@ -1,6 +1,6 @@
-import SignUpForm from "./signUpform";
+import PersDataForm from "./persDataForm";
 
-const SignUp = ({ onnext }) => {
+const PersData = ({ onnext }) => {
   const accountForm = {
     name: "",
     lastname: "",
@@ -15,20 +15,20 @@ const SignUp = ({ onnext }) => {
   return (
     <>
       <div className="contTitle">
-        <h2>Meld je aan op Renorm</h2>
+        <h2>Vul je persoonlijke gegevens in</h2>
       </div>
       <div className="contText">
         <p>
-          We hebben een account nodig om het proces op lange termijn te
-          versnellen voor jou.
+          Voor het bewaken van de veiligheid hebben we enkele persoonlijke
+          gegevens nodig van de bezoekers.
         </p>
       </div>
-      <SignUpForm
+      <PersDataForm
         onnext={onnext}
-        formId="add-account-form"
+        formId="add-persdata-form"
         accountForm={accountForm}
       />
     </>
   );
 };
-export default SignUp;
+export default PersData;

@@ -91,10 +91,7 @@ const Eventorganisers = ({ organisers }) => {
           >
             <Close />
           </Button>
-          <NewOrg
-            newId="new-organisation"
-            toggleModal={toggleModalstate}
-          ></NewOrg>
+          <NewOrg newId="1" toggleModal={toggleModalstate}></NewOrg>
         </Dialog>
       </main>
     </>

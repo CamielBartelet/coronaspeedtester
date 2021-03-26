@@ -2,10 +2,10 @@ import React from "react";
 import Link from "next/link";
 import dbConnect from "../../../../util/mongodb";
 import Event from "../../../../models/Event";
-import NewEvent from "../../../../appBuild/Components/camielproto/new";
+import NewTestLoc from "../../../../appBuild/Components/camielproto/new";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Organisation from "../../../../models/Organisation";
+import Testlocation from "../../../../models/Testlocation";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
@@ -15,13 +15,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const ScheduledEvents = ({ events, organisation }) => {
+const ScheduledEvents = ({ events, testlocation }) => {
   const router = useRouter();
   const [message, setMessage] = useState(false);
   const [warning, setWarning] = useState(false);
   const [modalState, setModal] = useState(false);
 
-  const orgID = router.query.id;
+  const testlocID = router.query.id;
 
   const toggleModalstate = () => {
     setModal(false);
@@ -29,41 +29,38 @@ const ScheduledEvents = ({ events, organisation }) => {
 
   const handleDelete = async () => {
     try {
-      await fetch(`/api/organisations/${orgID}`, {
+      await fetch(`/api/testlocations/${testlocID}`, {
         method: "Delete",
       });
-      router.push("/cms/eventorganisers");
+      router.push("/cms/testservices");
     } catch (error) {
-      setMessage("Failed to delete the organiser.");
+      setMessage("Failed to delete the testservice.");
     }
   };
 
-  const orgname = organisation.name;
-  console.log(orgname);
-
   return (
     <>
-      <Link href="/cms/eventorganisers">
+      <Link href="/cms/testservices">
         <div className="backbutton">Back</div>
       </Link>
       <main className="container">
-        <div className="orgTitle">{organisation.name}</div>
+        <div className="orgTitle">{testlocation.name}</div>
         <div className="menuBar">
-          <button onClick={() => setWarning(true)}>Delete Organisation</button>
+          <button onClick={() => setWarning(true)}>Delete Testlocation</button>
         </div>
         <div className="eventMng">
           <h2>Evenementen:</h2>
           <table className="table">
             <thead className="table_head">
               <tr className="eventTable">
-                <th>Evenement naam</th>
-                <th>Organisatie</th>
+                <th>Testlocatie naam</th>
+                <th>Regio</th>
+                <th>Organisator</th>
                 <th>Datum</th>
-                <th>Locatie</th>
                 <th>Capaciteit</th>
                 <th>
                   <div className="createNew" onClick={() => setModal(true)}>
-                    <p>Creeëer nieuw evenement</p>
+                    <p>Creeëer nieuwe testlocatie</p>
                   </div>
                 </th>
               </tr>
@@ -72,23 +69,17 @@ const ScheduledEvents = ({ events, organisation }) => {
               {events.reverse().map((event) => (
                 <tr key={event._id}>
                   <td>{event.name}</td>
+                  <td>{event.location}</td>
                   <td>{event.owner_name}</td>
                   <td>{event.date}</td>
-                  <td>{event.location}</td>
                   <td>{event.capacity}</td>
                   <td>
                     <div className="editOpt">
                       <Link
-                        href="/cms/eventorganiser/[id]/[idx]/edit"
-                        as={`/cms/eventorganiser/${orgID}/${event._id}/edit`}
+                        href="/cms/testlocation/[id]/[idx]"
+                        as={`/cms/testlocation/${testlocID}/${event._id}`}
                       >
-                        <a>Edit</a>
-                      </Link>
-                      <Link
-                        href="/cms/eventorganiser/[id]/[idx]"
-                        as={`/cms/eventorganiser/${orgID}/${event._id}`}
-                      >
-                        <a>View</a>
+                        <a>Bezoekerslijst</a>
                       </Link>
                     </div>
                   </td>
@@ -138,11 +129,7 @@ const ScheduledEvents = ({ events, organisation }) => {
           >
             <Close />
           </Button>
-          <NewEvent
-            newId="0"
-            toggleModal={toggleModalstate}
-            org={orgname}
-          ></NewEvent>
+          <NewTestLoc newId="0" toggleModal={toggleModalstate}></NewTestLoc>
         </Dialog>
       </main>
     </>
@@ -152,18 +139,20 @@ const ScheduledEvents = ({ events, organisation }) => {
 export async function getServerSideProps({ params }) {
   await dbConnect();
 
+  const testlocation = await Testlocation.findById(params.id).lean();
+  testlocation._id = testlocation._id.toString();
+
   /* find all the data in our database */
-  const result = await Event.find({});
+  const result = await Event.find({
+    location: testlocation.region,
+  });
   const events = result.map((doc) => {
     const event = doc.toObject();
     event._id = event._id.toString();
     return event;
   });
 
-  const organisation = await Organisation.findById(params.id).lean();
-  organisation._id = organisation._id.toString();
-
-  return { props: { events: events, organisation: organisation } };
+  return { props: { events: events, testlocation: testlocation } };
 }
 
 export default ScheduledEvents;

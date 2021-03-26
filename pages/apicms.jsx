@@ -2,10 +2,12 @@ import Link from "next/link";
 // import dbConnect from "../util/mongodb";
 // import Event from "../models/Event";
 // import Account from "../models/accounts";
+import Globalstyle from "../appBuild/style/index";
 
 const APIIndex = () => {
   return (
     <>
+      <style jsx>{Globalstyle}</style>
       <main className="container">
         <div className="wrappingCont">
           <Link href="/cms/eventorganisers">
@@ -14,6 +16,8 @@ const APIIndex = () => {
           <Link href="/cms/testservices">
             <div className="maincmsBtn">Test Locaties</div>
           </Link>
+        </div>
+        <div className="wrappingCont">
           <Link href="/cms/users">
             <div className="maincmsBtn">Gebruikers</div>
           </Link>

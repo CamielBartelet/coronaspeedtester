@@ -1,11 +1,13 @@
-import dbConnect from "../../util/mongodb";
-import Account from "../../models/Account";
+import dbConnect from "../../../../../util/mongodb";
+import Account from "../../../../../models/Account";
+import { useRouter } from "next/router";
 import Link from "next/link";
 
 const Users = ({ accounts }) => {
+  const router = useRouter();
   return (
     <>
-      <Link href="/apicms">
+      <Link href={`/cms/testlocation/${router.query.id}`}>
         <div className="backbutton">Back</div>
       </Link>
       <main className="container">

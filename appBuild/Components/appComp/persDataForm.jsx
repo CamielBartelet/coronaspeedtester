@@ -8,6 +8,7 @@ const SignUpForm = ({ onnext, formId, accountForm, forNewAccount = true }) => {
   const contentType = "application/json";
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
+  console.log(router.query);
 
   const [form, setForm] = useState({
     name: accountForm.name,
@@ -68,8 +69,8 @@ const SignUpForm = ({ onnext, formId, accountForm, forNewAccount = true }) => {
 
   const formValidate = () => {
     let err = {};
-    if (!form.email) err.email = "Name is required";
-    if (!form.password) err.password = "Last name is required";
+    if (!form.name) err.name = "Name is required";
+    if (!form.lastname) err.lastname = "Last name is required";
     return err;
   };
 
@@ -78,25 +79,56 @@ const SignUpForm = ({ onnext, formId, accountForm, forNewAccount = true }) => {
       <style jsx>{AppCompstyle}</style>
       <div className="inputEv">
         <form id={formId} className="inputForm">
-          <label htmlFor="email">E-mail</label>
+          <label htmlFor="name">Voornaam</label>
           <input
-            name="email"
-            maxLength="60"
-            value={form.email}
-            placeholder="johndoe@email.com"
+            name="name"
+            maxLength="40"
+            value={form.name}
+            placeholder="John"
             onChange={handleChange}
           />
-          <label htmlFor="password">Wachtwoord</label>
+          <label htmlFor="lastname">Achternaam</label>
           <input
-            name="password"
-            type="password"
-            placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
-            maxLength="60"
-            value={form.password}
+            type="text"
+            maxLength="40"
+            name="lastname"
+            value={form.lastname}
+            placeholder="Doe"
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="postalCode">Postcode</label>
+          <input
+            name="postalCode"
+            maxLength="6"
+            value={form.postalCode}
+            placeholder="1234AB"
+            onChange={handleChange}
+          />
+          <label htmlFor="postalNumber">Huisnummer</label>
+          <input
+            name="postalNumber"
+            maxLength="5"
+            value={form.postalNumber}
+            placeholder="12"
+            onChange={handleChange}
+          />
+          <label htmlFor="phone">Telefoon</label>
+          <input
+            name="phone"
+            maxLength="15"
+            value={form.phone}
+            onChange={handleChange}
+          />
+          <label htmlFor="bsnnumber">BSN-nummer</label>
+          <input
+            name="bsnnumber"
+            maxLength="9"
+            value={form.bsnnumber}
             onChange={handleChange}
           />
           <div className="formButton" onClick={handleSubmit}>
-            <div className="formButtonCont">Aanmelden op Renorm</div>
+            <div className="formButtonCont">Gegevens opslaan</div>
           </div>
         </form>
         <p>{message}</p>

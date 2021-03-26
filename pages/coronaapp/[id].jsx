@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import dbConnect from "../../util/mongodb";
-import Account from "../../models/accounts";
+import Account from "../../models/Account";
 
 const UserPage = ({ account }) => {
   //   const router = useRouter();

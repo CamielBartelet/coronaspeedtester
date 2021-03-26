@@ -1,5 +1,5 @@
 import dbConnect from "../../../util/mongodb";
-import Accounts from "../../../models/accounts";
+import Account from "../../../models/Account";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        const account = await Accounts.find(
+        const account = await Account.find(
           {}
         ); /* find all the data in our database */
         res.status(200).json({ success: true, data: account });
@@ -19,7 +19,7 @@ export default async function handler(req, res) {
       break;
     case "POST":
       try {
-        const account = await Accounts.create(
+        const account = await Account.create(
           req.body
         ); /* create a new model in the database */
         res.status(201).json({ success: true, data: account });
