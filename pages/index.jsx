@@ -6,10 +6,14 @@ import Steps from "../appBuild/Components/appComp/steps";
 import HeadMenu from "../appBuild/Components/appComp/menu";
 import Terms from "../appBuild/Components/appComp/terms";
 import SignUp from "../appBuild/Components/appComp/signUp";
+import Verify from "../appBuild/Components/appComp/verify";
+import Personaldata from "../appBuild/Components/appComp/persData";
 
 const CoronaIndex = () => {
   const [page, setPage] = useState(0);
-
+  const nextPage = () => {
+    if (page < pages.length - 1) setPage(page + 1);
+  };
   const pages = [
     {
       name: "welcome",
@@ -31,15 +35,23 @@ const CoronaIndex = () => {
     },
     {
       name: "signup",
-      pagecont: <SignUp />,
+      pagecont: <SignUp onnext={nextPage} />,
       head: <HeadMenu page={page} onprev={setPage} />,
-      buttonNxt: "Creëer je account",
+      buttonNxt: "",
+    },
+    {
+      name: "verify",
+      pagecont: <Verify />,
+      head: <HeadMenu page={page} onprev={setPage} />,
+      buttonNxt: "Vul je persoonlijke gegevens in",
+    },
+    {
+      name: "persdata",
+      pagecont: <Personaldata onnext={nextPage} />,
+      head: <HeadMenu page={page} onprev={setPage} />,
+      buttonNxt: "",
     },
   ];
-
-  const nextPage = () => {
-    if (page < pages.length - 1) setPage(page + 1);
-  };
 
   return (
     <>
@@ -48,8 +60,14 @@ const CoronaIndex = () => {
         <div className="mainApp">
           <div className="headerWrap">{pages[page].head}</div>
           <div className="mainContent">{pages[page].pagecont}</div>
-          <div className="passTruBtn" onClick={nextPage}>
-            <div className="btnCont">{pages[page].buttonNxt}</div>
+          <div className="optBtn">
+            {pages[page].buttonNxt != "" ? (
+              <div className="passTruBtn" onClick={nextPage}>
+                <div className="btnCont">{pages[page].buttonNxt}</div>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </main>

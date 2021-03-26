@@ -3,7 +3,12 @@ import { useRouter } from "next/router";
 import { mutate } from "swr";
 import camielStyles from "./camielStyles";
 
-const inputEvents = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
+const newTestlocation = ({
+  formId,
+  eventForm,
+  forNewEvent = true,
+  saveModal,
+}) => {
   const router = useRouter();
   const contentType = "application/json";
   const [errors, setErrors] = useState({});
@@ -11,12 +16,9 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
 
   const [form, setForm] = useState({
     name: eventForm.name,
-    owner_name: eventForm.owner_name,
-    location: eventForm.location,
-    date: eventForm.date,
+    region: eventForm.region,
     email: eventForm.email,
     phone: eventForm.phone,
-    image: eventForm.image,
     capacity: eventForm.capacity,
   });
 
@@ -24,7 +26,7 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
     const { id } = router.query;
 
     try {
-      const res = await fetch(`/api/events/${router.query.idx}`, {
+      const res = await fetch(`/api/testlocations/${id}`, {
         method: "PUT",
         headers: {
           Accept: contentType,
@@ -40,17 +42,17 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
 
       const { data } = await res.json();
 
-      mutate(`/api/events/${router.query.idx}`, data, false); // Update the local data without a revalidation
-      router.push(`/cms/eventorganiser/${router.query.id}/${router.query.idx}`);
+      mutate(`/api/testlocations/${id}`, data, false); // Update the local data without a revalidation
+      router.push(`/cms/testlocation/${id}`);
     } catch (error) {
-      setMessage("Failed to update event");
+      setMessage("Failed to update testlocation");
     }
   };
 
   /* The POST method adds a new entry in the mongodb database. */
   const postData = async (form) => {
     try {
-      const res = await fetch("/api/events", {
+      const res = await fetch("/api/testlocations", {
         method: "POST",
         headers: {
           Accept: contentType,
@@ -64,18 +66,18 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
         throw new Error(res.status);
       }
 
-      router.push(`/cms/eventorganiser/${router.query.id}`);
+      router.push("/cms/testservices");
       saveModal();
     } catch (error) {
-      setMessage("Failed to add event");
+      setMessage("Failed to add organisation");
     }
   };
 
-  const options = [
-    { value: "Eindhoven", label: "Eindhoven", capacity: "500" },
-    { value: "Amsterdam", label: "Amsterdam", capacity: "1000" },
-    { value: "Maastricht", label: "Maastricht", capacity: "250" },
-  ];
+  // const options = [
+  //   { value: "Eindhoven", label: "Eindhoven", capacity: "500" },
+  //   { value: "Amsterdam", label: "Amsterdam", capacity: "1000" },
+  //   { value: "Maastricht", label: "Maastricht", capacity: "250" },
+  // ];
 
   const handleChange = (e) => {
     const target = e.target;
@@ -101,22 +103,18 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
   const formValidate = () => {
     let err = {};
     if (!form.name) err.name = "Name is required";
-    if (!form.owner_name) err.owner_name = "Owner is required";
-    if (!form.image) err.image = "Image URL is required";
     return err;
   };
 
-  const regionCheck = (e) => {
-    const target = e.target;
-    const value = target.value;
-    setForm({
-      ...form,
-      location: value,
-      capacity: options.find((e) => e.value === value).capacity,
-    });
-
-    // console.log("Yay" + value + form.capacity);
-  };
+  // const regionCheck = (e) => {
+  //   const target = e.target;
+  //   const value = target.value;
+  //   setForm({
+  //     ...form,
+  //     region: value,
+  //     capacity: options.find((e) => e.value === value).capacity,
+  //   });
+  // };
 
   return (
     <>
@@ -138,26 +136,35 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
             required
           />
 
-          <label htmlFor="owner_name">Organisatie</label>
+          <label htmlFor="region">Locatie/Regio</label>
           <input
             type="text"
             maxLength="20"
-            name="owner_name"
-            value={form.owner_name}
+            name="region"
+            value={form.region}
             onChange={handleChange}
             required
           />
-
-          <label htmlFor="location">Locatie/Regio</label>
-          <select
-            name="location"
+          <label htmlFor="region">Capaciteit</label>
+          <input
+            type="text"
+            maxLength="20"
+            name="capacity"
+            value={form.capacity}
+            onChange={handleChange}
+            required
+          />
+          {/* <select
+            name="region"
             onChange={(e) => {
               handleChange(e);
               regionCheck(e);
             }}
-            value={form.location}
             required
           >
+            <option disabled selected value>
+              -- select an option --
+            </option>
             {options.map((option) => (
               <option value={option.value} key={option.label}>
                 {option.value}
@@ -165,13 +172,13 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
             ))}
           </select>
 
-          {!form.location ? (
+          {!form.region ? (
             ""
           ) : (
             <>
               <label htmlFor="maxcap">
                 Bezoekersaantal (max:
-                {options.find((e) => e.value === form.location).capacity})
+                {options.find((e) => e.value === form.region).capacity})
               </label>
 
               <input
@@ -180,20 +187,12 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
                 // defaultValue={form.capacity}
                 min="0"
                 value={form.capacity}
-                max={options.find((e) => e.value === form.location).capacity}
+                max={options.find((e) => e.value === form.region).capacity}
                 onChange={handleChange}
                 required
               ></input>
             </>
-          )}
-
-          <label htmlFor="date">Datum</label>
-          <input
-            name="date"
-            maxLength="60"
-            value={form.date}
-            onChange={handleChange}
-          />
+          )} */}
 
           <label htmlFor="email">E-mail</label>
           <input
@@ -208,14 +207,6 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
             name="phone"
             maxLength="60"
             value={form.phone}
-            onChange={handleChange}
-          />
-
-          <label htmlFor="image">Afbeelding evenement</label>
-          <input
-            type="url"
-            name="image"
-            value={form.image}
             onChange={handleChange}
           />
 
@@ -234,4 +225,4 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
   );
 };
 
-export default inputEvents;
+export default newTestlocation;
