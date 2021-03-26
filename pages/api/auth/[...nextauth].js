@@ -1,5 +1,7 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
+import sendVerificationRequest from "../../../lib/verificationmail";
+
 const options = {
   site: process.env.NEXTAUTH_URL,
   providers: [
@@ -17,12 +19,21 @@ const options = {
         },
       },
       from: process.env.NEXTAUTH_EMAILFROM,
+      sendVerificationRequest,
     }),
   ],
   database: process.env.MONGODB_URI,
   session: {
     jwt: true,
     maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
+  callbacks: {
+    redirect: async (url, _) => {
+      if (url === "/api/auth/signin") {
+        return Promise.resolve("/profile");
+      }
+      return Promise.resolve("/api/auth/signin");
+    },
   },
 };
 export default (req, res) => NextAuth(req, res, options);

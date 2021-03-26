@@ -1,10 +1,8 @@
 import Link from "next/link";
-// import dbConnect from "../util/mongodb";
-// import Event from "../models/Event";
-// import Account from "../models/accounts";
 import Globalstyle from "../appBuild/style/index";
+import { getSession } from "next-auth/client";
 
-const APIIndex = () => {
+export default function Dashboard({ user }) {
   return (
     <>
       <style jsx>{Globalstyle}</style>
@@ -28,27 +26,19 @@ const APIIndex = () => {
       </main>
     </>
   );
-};
+}
 
-// export async function getServerSideProps() {
-//   await dbConnect();
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+  if (!session) {
+    ctx.res.writeHead(302, { Location: "/profile" });
+    ctx.res.end();
+    return {};
+  }
 
-//   /* find all the data in our database */
-//   const result = await Event.find({});
-//   const events = result.map((doc) => {
-//     const event = doc.toObject();
-//     event._id = event._id.toString();
-//     return event;
-//   });
-
-//   const resultAcc = await Account.find({});
-//   const accounts = resultAcc.map((doc) => {
-//     const account = doc.toObject();
-//     account._id = account._id.toString();
-//     return account;
-//   });
-
-//   return { props: { events: events, accounts: accounts } };
-// }
-
-export default APIIndex;
+  return {
+    props: {
+      user: session.user,
+    },
+  };
+}
