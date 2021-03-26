@@ -1,5 +1,5 @@
-import dbConnect from "../../../../util/mongodb";
-import Organisation from "../../../../models/Organisation";
+import dbConnect from "../../../util/mongodb";
+import Organisation from "../../../models/Organisation";
 
 export default async function handler(req, res) {
   const { method } = req;
