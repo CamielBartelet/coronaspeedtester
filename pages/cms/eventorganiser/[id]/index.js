@@ -59,7 +59,7 @@ const ScheduledEvents = ({ events, organisation }) => {
                 <th>Evenement naam</th>
                 <th>Organisatie</th>
                 <th>Datum</th>
-                <th>Regio</th>
+                <th>Locatie</th>
                 <th>Capaciteit</th>
                 <th>
                   <div className="createNew" onClick={() => setModal(true)}>
