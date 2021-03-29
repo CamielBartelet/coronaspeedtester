@@ -6,7 +6,7 @@ const CMSDashboard = ({ user }) => {
     <>
       <style jsx>{Globalstyle}</style>
       <main className="container">
-        <div>Loggin in as {user.email}</div>
+        <div>Logged in as {user.email}</div>
         <div className="wrappingCont">
           <Link href="/cms/eventorganisers">
             <div className="maincmsBtn">Event Organisers</div>

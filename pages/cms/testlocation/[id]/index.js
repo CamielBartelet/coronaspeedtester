@@ -10,6 +10,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import Close from "@material-ui/icons/Close";
+import TestManager from "../../../../appBuild/Components/cms/testManager";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
@@ -20,6 +21,7 @@ const ScheduledEvents = ({ events, testlocation }) => {
   const [message, setMessage] = useState(false);
   const [warning, setWarning] = useState(false);
   const [modalState, setModal] = useState(false);
+  const [showCont, setCont] = useState("");
 
   const testlocID = router.query.id;
 
@@ -38,6 +40,11 @@ const ScheduledEvents = ({ events, testlocation }) => {
     }
   };
 
+  const contCheck = (cont) => {
+    console.log(cont);
+    setCont(cont);
+  };
+
   return (
     <>
       <Link href="/cms/testservices">
@@ -48,46 +55,62 @@ const ScheduledEvents = ({ events, testlocation }) => {
         <div className="menuBar">
           <button onClick={() => setWarning(true)}>Delete Testlocation</button>
         </div>
-        <div className="eventMng">
-          <h2>Evenementen:</h2>
-          <table className="table">
-            <thead className="table_head">
-              <tr className="eventTable">
-                <th>Testlocatie naam</th>
-                <th>Regio</th>
-                <th>Organisator</th>
-                <th>Datum</th>
-                <th>Capaciteit</th>
-                <th>
-                  <div className="createNew" onClick={() => setModal(true)}>
-                    <p>Creeëer nieuwe testlocatie</p>
-                  </div>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {events.reverse().map((event) => (
-                <tr key={event._id}>
-                  <td>{event.name}</td>
-                  <td>{event.location}</td>
-                  <td>{event.owner_name}</td>
-                  <td>{event.date}</td>
-                  <td>{event.capacity}</td>
-                  <td>
-                    <div className="editOpt">
-                      <Link
-                        href="/cms/testlocation/[id]/[idx]"
-                        as={`/cms/testlocation/${testlocID}/${event._id}`}
-                      >
-                        <a>Bezoekerslijst</a>
-                      </Link>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="testLocDashboard">
+          <div>
+            <a onClick={() => contCheck("event")}>
+              Evenement en bezoekersgegevens
+            </a>
+          </div>
+          <div>
+            <a onClick={() => contCheck("planning")}>Planningstool</a>
+          </div>
         </div>
+        {showCont === "event" ? (
+          <div className="eventMng">
+            <h2>Evenementen:</h2>
+            <table className="table">
+              <thead className="table_head">
+                <tr className="eventTable">
+                  <th>Testlocatie naam</th>
+                  <th>Regio</th>
+                  <th>Organisator</th>
+                  <th>Datum</th>
+                  <th>Capaciteit</th>
+                  <th>
+                    <div className="createNew" onClick={() => setModal(true)}>
+                      <p>Creeëer nieuwe testlocatie</p>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {events.reverse().map((event) => (
+                  <tr key={event._id}>
+                    <td>{event.name}</td>
+                    <td>{event.location}</td>
+                    <td>{event.owner_name}</td>
+                    <td>{event.date}</td>
+                    <td>{event.capacity}</td>
+                    <td>
+                      <div className="editOpt">
+                        <Link
+                          href="/cms/testlocation/[id]/[idx]"
+                          as={`/cms/testlocation/${testlocID}/${event._id}`}
+                        >
+                          <a>Bezoekerslijst</a>
+                        </Link>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div>
+            <TestManager testId={testlocID} />
+          </div>
+        )}
         <Dialog
           // classes={dialogClasses}
           open={warning}
