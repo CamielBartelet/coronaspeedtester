@@ -10,6 +10,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import Close from "@material-ui/icons/Close";
+import TestManager from "../../../../appBuild/Components/cms/testManager";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
@@ -106,7 +107,9 @@ const ScheduledEvents = ({ events, testlocation }) => {
             </table>
           </div>
         ) : (
-          <div>Planningstool</div>
+          <div>
+            <TestManager testId={testlocID} />
+          </div>
         )}
         <Dialog
           // classes={dialogClasses}
