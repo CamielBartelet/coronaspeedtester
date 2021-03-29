@@ -97,6 +97,17 @@ export default css.global`
     align-items: center;
   }
 
+  .testLocDashboard {
+    display: flex;
+    justify-content: center;
+  }
+
+  .testLocDashboard > div {
+    width: 300px;
+    height: 100px;
+    
+  }
+
   .addNew,
   .viewEvent,
   .editEvent {

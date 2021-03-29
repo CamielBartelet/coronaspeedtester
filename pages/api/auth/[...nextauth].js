@@ -32,7 +32,7 @@ const options = {
       if (url === "/api/auth/signin") {
         return Promise.resolve("/profile");
       }
-      return Promise.resolve("/api/auth/signin");
+      return Promise.resolve("/");
     },
   },
 };
