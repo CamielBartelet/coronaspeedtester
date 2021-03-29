@@ -9,7 +9,10 @@ const TestManager = ({ testId }) => {
       >
         <div>Gegevens</div>
       </Link>
-      <Link href="../../../cms/testlocation/TestAgenda">
+      <Link
+        href="../../../cms/testlocation/[id]/TestAgenda"
+        as={`../../../cms/testlocation/${testId}/TestAgenda`}
+      >
         <div>Agenda</div>
       </Link>
     </>
