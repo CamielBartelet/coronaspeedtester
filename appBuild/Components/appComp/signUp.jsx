@@ -1,12 +1,12 @@
-// import SignUpForm from "./signUpform";
+import SignUpForm from "./signUpform";
 import { signIn, signOut, useSession } from "next-auth/client";
 
 const SignUp = ({ onnext }) => {
-  const [session, loading] = useSession();
+  // const [session, loading] = useSession();
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  // if (loading) {
+  //   return <p>Loading...</p>;
+  // }
 
   const accountForm = {
     name: "",
@@ -30,7 +30,7 @@ const SignUp = ({ onnext }) => {
           versnellen voor jou.
         </p>
       </div>
-      {!session && (
+      {/* {!session && (
         <>
           Not signed in <br />
           <button onClick={signIn}>Sign in</button>
@@ -41,12 +41,12 @@ const SignUp = ({ onnext }) => {
           Signed in as {session.user.email} <br />
           <button onClick={signOut}>Sign out</button>
         </>
-      )}
-      {/* <SignUpForm
+      )} */}
+      <SignUpForm
         onnext={onnext}
         formId="add-account-form"
         accountForm={accountForm}
-      /> */}
+      />
     </>
   );
 };
