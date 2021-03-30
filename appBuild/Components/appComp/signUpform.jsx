@@ -12,8 +12,6 @@ const SignUpForm = ({ onnext, formId, accountForm, forNewAccount = true }) => {
   const [form, setForm] = useState({
     name: accountForm.name,
     lastname: accountForm.lastname,
-    email: accountForm.email,
-    password: accountForm.password,
     postalCode: accountForm.postalCode,
     postalNumber: accountForm.postalNumber,
     phone: accountForm.phone,

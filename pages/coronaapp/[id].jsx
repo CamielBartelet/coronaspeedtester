@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import dbConnect from "../../util/mongodb";
-import Account from "../../models/Account";
+import Models from "../../models";
 
 const UserPage = ({ account }) => {
   //   const router = useRouter();
@@ -37,7 +37,7 @@ const UserPage = ({ account }) => {
 export async function getServerSideProps({ params }) {
   await dbConnect();
 
-  const account = await Account.findById(params.id).lean();
+  const account = await Models.User.findById(params.id).lean();
   account._id = account._id.toString();
 
   return { props: { account } };

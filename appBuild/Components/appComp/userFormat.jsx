@@ -1,30 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
-import AppCompstyle from "./appCompstyle";
 
-const userFormat = ({ formId, accountForm, forNewAccount = true }) => {
+const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
   const router = useRouter();
   const contentType = "application/json";
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
 
   const [form, setForm] = useState({
-    name: accountForm.name,
-    lastname: accountForm.name,
     email: accountForm.email,
-    password: accountForm.password,
-    postalCode: accountForm.postalCode,
-    postalNumber: accountForm.postalNumber,
+    emailVerified: accountForm.emailVerified,
+    createdAt: accountForm.createdAt,
+    updatedAt: accountForm.updatedAt,
     phone: accountForm.phone,
-    bsnnumber: accountForm.bsnnumber,
   });
 
   const putData = async (form) => {
     const { id } = router.query;
 
     try {
-      const res = await fetch(`/api/visitors/${id}`, {
+      const res = await fetch(`/api/accounts/${id}`, {
         method: "PUT",
         headers: {
           Accept: contentType,
@@ -40,35 +36,36 @@ const userFormat = ({ formId, accountForm, forNewAccount = true }) => {
 
       const { data } = await res.json();
 
-      mutate(`/api/visitors/${id}`, data, false); // Update the local data without a revalidation
+      mutate(`/api/accounts/${id}`, data, false); // Update the local data without a revalidation
       router.push(`/${id}`);
     } catch (error) {
-      setMessage("Failed to update account");
+      setMessage("Failed to update organisation");
     }
   };
 
   /* The POST method adds a new entry in the mongodb database. */
-  const postData = async (form) => {
-    try {
-      const res = await fetch("/api/visitors", {
-        method: "POST",
-        headers: {
-          Accept: contentType,
-          "Content-Type": contentType,
-        },
-        body: JSON.stringify(form),
-      });
+  // const postData = async (form) => {
+  //   try {
+  //     const res = await fetch("/api/organisations", {
+  //       method: "POST",
+  //       headers: {
+  //         Accept: contentType,
+  //         "Content-Type": contentType,
+  //       },
+  //       body: JSON.stringify(form),
+  //     });
 
-      // Throw error with status code in case Fetch API req failed
-      if (!res.ok) {
-        throw new Error(res.status);
-      }
+  //     // Throw error with status code in case Fetch API req failed
+  //     if (!res.ok) {
+  //       throw new Error(res.status);
+  //     }
 
-      router.push("/apicms");
-    } catch (error) {
-      setMessage("Failed to add user");
-    }
-  };
+  //     router.push("/cms/eventorganisers");
+  //     saveModal();
+  //   } catch (error) {
+  //     setMessage("Failed to add organisation");
+  //   }
+  // };
 
   const handleChange = (e) => {
     const target = e.target;
@@ -85,7 +82,7 @@ const userFormat = ({ formId, accountForm, forNewAccount = true }) => {
     e.preventDefault();
     const errs = formValidate();
     if (Object.keys(errs).length === 0) {
-      forNewAccount ? postData(form) : putData(form);
+      putData(form);
     } else {
       setErrors({ errs });
     }
@@ -93,14 +90,12 @@ const userFormat = ({ formId, accountForm, forNewAccount = true }) => {
 
   const formValidate = () => {
     let err = {};
-    if (!form.name) err.name = "Name is required";
-    if (!form.lastname) err.lastname = "Last name is required";
+    if (!form.phone) err.phone = "Phone is required";
     return err;
   };
 
   return (
     <>
-      <style jsx>{AppCompstyle}</style>
       <div className="inputEv">
         <form
           id={formId}
@@ -108,66 +103,11 @@ const userFormat = ({ formId, accountForm, forNewAccount = true }) => {
           className="inputForm"
           style={{ display: "flex", flexDirection: "column" }}
         >
-          <label htmlFor="name">Naam</label>
-          <input
-            type="text"
-            maxLength="20"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            required
-          />
-
-          <label htmlFor="lastnam">Achternaam</label>
-          <input
-            type="text"
-            maxLength="20"
-            name="lastname"
-            value={form.lastname}
-            onChange={handleChange}
-            required
-          />
-
-          <label htmlFor="email">E-mail</label>
-          <input
-            name="email"
-            maxLength="60"
-            value={form.email}
-            onChange={handleChange}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            name="password"
-            maxLength="60"
-            value={form.password}
-            onChange={handleChange}
-          />
-          <label htmlFor="postalCode">Postcode</label>
-          <input
-            name="postalCode"
-            maxLength="60"
-            value={form.postalCode}
-            onChange={handleChange}
-          />
-          <label htmlFor="postalNumber">Huisnummer</label>
-          <input
-            name="postalNumber"
-            maxLength="60"
-            value={form.postalNumber}
-            onChange={handleChange}
-          />
           <label htmlFor="phone">Telefoon</label>
           <input
             name="phone"
             maxLength="60"
             value={form.phone}
-            onChange={handleChange}
-          />
-          <label htmlFor="bsnnumber">BSN-nummer</label>
-          <input
-            name="bsnnumber"
-            maxLength="60"
-            value={form.bsnnumber}
             onChange={handleChange}
           />
 
@@ -186,4 +126,4 @@ const userFormat = ({ formId, accountForm, forNewAccount = true }) => {
   );
 };
 
-export default userFormat;
+export default UserSettings;

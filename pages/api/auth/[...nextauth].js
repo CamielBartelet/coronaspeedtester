@@ -1,6 +1,10 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 import sendVerificationRequest from "../../../lib/verificationmail";
+// import { User } from "../../../models/User";
+import Adapters from "next-auth/adapters";
+
+import Models from "../../../models";
 
 const options = {
   site: process.env.NEXTAUTH_URL,
@@ -23,6 +27,19 @@ const options = {
     }),
   ],
   database: process.env.MONGODB_URI,
+  // models: {
+  //   user: User,
+  // },
+  // adapter: Adapters.TypeORM.Adapter(
+  //   // The first argument should be a database connection string or TypeORM config object
+  //   process.env.MONGODB_URI,
+  //   // The second argument can be used to pass custom models and schemas
+  //   {
+  //     models: {
+  //       User: Models.User,
+  //     },
+  //   }
+  // ),
   session: {
     jwt: true,
     maxAge: 30 * 24 * 60 * 60, // 30 days

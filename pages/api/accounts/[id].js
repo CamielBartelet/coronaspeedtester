@@ -1,5 +1,5 @@
 import dbConnect from "../../../util/mongodb";
-import Account from "../../../models/Account";
+import Accounts from "../../../models/User";
 
 export default async function handler(req, res) {
   const {
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET" /* Get a model by its ID */:
       try {
-        const account = await Account.findById(id);
+        const account = await Accounts.findById(id);
         if (!account) {
           return res.status(400).json({ success: false });
         }
@@ -24,10 +24,12 @@ export default async function handler(req, res) {
 
     case "PUT" /* Edit a model by its ID */:
       try {
-        const account = await Account.findByIdAndUpdate(id, req.body, {
+        console.log(req.body);
+        const account = await Accounts.findByIdAndUpdate(id, req.body, {
           new: true,
           runValidators: true,
         });
+        console.log(account);
         if (!account) {
           return res.status(400).json({ success: false });
         }
@@ -39,7 +41,7 @@ export default async function handler(req, res) {
 
     case "DELETE" /* Delete a model by its ID */:
       try {
-        const deletedAcc = await Account.deleteOne({ _id: id });
+        const deletedAcc = await Accounts.deleteOne({ _id: id });
         if (!deletedAcc) {
           return res.status(400).json({ success: false });
         }

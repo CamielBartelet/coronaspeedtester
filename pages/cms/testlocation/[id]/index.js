@@ -29,6 +29,8 @@ const ScheduledEvents = ({ events, testlocation }) => {
     setModal(false);
   };
 
+  console.log(events);
+
   const handleDelete = async () => {
     try {
       await fetch(`/api/testlocations/${testlocID}`, {

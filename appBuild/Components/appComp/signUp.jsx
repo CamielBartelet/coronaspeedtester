@@ -11,8 +11,6 @@ const SignUp = ({ onnext }) => {
   const accountForm = {
     name: "",
     lastname: "",
-    email: "",
-    password: "",
     postalCode: "",
     postalNumber: "",
     phone: "",
