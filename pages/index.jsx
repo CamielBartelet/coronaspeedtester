@@ -1,6 +1,7 @@
 import React from "react";
 import HomeButton from "../appBuild/Components/homecomp/Homebutton";
 import { useState } from "react";
+import { signIn, signOut, useSession } from "next-auth/client";
 import Welcome from "../appBuild/Components/appComp/welcome";
 import Steps from "../appBuild/Components/appComp/steps";
 import HeadMenu from "../appBuild/Components/appComp/menu";
@@ -14,6 +15,7 @@ const CoronaIndex = () => {
   const nextPage = () => {
     if (page < pages.length - 1) setPage(page + 1);
   };
+
   const pages = [
     {
       name: "welcome",
@@ -44,12 +46,14 @@ const CoronaIndex = () => {
       pagecont: <Verify />,
       head: <HeadMenu page={page} onprev={setPage} />,
       buttonNxt: "Vul je persoonlijke gegevens in",
+      session: true,
     },
     {
       name: "persdata",
       pagecont: <Personaldata onnext={nextPage} />,
       head: <HeadMenu page={page} onprev={setPage} />,
       buttonNxt: "",
+      session: true,
     },
   ];
 
