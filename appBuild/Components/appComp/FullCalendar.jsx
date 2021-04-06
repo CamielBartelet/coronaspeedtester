@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
-import '../style/calendar.scss'
+import '../style/index.js'
+
 let CalendarComponent
 export default function FullCalendar(props) {
   const [calendarLoaded, setCalendarLoaded] = useState(false)

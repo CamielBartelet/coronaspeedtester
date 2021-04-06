@@ -1,4 +1,7 @@
 import css from "styled-jsx/css";
+import '~@fullcalendar/core/main.css';
+import '~@fullcalendar/daygrid/main.css';
+import '~@fullcalendar/timegrid/main.css';
 
 export default css.global`
   body {
