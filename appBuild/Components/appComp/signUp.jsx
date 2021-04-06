@@ -1,21 +1,22 @@
 import SignUpForm from "./signUpform";
+import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/client";
 
-const SignUp = ({ onnext }) => {
+const SignUp = ({ onnext, accounts }) => {
   // const [session, loading] = useSession();
 
   // if (loading) {
   //   return <p>Loading...</p>;
   // }
 
-  const accountForm = {
-    name: "",
-    lastname: "",
-    postalCode: "",
-    postalNumber: "",
-    phone: "",
-    bsnnumber: "",
-  };
+  // const accountForm = {
+  //   name: "",
+  //   lastname: "",
+  //   postalCode: "",
+  //   postalNumber: "",
+  //   phone: "",
+  //   bsnnumber: "",
+  // };
 
   return (
     <>
@@ -28,24 +29,28 @@ const SignUp = ({ onnext }) => {
           versnellen voor jou.
         </p>
       </div>
-      {/* {!session && (
+      {!accounts && (
         <>
           Not signed in <br />
           <button onClick={signIn}>Sign in</button>
         </>
       )}
-      {session && (
+      {accounts && (
         <>
-          Signed in as {session.user.email} <br />
+          Signed in as {accounts[0].email} <br />
           <button onClick={signOut}>Sign out</button>
+          <Link href="/[id]" as={`/${accounts[0]._id}`}>
+            <div>Go to account</div>
+          </Link>
         </>
-      )} */}
-      <SignUpForm
+      )}
+      {/* <SignUpForm
         onnext={onnext}
         formId="add-account-form"
         accountForm={accountForm}
-      />
+      /> */}
     </>
   );
 };
+
 export default SignUp;

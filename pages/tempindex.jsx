@@ -1,8 +1,6 @@
 import { signIn, signOut, getSession } from "next-auth/client";
 import dbConnect from "../util/mongodb";
 import User from "../models/User";
-import mongoose from "mongoose";
-// import Event from "../models/Event";
 import Link from "next/link";
 
 export default function Page({ accounts }) {
@@ -38,7 +36,6 @@ export async function getServerSideProps(ctx) {
   await dbConnect();
 
   const resultAcc = await User.find({ email: session.user.email });
-  // const resultAcc = await Event.find();
 
   const accounts = resultAcc.map((doc) => {
     const account = JSON.parse(JSON.stringify(doc));

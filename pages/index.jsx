@@ -1,16 +1,16 @@
 import React from "react";
-import HomeButton from "../appBuild/Components/homecomp/Homebutton";
 import { useState } from "react";
-import { signIn, signOut, useSession } from "next-auth/client";
+import { getSession } from "next-auth/client";
+import dbConnect from "../util/mongodb";
+import User from "../models/User";
 import Welcome from "../appBuild/Components/appComp/welcome";
 import Steps from "../appBuild/Components/appComp/steps";
 import HeadMenu from "../appBuild/Components/appComp/menu";
 import Terms from "../appBuild/Components/appComp/terms";
 import SignUp from "../appBuild/Components/appComp/signUp";
-import Verify from "../appBuild/Components/appComp/verify";
 import Personaldata from "../appBuild/Components/appComp/persData";
 
-const CoronaIndex = () => {
+const CoronaIndex = ({ accounts }) => {
   const [page, setPage] = useState(0);
   const nextPage = () => {
     if (page < pages.length - 1) setPage(page + 1);
@@ -37,16 +37,9 @@ const CoronaIndex = () => {
     },
     {
       name: "signup",
-      pagecont: <SignUp onnext={nextPage} />,
+      pagecont: <SignUp onnext={nextPage} accounts={accounts} />,
       head: <HeadMenu page={page} onprev={setPage} />,
       buttonNxt: "",
-    },
-    {
-      name: "verify",
-      pagecont: <Verify />,
-      head: <HeadMenu page={page} onprev={setPage} />,
-      buttonNxt: "Vul je persoonlijke gegevens in",
-      session: true,
     },
     {
       name: "persdata",
@@ -78,5 +71,25 @@ const CoronaIndex = () => {
     </>
   );
 };
+
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+  if (!session) {
+    ctx.res.writeHead(302, { Location: "/auth/signin" });
+    ctx.res.end();
+    return {};
+  }
+
+  await dbConnect();
+
+  const resultAcc = await User.find({ email: session.user.email });
+
+  const accounts = resultAcc.map((doc) => {
+    const account = JSON.parse(JSON.stringify(doc));
+    return account;
+  });
+
+  return { props: { accounts: accounts } };
+}
 
 export default CoronaIndex;

@@ -26,7 +26,8 @@ const AccountPage = () => {
     emailVerified: account.emailVerified,
     createdAt: account.createdAt,
     updatedAt: account.updatedAt,
-    phone: "",
+    phone: account.phone || "",
+    bsnnumber: account.bsnnumber || "",
   };
 
   return (
@@ -41,11 +42,24 @@ const AccountPage = () => {
         <>
           Signed in as {account.email} <br />
           <button onClick={signOut}>Sign out</button>
-          <UserForm
-            formId="add-persdata-form"
-            accountForm={accountForm}
-            forNewAccount={false}
-          />
+          <main className="container">
+            <div className="mainApp">
+              {!account.bsnnumber || !account.phone ? (
+                <>
+                  <div className="headerWrap">Vul je gegevens in</div>
+                  <div className="mainContent">
+                    <UserForm
+                      formId="add-persdata-form"
+                      accountForm={accountForm}
+                      forNewAccount={false}
+                    />
+                  </div>
+                </>
+              ) : (
+                <div>Kies je evenement</div>
+              )}
+            </div>
+          </main>
         </>
       )}
     </>

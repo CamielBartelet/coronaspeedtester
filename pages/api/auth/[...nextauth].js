@@ -1,10 +1,6 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 import sendVerificationRequest from "../../../lib/verificationmail";
-// import { User } from "../../../models/User";
-import Adapters from "next-auth/adapters";
-
-import Models from "../../../models";
 
 const options = {
   site: process.env.NEXTAUTH_URL,
@@ -51,6 +47,11 @@ const options = {
       }
       return Promise.resolve("/");
     },
+  },
+  pages: {
+    signIn: "/auth/signin",
+    verifyRequest: "/auth/verify-request",
+    newUser: null,
   },
 };
 export default (req, res) => NextAuth(req, res, options);

@@ -38,6 +38,7 @@ export default css.global`
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
+    background: #f9f9f9;
   }
 
   .mainApp {

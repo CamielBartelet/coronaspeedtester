@@ -14,6 +14,7 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
     createdAt: accountForm.createdAt,
     updatedAt: accountForm.updatedAt,
     phone: accountForm.phone,
+    bsnnumber: accountForm.bsnnumber,
   });
 
   const putData = async (form) => {
@@ -91,6 +92,7 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
   const formValidate = () => {
     let err = {};
     if (!form.phone) err.phone = "Phone is required";
+    if (!form.bsnnumber) err.bsnnumber = "Phone is required";
     return err;
   };
 
@@ -106,8 +108,15 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
           <label htmlFor="phone">Telefoon</label>
           <input
             name="phone"
-            maxLength="60"
+            maxLength="15"
             value={form.phone}
+            onChange={handleChange}
+          />
+          <label htmlFor="bsnnumber">BSN nummber (laatste 4 cijfers)</label>
+          <input
+            name="bsnnumber"
+            maxLength="4"
+            value={form.bsnnumber}
             onChange={handleChange}
           />
 

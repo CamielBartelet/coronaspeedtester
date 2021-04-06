@@ -50,43 +50,10 @@ export const UserSchema = new mongoose.Schema({
     type: String,
     nullable: true,
   },
+  bsnnumber: {
+    type: Number,
+    nullable: true,
+  },
 });
 
 export default mongoose.models.User || mongoose.model("User", UserSchema);
-
-// export default Users;
-// export const UserSchema = {
-//   name: "User",
-//   target: User,
-//   columns: {
-//     ...Adapters.TypeORM.Models.User.model,
-//     firstname: {
-//       type: String,
-//       // required: [true, "Please provide your name"],
-//       maxlength: [30, "Name cannot be more than 30 characters"],
-//     },
-//     lastname: {
-//       type: String,
-//       // required: [true, "Please provide your last name"],
-//       maxlength: [30, "Last name cannot be more than 30 characters"],
-//     },
-//     phone: {
-//       type: "string",
-//       nullable: true,
-//     },
-//     postalCode: {
-//       type: String,
-//       // required: [true, "Please provide your postal code"],
-//     },
-//     postalNumber: {
-//       type: String,
-//       // required: [true, "Please provide your postal number"],
-//     },
-//     bsnnumber: {
-//       type: String,
-//       // required: [true, "Please provide your BSN-number"],
-//     },
-//   },
-// };
-
-// export default mongoose.models.User || mongoose.model("User", UserSchema);
