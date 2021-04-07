@@ -29,7 +29,7 @@ const SignUp = ({ onnext, accounts }) => {
           versnellen voor jou.
         </p>
       </div>
-      {!accounts && (
+      {accounts == null && (
         <>
           Not signed in <br />
           <button onClick={signIn}>Sign in</button>
@@ -37,10 +37,10 @@ const SignUp = ({ onnext, accounts }) => {
       )}
       {accounts && (
         <>
-          Signed in as {accounts[0].email} <br />
-          <button onClick={signOut}>Sign out</button>
+          Je bent ingelogd met {accounts[0].email} <br />
+          <button onClick={signOut}>Log uit</button>
           <Link href="/[id]" as={`/${accounts[0]._id}`}>
-            <div>Go to account</div>
+            <div>Ga naar accountpagina</div>
           </Link>
         </>
       )}

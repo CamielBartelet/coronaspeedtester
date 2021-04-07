@@ -16,6 +16,8 @@ const CoronaIndex = ({ accounts }) => {
     if (page < pages.length - 1) setPage(page + 1);
   };
 
+  console.log(accounts);
+
   const pages = [
     {
       name: "welcome",
@@ -75,21 +77,22 @@ const CoronaIndex = ({ accounts }) => {
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
   if (!session) {
-    ctx.res.writeHead(302, { Location: "/auth/signin" });
-    ctx.res.end();
-    return {};
+    // ctx.res.writeHead(302, { Location: "/auth/signin" });
+    // ctx.res.end();
+    const accounts = null;
+    return { props: { accounts: accounts } };
   }
 
   await dbConnect();
+  if (session) {
+    const resultAcc = await User.find({ email: session.user.email });
 
-  const resultAcc = await User.find({ email: session.user.email });
-
-  const accounts = resultAcc.map((doc) => {
-    const account = JSON.parse(JSON.stringify(doc));
-    return account;
-  });
-
-  return { props: { accounts: accounts } };
+    const accounts = resultAcc.map((doc) => {
+      const account = JSON.parse(JSON.stringify(doc));
+      return account;
+    });
+    return { props: { accounts: accounts } };
+  }
 }
 
 export default CoronaIndex;

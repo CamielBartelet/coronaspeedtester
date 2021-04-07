@@ -34,15 +34,15 @@ const AccountPage = () => {
     <>
       {!account && (
         <>
-          Not signed in <br />
-          <button onClick={signIn}>Sign in</button>
+          Niet ingelogd <br />
+          <button onClick={signIn}>Log in</button>
         </>
       )}
       {account && (
         <>
-          Signed in as {account.email} <br />
-          <button onClick={signOut}>Sign out</button>
           <main className="container">
+            Ingelogd met {account.email} <br />
+            <button onClick={signOut}>Log uit</button>
             <div className="mainApp">
               {!account.bsnnumber || !account.phone ? (
                 <>
