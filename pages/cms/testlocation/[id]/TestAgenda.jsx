@@ -2,9 +2,7 @@ import { useRouter } from "next/router";
 import dbConnect from "../../../../util/mongodb";
 import Testlocation from "../../../../models/Testlocation";
 import FullCalendar from "../../../../appBuild/Components/appComp/fullcalendar";
-import '~@fullcalendar/core/main.css';
-import '~@fullcalendar/daygrid/main.css';
-import '~@fullcalendar/timegrid/main.css';
+
 
 
 
