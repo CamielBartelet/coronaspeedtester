@@ -31,8 +31,8 @@ const SignUp = ({ onnext, accounts }) => {
       </div>
       {accounts == null && (
         <>
-          Not signed in <br />
-          <button onClick={signIn}>Sign in</button>
+          {/* Not signed in <br /> */}
+          <button onClick={signIn}>Meld je aan</button>
         </>
       )}
       {accounts && (

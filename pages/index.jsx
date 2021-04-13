@@ -16,8 +16,6 @@ const CoronaIndex = ({ accounts }) => {
     if (page < pages.length - 1) setPage(page + 1);
   };
 
-  console.log(accounts);
-
   const pages = [
     {
       name: "welcome",
@@ -48,7 +46,6 @@ const CoronaIndex = ({ accounts }) => {
       pagecont: <Personaldata onnext={nextPage} />,
       head: <HeadMenu page={page} onprev={setPage} />,
       buttonNxt: "",
-      session: true,
     },
   ];
 
@@ -61,8 +58,10 @@ const CoronaIndex = ({ accounts }) => {
           <div className="mainContent">{pages[page].pagecont}</div>
           <div className="optBtn">
             {pages[page].buttonNxt != "" ? (
-              <div className="passTruBtn" onClick={nextPage}>
-                <div className="btnCont">{pages[page].buttonNxt}</div>
+              <div className="passTruBtn">
+                <div className="btnCont" onClick={nextPage}>
+                  {pages[page].buttonNxt}
+                </div>
               </div>
             ) : (
               ""

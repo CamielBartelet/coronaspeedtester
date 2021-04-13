@@ -16,14 +16,14 @@ export default css`
 
   .appmenu {
     display: flex;
-    width: 90%;
+    width: 95%;
     height: 100%;
     align-items: center;
   }
 
   .previousSide {
     width: 63%;
-    height: 50%;
+    height: 100%;
     display: flex;
     align-items: center;
   }
@@ -37,6 +37,44 @@ export default css`
     height: 50px;
     width: 50px;
     border-radius: 50%;
+  }
+
+  .eventWrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .eventTable {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .eventRow {
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+  }
+
+  .eventImage {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .eventImage > img {
+    ${"" /* flex-shrink: 0; */}
+    height: 100%;
+  }
+
+  .eventName {
+    width: 70%;
   }
 
   .inputForm {
@@ -85,9 +123,9 @@ export default css`
 
   .faqandMenu {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
     width: 37%;
-    height: 50%;
+    height: 100%;
   }
 `;

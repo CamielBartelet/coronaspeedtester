@@ -1,13 +1,20 @@
 import AppCompstyle from "./appCompstyle";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
-const HeadMenu = ({ page, onprev }) => {
+const HeadMenu = ({ page, onprev, loggedIn }) => {
+  const router = useRouter();
   const goBack = () => onprev(page - 1);
+
   return (
     <>
       <style jsx>{AppCompstyle}</style>
       <div className="appmenu">
         <div className="previousSide">
-          <div className="menuBtn" onClick={goBack}>
+          <div
+            className="menuBtn"
+            onClick={loggedIn == true ? () => router.back() : goBack}
+          >
             <img src="/icons/arrow_back-24px.svg" width="35px" height="35px" />
           </div>
         </div>

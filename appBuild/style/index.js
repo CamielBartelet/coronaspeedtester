@@ -1,15 +1,6 @@
 import css from "styled-jsx/css";
 
 export default css.global`
-  body {
-    margin: 0;
-    // font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    //   "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    //   "Helvetica Neue", sans-serif;
-    font-family: "Poppins";
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
 
   p {
     margin: 0;
@@ -34,20 +25,18 @@ export default css.global`
 
   .container {
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100%;
     background: #f9f9f9;
   }
 
   .mainApp {
     display: flex;
     flex-direction: column;
-    width: 360px;
-    height: auto;
+    width: 100%;
+    height: 100%;
     align-items: center;
-    justify-content: center;
     background: #f9f9f9;
   }
 
@@ -60,18 +49,18 @@ export default css.global`
   }
 
   .renormLogo {
-    width: 90%;
+    max-width: 360px;
   }
 
   .mainContent {
     width: 95%;
-    height: 70%;
+    // height: 70%;
     padding: 10px;
     background: #fff;
   }
 
   .optBtn {
-    height: 90px;
+    height: 20%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -82,7 +71,7 @@ export default css.global`
     display: flex;
     justify-content: center;
     color: #000;
-    width: 95%;
+    width: 100%;
     height: 100%;
     align-items: center;
   }
@@ -90,7 +79,8 @@ export default css.global`
   .btnCont {
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 18%;
+    min-width: 300px;
     border-radius: 10px;
     background: #86e4d9;
     cursor: pointer;

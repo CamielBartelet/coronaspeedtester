@@ -44,7 +44,6 @@ export async function getServerSideProps() {
 
   const accounts = resultAcc.map((doc) => {
     const account = JSON.parse(JSON.stringify(doc));
-    console.log(account);
     return account;
   });
 
