@@ -1,18 +1,18 @@
 import { useRouter } from "next/router";
 import { signIn, signOut } from "next-auth/client";
-import UserForm from "../appBuild/Components/appComp/userFormat";
+import UserForm from "../../../appBuild/Components/appComp/userFormat";
 import useSWR from "swr";
-import Events from "../appBuild/Components/appComp/events";
-import dbConnect from "../util/mongodb";
-import Event from "../models/Event";
-import HeadMenu from "../appBuild/Components/appComp/menu";
+import dbConnect from "../../../util/mongodb";
+import Event from "../../../models/Event";
+import HeadMenu from "../../../appBuild/Components/appComp/menu";
+import TestPlanner from "../../../appBuild/Components/appComp/testPlanner";
 
 const fetcher = (url) =>
   fetch(url)
     .then((res) => res.json())
     .then((json) => json.data);
 
-const AccountPage = ({ events }) => {
+const PlanTest = ({ events }) => {
   const router = useRouter();
   const { id } = router.query;
   const { data: account, error } = useSWR(
@@ -61,7 +61,7 @@ const AccountPage = ({ events }) => {
                   </div>
                 </>
               ) : (
-                <Events events={events} />
+                <TestPlanner events={events} account={account} />
               )}
             </div>
           </main>
@@ -86,4 +86,4 @@ export async function getServerSideProps() {
   return { props: { events: events } };
 }
 
-export default AccountPage;
+export default PlanTest;

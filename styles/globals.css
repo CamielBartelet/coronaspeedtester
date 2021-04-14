@@ -192,3 +192,14 @@ a {
 p {
   font-size: 0.8rem;
 }
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+h4 {
+  font-weight: 300;
+}

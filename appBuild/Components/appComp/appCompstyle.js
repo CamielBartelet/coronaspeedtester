@@ -40,8 +40,11 @@ export default css`
   }
 
   .eventWrapper {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .eventTable {
@@ -49,23 +52,33 @@ export default css`
     height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 
   .eventRow {
-    width: 100%;
+    background: #fff;
+    width: 80%;
     min-height: 100px;
     display: flex;
+    align-items: center;
+    margin: 6px 0;
+    cursor: pointer;
+  }
+
+  .eventRow:hover {
+    background: aliceblue;
   }
 
   .eventImage {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     object-fit: cover;
     border-radius: 50%;
+    margin: 15px 20px;
   }
 
   .eventImage > img {
@@ -75,6 +88,14 @@ export default css`
 
   .eventName {
     width: 70%;
+    padding: 0 5%;
+    text-transform: capitalize;
+  }
+
+  .regionMap {
+    width: 600px;
+    height: 600px;
+    cursor: pointer;
   }
 
   .inputForm {

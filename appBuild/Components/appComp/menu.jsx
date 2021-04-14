@@ -1,6 +1,5 @@
 import AppCompstyle from "./appCompstyle";
 import { useRouter } from "next/router";
-import { useState } from "react";
 
 const HeadMenu = ({ page, onprev, loggedIn }) => {
   const router = useRouter();
