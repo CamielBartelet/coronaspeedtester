@@ -9,7 +9,6 @@ import ICSReader from "../../../../appBuild/Components/appComp/ICSReader";
 
 const TestAgenda = ({ testOrg }) => {
   console.log(testOrg);
-  console.log(ICSReader.data);
   return (
     <>
       <div>De Agenda</div>
@@ -17,24 +16,33 @@ const TestAgenda = ({ testOrg }) => {
         <li>{testOrg._id}</li>
         <li>{testOrg.name}</li>
         <li>{testOrg.region}</li>
+        <li>{testOrg.data}</li>
         <div>
       {/* <FullCalendar defaultView='dayGridMonth' />
       <FullCalendar defaultView='timeGridWeek' /> */}
-      <li>{ICSReader.data}</li>
        </div>
        </div>
     </>
   );
 };
 
+// const ICS = ({someICS}) =>  {
+//   console.log(someICS.data);
+//   return (
+//     <li>{someICS.data}</li>
+//   );
+// };
+
 export async function getServerSideProps({ params }) {
   await dbConnect();
 
   const testorganisations = await Testlocation.findById(params.id).lean();
   testorganisations._id = testorganisations._id.toString();
+  const ICSdata = ICSReader.data;
 
   return { 
-    props: { testOrg: testorganisations } };
+    props: { testOrg: testorganisations, testOrg: ICSdata }
+  };
 }
 
 export default TestAgenda;

@@ -1,9 +1,10 @@
 const ICS = () => {
- const fs = require('fs')
-    fs.readFile('.../TestlocatieEindhoven.ics', 'utf-8', (err, data) => {
-    if (err) throw err;
-   // console.log(data);
-})
+//  const fs = require('fs')
+//     fs.readFile('.../TestlocatieEindhoven.ics', 'utf-8', (err, data) => {
+//     if (err) throw err;
+//    // console.log(data);
+// })
+data = "teststring";
 return (
     data
 );
