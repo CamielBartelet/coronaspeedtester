@@ -1,26 +1,46 @@
-import { signIn, signOut, useSession } from "next-auth/client";
+import { signIn, signOut, getSession } from "next-auth/client";
+import dbConnect from "../util/mongodb";
+import User from "../models/User";
+import Link from "next/link";
 
-export default function Page() {
-  const [session, loading] = useSession();
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
+export default function Page({ accounts }) {
   return (
     <>
-      {!session && (
+      {!accounts && (
         <>
           Not signed in <br />
           <button onClick={signIn}>Sign in</button>
         </>
       )}
-      {session && (
+      {accounts && (
         <>
-          Signed in as {session.user.email} <br />
+          Signed in as {accounts[0].email} <br />
           <button onClick={signOut}>Sign out</button>
+          <Link href="/[id]" as={`/${accounts[0]._id}`}>
+            <div>Go to account</div>
+          </Link>
         </>
       )}
     </>
   );
+}
+
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+  if (!session) {
+    ctx.res.writeHead(302, { Location: "/profile" });
+    ctx.res.end();
+    return {};
+  }
+
+  await dbConnect();
+
+  const resultAcc = await User.find({ email: session.user.email });
+
+  const accounts = resultAcc.map((doc) => {
+    const account = JSON.parse(JSON.stringify(doc));
+    return account;
+  });
+
+  return { props: { accounts: accounts } };
 }

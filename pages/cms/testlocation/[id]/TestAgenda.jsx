@@ -3,8 +3,6 @@ import dbConnect from "../../../../util/mongodb";
 import Testlocation from "../../../../models/Testlocation";
 
 const TestAgenda = ({ testOrg }) => {
-  console.log(testOrg);
-
   return (
     <>
       <div>De Agenda</div>

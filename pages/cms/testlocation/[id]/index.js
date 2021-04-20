@@ -41,7 +41,6 @@ const ScheduledEvents = ({ events, testlocation }) => {
   };
 
   const contCheck = (cont) => {
-    console.log(cont);
     setCont(cont);
   };
 

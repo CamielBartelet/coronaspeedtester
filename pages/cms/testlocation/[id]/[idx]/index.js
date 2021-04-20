@@ -1,5 +1,5 @@
 import dbConnect from "../../../../../util/mongodb";
-import Account from "../../../../../models/Account";
+import Models from "../../../../../models";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -42,7 +42,7 @@ const Users = ({ accounts }) => {
 export async function getServerSideProps() {
   await dbConnect();
 
-  const resultAcc = await Account.find({});
+  const resultAcc = await Models.User.find({});
   const accounts = resultAcc.map((doc) => {
     const account = doc.toObject();
     account._id = account._id.toString();
