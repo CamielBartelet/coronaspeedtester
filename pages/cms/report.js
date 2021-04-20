@@ -41,7 +41,6 @@ const Report = ({ days }) => {
     const displayResults = (response) => {
       //(2)
       const queryResult = response.result.reports[0].data.rows;
-      console.log(queryResult);
       const result = queryResult.map((row) => {
         const dateSting = row.dimensions[0];
         const formattedDate = `${dateSting.substring(
@@ -53,7 +52,6 @@ const Report = ({ days }) => {
           visits: row.metrics[0].values[0],
         };
       });
-      console.log(result);
       setData(result);
     };
 

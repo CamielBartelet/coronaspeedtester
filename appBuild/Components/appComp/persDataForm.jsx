@@ -8,7 +8,6 @@ const SignUpForm = ({ onnext, formId, accountForm, forNewAccount = true }) => {
   const contentType = "application/json";
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
-  console.log(router.query);
 
   const [form, setForm] = useState({
     name: accountForm.name,

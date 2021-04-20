@@ -114,8 +114,6 @@ const inputEvents = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
       location: value,
       capacity: options.find((e) => e.value === value).capacity,
     });
-
-    // console.log("Yay" + value + form.capacity);
   };
 
   return (

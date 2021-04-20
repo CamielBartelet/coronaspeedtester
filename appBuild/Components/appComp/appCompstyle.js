@@ -16,14 +16,14 @@ export default css`
 
   .appmenu {
     display: flex;
-    width: 90%;
+    width: 95%;
     height: 100%;
     align-items: center;
   }
 
   .previousSide {
     width: 63%;
-    height: 50%;
+    height: 100%;
     display: flex;
     align-items: center;
   }
@@ -37,6 +37,65 @@ export default css`
     height: 50px;
     width: 50px;
     border-radius: 50%;
+  }
+
+  .eventWrapper {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .eventTable {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .eventRow {
+    background: #fff;
+    width: 80%;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    margin: 6px 0;
+    cursor: pointer;
+  }
+
+  .eventRow:hover {
+    background: aliceblue;
+  }
+
+  .eventImage {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 15px 20px;
+  }
+
+  .eventImage > img {
+    ${"" /* flex-shrink: 0; */}
+    height: 100%;
+  }
+
+  .eventName {
+    width: 70%;
+    padding: 0 5%;
+    text-transform: capitalize;
+  }
+
+  .regionMap {
+    width: 600px;
+    height: 600px;
+    cursor: pointer;
   }
 
   .inputForm {
@@ -85,9 +144,9 @@ export default css`
 
   .faqandMenu {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
     width: 37%;
-    height: 50%;
+    height: 100%;
   }
 `;
