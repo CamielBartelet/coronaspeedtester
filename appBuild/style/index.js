@@ -42,10 +42,11 @@ export default css.global`
 
   .headerWrap {
     width: 100%;
-    height: 80px;
+    height: 23vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
   }
 
   .renormLogo {
@@ -53,18 +54,30 @@ export default css.global`
   }
 
   .mainContent {
-    width: 95%;
+    width: 480px;
     // height: 70%;
     padding: 10px;
     background: #fff;
+    z-index: 1;
+    padding: 30px 35px;
   }
 
   .optBtn {
-    height: 20%;
+    height: 100px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
+  }
+
+  .yellowSpace {
+    content: "";
+    width: 100%;
+    height: 45vh;
+    background: #FFEA6E;
+    bottom: 0;
+    position: absolute;
   }
 
   .passTruBtn {
@@ -79,7 +92,6 @@ export default css.global`
   .btnCont {
     display: flex;
     justify-content: center;
-    width: 18%;
     min-width: 300px;
     border-radius: 10px;
     background: #86e4d9;

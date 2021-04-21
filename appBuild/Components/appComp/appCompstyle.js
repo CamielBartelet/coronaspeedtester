@@ -16,16 +16,26 @@ export default css`
 
   .appmenu {
     display: flex;
-    width: 95%;
-    height: 100%;
-    align-items: center;
+    width: 100%;
+    height: 80px;
+    align-self: flex-start;
+    justify-content: space-between;
   }
 
   .previousSide {
-    width: 63%;
+    width: 75px;
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
+  }
+
+  .faqandMenu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 150px;
+    height: 100%;
   }
 
   .menuBtn {
@@ -37,6 +47,18 @@ export default css`
     height: 50px;
     width: 50px;
     border-radius: 50%;
+  }
+
+  .welcomeTxt p {
+    font-size: 1.4rem;
+  }
+
+  .upcomingEvent {
+    padding-top: 50px;
+  }
+
+  .upcomingEvent h2 {
+    padding: 20px 0;
   }
 
   .eventWrapper {
@@ -65,20 +87,24 @@ export default css`
     cursor: pointer;
   }
 
+  .eventHolder {
+    display: flex;
+    align-items: center;
+  }
+
   .eventRow:hover {
     background: aliceblue;
   }
 
   .eventImage {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     object-fit: cover;
     border-radius: 50%;
-    margin: 15px 20px;
   }
 
   .eventImage > img {
@@ -140,13 +166,5 @@ export default css`
     cursor: pointer;
     height: 60px;
     align-items: center;
-  }
-
-  .faqandMenu {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 37%;
-    height: 100%;
   }
 `;

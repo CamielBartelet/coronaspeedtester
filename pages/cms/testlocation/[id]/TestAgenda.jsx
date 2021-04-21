@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import dbConnect from "../../../../util/mongodb";
 import Testlocation from "../../../../models/Testlocation";
+import ICSreader from "../../../../appBuild/Components/appComp/ICSreader.jsx";
 
 const TestAgenda = ({ testOrg }) => {
   return (
@@ -10,6 +11,7 @@ const TestAgenda = ({ testOrg }) => {
         <li>{testOrg._id}</li>
         <li>{testOrg.name}</li>
         <li>{testOrg.region}</li>
+        <ICSreader />
       </div>
     </>
   );
