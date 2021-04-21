@@ -110,9 +110,9 @@ export async function getServerSideProps(ctx) {
       return account;
     });
 
-    const resultEvt = await Event.find({});
+    const result = await Event.find({});
 
-    const events = resultEvt.map((doc) => {
+    const events = result.map((doc) => {
       const event = doc.toObject();
       event._id = event._id.toString();
       return event;
