@@ -14,11 +14,11 @@ const Welcome = ({ event }) => {
 
           <div className="eventHolder">
             <div className="eventImage">
-              <img src={event.image}></img>
+              <img src={event[0].image}></img>
             </div>
             <div className="eventName">
-              <h3>{event.name}</h3>
-              <h4>{event.date}</h4>
+              <h3>{event[0].name}</h3>
+              <h4>{event[0].date}</h4>
             </div>
           </div>
         </div>

@@ -17,12 +17,10 @@ const CoronaIndex = ({ accounts, events }) => {
     if (page < pages.length - 1) setPage(page + 1);
   };
 
-  const event = { name: "zas", data: "2-3-4" };
-
   const pages = [
     {
       name: "welcome",
-      pagecont: <Welcome event={event} />,
+      pagecont: <Welcome event={events} />,
       head: <HeadMenu page={page} onprev={setPage} />,
       buttonNxt: "Ik ben er klaar voor!",
       height: "45vh",
