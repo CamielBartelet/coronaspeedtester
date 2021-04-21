@@ -1,17 +1,62 @@
 import css from "styled-jsx/css";
 
 export default css`
-  .stepList {
-    font-size: 0.9em;
-  }
-  .stepList tbody tr td:nth-child(2) {
-    width: 80%;
+  .stepComp {
+    width: 70%;
   }
 
-  .stepList img {
+  .stepList {
+    font-size: 0.9em;
+    display: flex;
+  }
+
+  .stepImg {
+    height: 150px;
+    display: flex;
+    align-items: center;
+  }
+
+  .stepImg img {
     background: #dddddd;
-    padding: 9px;
+    padding: 12px;
     border-radius: 12px;
+  }
+
+  .stepTxt {
+    width: inherit;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .stepTxt p {
+    font-size: 1.2rem;
+  }
+
+  .stepNr {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nrBorder {
+    height: 50px;
+    width: 50px;
+    border: 5px solid #ededed;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #6a6a6a;
+  }
+
+  .step {
+    background: #fff;
+    height: 400px;
+    width: 300px;
   }
 
   .appmenu {
@@ -47,6 +92,12 @@ export default css`
     height: 50px;
     width: 50px;
     border-radius: 50%;
+  }
+
+  .welcomeTxt {
+    width: 480px;
+    background: #fff;
+    padding: 30px;
   }
 
   .welcomeTxt p {

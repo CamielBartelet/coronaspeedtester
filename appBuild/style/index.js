@@ -54,12 +54,12 @@ export default css.global`
   }
 
   .mainContent {
-    width: 480px;
+    width: 100%;
     // height: 70%;
     padding: 10px;
-    background: #fff;
     z-index: 1;
-    padding: 30px 35px;
+    display: flex;
+    justify-content: center;
   }
 
   .optBtn {
