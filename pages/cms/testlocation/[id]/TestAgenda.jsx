@@ -2,7 +2,8 @@ import { useRouter } from "next/router";
 import dbConnect from "../../../../util/mongodb";
 import Testlocation from "../../../../models/Testlocation";
 //import FullCalendar from "../../../../appBuild/Components/appComp/fullcalendar";
-import ICSReader from "../../../../appBuild/Components/appComp/ICSReader";
+//import ICSReader from "../../../../lib/ICSReader";
+import ICSPlanner from "../../../../appBuild/Components/appComp/ICSPlanner";
 
 
 
@@ -16,7 +17,8 @@ const TestAgenda = ({ testOrg }) => {
         <li>{testOrg._id}</li>
         <li>{testOrg.name}</li>
         <li>{testOrg.region}</li>
-        <li>{testOrg.data}</li>
+        {/* <li>{testOrg.data}</li> */}
+        <ICSPlanner/>
         <div>
       {/* <FullCalendar defaultView='dayGridMonth' />
       <FullCalendar defaultView='timeGridWeek' /> */}
@@ -38,10 +40,11 @@ export async function getServerSideProps({ params }) {
 
   const testorganisations = await Testlocation.findById(params.id).lean();
   testorganisations._id = testorganisations._id.toString();
-  const ICSdata = ICSReader.data;
+  //const ICSdata =  await ICSReader.data;
+  //JSON.stringify(ICSdata);
 
   return { 
-    props: { testOrg: testorganisations, testOrg: ICSdata }
+    props: { testOrg: testorganisations}
   };
 }
 
