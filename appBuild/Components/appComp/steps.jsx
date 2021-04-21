@@ -1,5 +1,8 @@
 import AppCompstyle from "./appCompstyle";
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 const Steps = () => {
   return (
@@ -9,6 +12,8 @@ const Steps = () => {
         <Swiper
           spaceBetween={20}
           slidesPerView={4}
+          navigation
+          pagination={{ clickable: true }}
           // onSlideChange={() => console.log("slide change")}
           // onSwiper={(swiper) => console.log(swiper)}
         >

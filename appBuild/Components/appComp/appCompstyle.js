@@ -3,6 +3,19 @@ import css from "styled-jsx/css";
 export default css`
   .stepComp {
     width: 70%;
+    text-align: center;
+    flex-direction: column;
+  }
+
+  .termsComp {
+    background: #fff;
+    padding: 20px;
+    width: 900px;
+  }
+
+  .signUpComp {
+    padding: 20px;
+    background: #fff;
   }
 
   .stepList {
@@ -59,12 +72,26 @@ export default css`
     width: 300px;
   }
 
+  .header {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
   .appmenu {
     display: flex;
     width: 100%;
     height: 80px;
     align-self: flex-start;
     justify-content: space-between;
+  }
+
+  .txtOrStepper {
+    text-align: center;
+    height: 80px;
+    font-size: 1.5rem;
   }
 
   .previousSide {

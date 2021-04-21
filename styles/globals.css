@@ -204,6 +204,14 @@ h4 {
   font-weight: 300;
 }
 
+.swiper-container {
+  height: 520px;
+}
+
+.swiper-wrapper {
+  height: auto !important;
+}
+
 .swiper-slide {
   display: flex;
   justify-content: center;
