@@ -13,6 +13,7 @@ import Personaldata from "../appBuild/Components/appComp/persData";
 
 const CoronaIndex = ({ accounts, events }) => {
   const [page, setPage] = useState(0);
+  const [event, setEvents] = useState(events);
   const nextPage = () => {
     if (page < pages.length - 1) setPage(page + 1);
   };
@@ -20,7 +21,7 @@ const CoronaIndex = ({ accounts, events }) => {
   const pages = [
     {
       name: "welcome",
-      pagecont: <Welcome event={events} />,
+      pagecont: <Welcome event={event} />,
       head: <HeadMenu page={page} onprev={setPage} />,
       buttonNxt: "Ik ben er klaar voor!",
       height: "45vh",
@@ -117,6 +118,8 @@ export async function getServerSideProps(ctx) {
       event._id = event._id.toString();
       return event;
     });
+
+    if (!events) events = [{ name: "", image: "", date: "" }];
 
     return { props: { accounts: accounts, events: events } };
   }
