@@ -17,10 +17,14 @@ const CoronaIndex = ({ accounts, events }) => {
     if (page < pages.length - 1) setPage(page + 1);
   };
 
+  let nextEvent = { name: "", date: "", image: "" };
+
+  if (events) nextEvent = events[0];
+
   const pages = [
     {
       name: "welcome",
-      pagecont: <Welcome event={events} />,
+      pagecont: <Welcome event={nextEvent} />,
       head: <HeadMenu page={page} onprev={setPage} />,
       buttonNxt: "Ik ben er klaar voor!",
       height: "45vh",
@@ -117,8 +121,6 @@ export async function getServerSideProps(ctx) {
       event._id = event._id.toString();
       return event;
     });
-
-    if (!events) events = [{ name: "", image: "", date: "" }];
 
     return { props: { accounts: accounts, events: events } };
   }
