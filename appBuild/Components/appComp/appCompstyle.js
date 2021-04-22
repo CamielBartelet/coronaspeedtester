@@ -46,7 +46,11 @@ export default css`
   }
 
   .stepTxt p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  .contText p {
+    font-size: 1.1rem;
   }
 
   .stepNr {
@@ -186,6 +190,55 @@ export default css`
     height: 100%;
     margin-top: 30px;
     align-items: center;
+  }
+
+  .signupmail {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0;
+  }
+
+  .signupmail p {
+    font-weight: 550;
+    font-size: 1.3rem;
+    padding: 10px 0;
+  }
+
+  .signupmail input {
+    height: 65px;
+    border: none;
+    background: #eef5fb;
+    border-radius: 10px;
+    color: #546573;
+    font-style: italic;
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .signupmail input:focus,
+  .signbtnCont:focus {
+    outline: none;
+  }
+
+  .signupbtn {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 30px;
+  }
+
+  .signbtnCont {
+    display: flex;
+    justify-content: center;
+    min-width: 300px;
+    border-radius: 10px;
+    background: #86e4d9;
+    cursor: pointer;
+    height: 65px;
+    align-items: center;
+    max-width: 220px;
+    font-family: "Poppins";
+    border: none;
+    font-size: 1rem;
   }
 
   .formButtonCont {

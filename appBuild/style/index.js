@@ -98,6 +98,7 @@ export default css.global`
     cursor: pointer;
     height: 65px;
     align-items: center;
+    max-width: 220px;
   }
 
   .testLocDashboard {

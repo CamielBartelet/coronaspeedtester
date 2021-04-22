@@ -23,11 +23,20 @@ const SignUp = ({ accounts, csrfToken }) => {
             {/* <button onClick={signIn}>Meld je aan</button> */}
             <form method="post" action="/api/auth/signin/email">
               <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-              <label>
-                Email address
-                <input type="email" id="email" name="email" />
-              </label>
-              <button type="submit">Log in met Email</button>
+              <div className="signupmail">
+                <p>Emailadres</p>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="johndoe@email.com"
+                />
+              </div>
+              <div className="signupbtn">
+                <button className="signbtnCont" type="submit">
+                  Aanmelden op Renorm
+                </button>
+              </div>
             </form>
           </>
         )}

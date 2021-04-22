@@ -4,7 +4,7 @@ import UserForm from "../../../appBuild/Components/appComp/userFormat";
 import useSWR from "swr";
 import dbConnect from "../../../util/mongodb";
 import Event from "../../../models/Event";
-import HeadMenu from "../../../appBuild/Components/appComp/menu";
+import HeadMenu from "../../../appBuild/Components/appComp/menu/menu";
 import TestPlanner from "../../../appBuild/Components/appComp/testPlanner";
 
 const fetcher = (url) =>
@@ -43,11 +43,9 @@ const PlanTest = ({ events }) => {
       {account && (
         <>
           <main className="container">
-            Ingelogd met {account.email} <br />
-            <button onClick={signOut}>Log uit</button>
             <div className="mainApp">
               <div className="headerWrap">
-                <HeadMenu loggedIn={true} />
+                <HeadMenu loggedIn={true} account={account} />
               </div>
               {!account.bsnnumber || !account.phone ? (
                 <>

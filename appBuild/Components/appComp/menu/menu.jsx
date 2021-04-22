@@ -36,18 +36,18 @@ const sidebar = {
 
 const QontoConnector = withStyles({
   alternativeLabel: {
-    top: 10,
-    left: "calc(-50% + 16px)",
-    right: "calc(50% + 16px)",
+    top: 13,
+    left: "calc(-50% + 6px)",
+    right: "calc(50% + 6px)",
   },
   active: {
     "& $line": {
-      borderColor: "#784af4",
+      borderColor: "#34D1BF",
     },
   },
   completed: {
     "& $line": {
-      borderColor: "#784af4",
+      borderColor: "#34D1BF",
     },
   },
   line: {
@@ -61,22 +61,29 @@ const useQontoStepIconStyles = makeStyles({
   root: {
     color: "#eaeaf0",
     display: "flex",
-    height: 22,
+    height: 30,
     alignItems: "center",
   },
   active: {
+    width: 30,
+    height: 30,
+    border: "3px solid #34D1BF",
+    borderRadius: "50%",
     color: "#784af4",
+    position: "relative",
+    zIndex: "2",
   },
   circle: {
-    width: 8,
-    height: 8,
+    width: 24,
+    height: 24,
     borderRadius: "50%",
-    backgroundColor: "currentColor",
+    backgroundColor: "#EDEDED",
   },
   completed: {
-    color: "#784af4",
-    zIndex: 1,
-    fontSize: 18,
+    width: "30px",
+    height: 30,
+    borderRadius: "50%",
+    backgroundColor: "#34D1BF",
   },
 });
 
@@ -91,7 +98,7 @@ function QontoStepIcon(props) {
       })}
     >
       {completed ? (
-        <Check className={classes.completed} />
+        <div className={classes.completed} />
       ) : (
         <div className={classes.circle} />
       )}
@@ -133,7 +140,7 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
   const steps = getSteps();
   const router = useRouter();
   const [isOpen, toggleOpen] = useState(false);
-  const containerRef = useRef(null);
+  const containerRef = useRef("0px");
   const { height } = useDimensions(containerRef);
   const [pageTitle, setTitle] = useState(page);
   const goBack = () => {
@@ -141,7 +148,11 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
   };
 
   const handleClickOutside = (event) => {
-    if (isOpen && !containerRef.current.contains(event.target))
+    if (
+      isOpen &&
+      containerRef.current &&
+      !containerRef.current.contains(event.target)
+    )
       toggleOpen(false);
   };
 
@@ -206,7 +217,9 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
             </div>
           </div>
           <div className="txtOrStepper">
-            {page === 1 || router.pathname === "/[id]" ? (
+            {page === 1 ||
+            router.pathname === "/[id]" ||
+            router.pathname === "/[id]/[idx]" ? (
               <h3>{pageTitle === 1 ? titles.swipePage : ""}</h3>
             ) : (
               <div className={classes.root}>
