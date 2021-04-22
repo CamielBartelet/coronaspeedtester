@@ -5,6 +5,8 @@ export default css`
     width: 70%;
     text-align: center;
     flex-direction: column;
+    position: relative;
+    z-index: 0;
   }
 
   .termsComp {
@@ -70,57 +72,6 @@ export default css`
     background: #fff;
     height: 400px;
     width: 300px;
-  }
-
-  .header {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .appmenu {
-    display: flex;
-    width: 100%;
-    height: 80px;
-    align-self: flex-start;
-    justify-content: space-between;
-  }
-
-  .txtOrStepper {
-    text-align: center;
-    height: 100px;
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
-  }
-
-  .previousSide {
-    width: 75px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .faqandMenu {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 150px;
-    height: 100%;
-  }
-
-  .menuBtn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #d5e5f6;
-    cursor: pointer;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
   }
 
   .welcomeTxt {

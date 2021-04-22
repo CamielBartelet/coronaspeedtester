@@ -6,7 +6,7 @@ import User from "../models/User";
 import Event from "../models/Event";
 import Welcome from "../appBuild/Components/appComp/welcome";
 import Steps from "../appBuild/Components/appComp/steps";
-import HeadMenu from "../appBuild/Components/appComp/menu";
+import HeadMenu from "../appBuild/Components/appComp/menu/menu";
 import Terms from "../appBuild/Components/appComp/terms";
 import SignUp from "../appBuild/Components/appComp/signUp";
 import Personaldata from "../appBuild/Components/appComp/persData";
@@ -25,7 +25,7 @@ const CoronaIndex = ({ csrfToken, accounts, events }) => {
     {
       name: "welcome",
       pagecont: <Welcome event={nextEvent} />,
-      head: <HeadMenu page={page} onprev={setPage} />,
+      head: <HeadMenu page={page} onprev={setPage} account={accounts} />,
       buttonNxt: "Ik ben er klaar voor!",
       height: "45vh",
       btnWidth: "480px",
@@ -33,7 +33,7 @@ const CoronaIndex = ({ csrfToken, accounts, events }) => {
     {
       name: "steps",
       pagecont: <Steps />,
-      head: <HeadMenu page={page} onprev={setPage} />,
+      head: <HeadMenu page={page} onprev={setPage} account={accounts} />,
       buttonNxt: "Ik begrijp het, ik wil beginnen!",
       height: "3vh",
       btnWidth: "auto",
@@ -41,7 +41,7 @@ const CoronaIndex = ({ csrfToken, accounts, events }) => {
     {
       name: "terms",
       pagecont: <Terms />,
-      head: <HeadMenu page={page} onprev={setPage} />,
+      head: <HeadMenu page={page} onprev={setPage} account={accounts} />,
       buttonNxt: "Ik accepteer de voorwaarden",
       height: "3vh",
       btnWidth: "auto",
@@ -49,7 +49,7 @@ const CoronaIndex = ({ csrfToken, accounts, events }) => {
     {
       name: "signup",
       pagecont: <SignUp accounts={accounts} csrfToken={csrfToken} />,
-      head: <HeadMenu page={page} onprev={setPage} />,
+      head: <HeadMenu page={page} onprev={setPage} account={accounts} />,
       buttonNxt: "",
       height: "3vh",
       btnWidth: "auto",
@@ -69,7 +69,9 @@ const CoronaIndex = ({ csrfToken, accounts, events }) => {
       {/* <HomeButton /> */}
       <main className="container">
         <div className="mainApp">
-          <div className="headerWrap">{pages[page].head}</div>
+          <div className="headerWrap">
+            <HeadMenu page={page} onprev={setPage} account={accounts} />
+          </div>
           <div className="mainContent">{pages[page].pagecont}</div>
           <div className="optBtn">
             {pages[page].buttonNxt != "" ? (
