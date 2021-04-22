@@ -3,22 +3,7 @@ import AppCompstyle from "./appCompstyle";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/client";
 
-const SignUp = ({ onnext, accounts }) => {
-  // const [session, loading] = useSession();
-
-  // if (loading) {
-  //   return <p>Loading...</p>;
-  // }
-
-  // const accountForm = {
-  //   name: "",
-  //   lastname: "",
-  //   postalCode: "",
-  //   postalNumber: "",
-  //   phone: "",
-  //   bsnnumber: "",
-  // };
-
+const SignUp = ({ accounts, csrfToken }) => {
   return (
     <>
       <style jsx>{AppCompstyle}</style>
@@ -35,7 +20,15 @@ const SignUp = ({ onnext, accounts }) => {
         {accounts == null && (
           <>
             {/* Not signed in <br /> */}
-            <button onClick={signIn}>Meld je aan</button>
+            {/* <button onClick={signIn}>Meld je aan</button> */}
+            <form method="post" action="/api/auth/signin/email">
+              <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+              <label>
+                Email address
+                <input type="email" id="email" name="email" />
+              </label>
+              <button type="submit">Log in met Email</button>
+            </form>
           </>
         )}
         {accounts && (
@@ -58,3 +51,10 @@ const SignUp = ({ onnext, accounts }) => {
 };
 
 export default SignUp;
+
+export async function getServerSideProps(context) {
+  const csrfToken = await getCsrfToken(context);
+  return {
+    props: { csrfToken },
+  };
+}

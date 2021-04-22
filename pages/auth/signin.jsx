@@ -1,6 +1,7 @@
 import { getCsrfToken } from "next-auth/client";
 
 export default function SignIn({ csrfToken }) {
+  console.log(csrfToken);
   return (
     <form method="post" action="/api/auth/signin/email">
       <input name="csrfToken" type="hidden" defaultValue={csrfToken} />

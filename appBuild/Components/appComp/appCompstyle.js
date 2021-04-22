@@ -10,7 +10,7 @@ export default css`
   .termsComp {
     background: #fff;
     padding: 20px;
-    width: 900px;
+    width: 700px;
   }
 
   .signUpComp {
@@ -90,8 +90,10 @@ export default css`
 
   .txtOrStepper {
     text-align: center;
-    height: 80px;
+    height: 100px;
     font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
   }
 
   .previousSide {

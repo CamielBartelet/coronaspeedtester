@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { getSession } from "next-auth/client";
+import { getSession, getCsrfToken } from "next-auth/client";
 import dbConnect from "../util/mongodb";
 import User from "../models/User";
 import Event from "../models/Event";
@@ -11,7 +11,7 @@ import Terms from "../appBuild/Components/appComp/terms";
 import SignUp from "../appBuild/Components/appComp/signUp";
 import Personaldata from "../appBuild/Components/appComp/persData";
 
-const CoronaIndex = ({ accounts, events }) => {
+const CoronaIndex = ({ csrfToken, accounts, events }) => {
   const [page, setPage] = useState(0);
   const nextPage = () => {
     if (page < pages.length - 1) setPage(page + 1);
@@ -48,7 +48,7 @@ const CoronaIndex = ({ accounts, events }) => {
     },
     {
       name: "signup",
-      pagecont: <SignUp onnext={nextPage} accounts={accounts} />,
+      pagecont: <SignUp accounts={accounts} csrfToken={csrfToken} />,
       head: <HeadMenu page={page} onprev={setPage} />,
       buttonNxt: "",
       height: "3vh",
@@ -96,23 +96,16 @@ const CoronaIndex = ({ accounts, events }) => {
   );
 };
 
+export default CoronaIndex;
+
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
+  const csrfToken = await getCsrfToken(ctx);
+
   if (!session) {
     // ctx.res.writeHead(302, { Location: "/auth/signin" });
     // ctx.res.end();
     const accounts = null;
-    return { props: { accounts: accounts } };
-  }
-
-  await dbConnect();
-  if (session) {
-    const resultAcc = await User.find({ email: session.user.email });
-
-    const accounts = resultAcc.map((doc) => {
-      const account = JSON.parse(JSON.stringify(doc));
-      return account;
-    });
 
     const result = await Event.find({});
 
@@ -121,9 +114,29 @@ export async function getServerSideProps(ctx) {
       event._id = event._id.toString();
       return event;
     });
+    return { props: { csrfToken, accounts: accounts, events: events } };
+  }
 
-    return { props: { accounts: accounts, events: events } };
+  await dbConnect();
+  if (session) {
+    const resultAcc = await User.find({ email: session.user.email });
+    ctx.res.writeHead(302, { Location: `/${resultAcc[0]._id}` });
+    ctx.res.end();
+    return { props: { csrfToken, accounts: "", events: "" } };
+
+    // const accounts = resultAcc.map((doc) => {
+    //   const account = JSON.parse(JSON.stringify(doc));
+    //   return account;
+    // });
+
+    // const result = await Event.find({});
+
+    // const events = result.map((doc) => {
+    //   const event = doc.toObject();
+    //   event._id = event._id.toString();
+    //   return event;
+    // });
+
+    // return { props: { csrfToken, accounts: accounts, events: events } };
   }
 }
-
-export default CoronaIndex;
