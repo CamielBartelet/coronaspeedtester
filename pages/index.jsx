@@ -103,6 +103,7 @@ export default CoronaIndex;
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
   const csrfToken = await getCsrfToken(ctx);
+  await dbConnect();
 
   if (!session) {
     const accounts = null;
@@ -117,7 +118,6 @@ export async function getServerSideProps(ctx) {
     return { props: { csrfToken, accounts: accounts, events: events } };
   }
 
-  await dbConnect();
   if (session) {
     const resultAcc = await User.find({ email: session.user.email });
     ctx.res.writeHead(302, { Location: `/${resultAcc[0]._id}` });
