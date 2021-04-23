@@ -1,4 +1,3 @@
-import SignUpForm from "./signUpform";
 import AppCompstyle from "./appCompstyle";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/client";
@@ -60,10 +59,3 @@ const SignUp = ({ accounts, csrfToken }) => {
 };
 
 export default SignUp;
-
-export async function getServerSideProps(context) {
-  const csrfToken = await getCsrfToken(context);
-  return {
-    props: { csrfToken },
-  };
-}

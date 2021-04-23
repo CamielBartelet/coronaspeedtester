@@ -17,7 +17,7 @@ const CoronaIndex = ({ csrfToken, accounts, events }) => {
     if (page < pages.length - 1) setPage(page + 1);
   };
 
-  let nextEvent = { name: "", date: "", image: "" };
+  let nextEvent = null;
 
   if (events) nextEvent = events[0];
 
@@ -105,8 +105,6 @@ export async function getServerSideProps(ctx) {
   const csrfToken = await getCsrfToken(ctx);
 
   if (!session) {
-    // ctx.res.writeHead(302, { Location: "/auth/signin" });
-    // ctx.res.end();
     const accounts = null;
 
     const result = await Event.find({});
@@ -125,20 +123,5 @@ export async function getServerSideProps(ctx) {
     ctx.res.writeHead(302, { Location: `/${resultAcc[0]._id}` });
     ctx.res.end();
     return { props: { csrfToken, accounts: "", events: "" } };
-
-    // const accounts = resultAcc.map((doc) => {
-    //   const account = JSON.parse(JSON.stringify(doc));
-    //   return account;
-    // });
-
-    // const result = await Event.find({});
-
-    // const events = result.map((doc) => {
-    //   const event = doc.toObject();
-    //   event._id = event._id.toString();
-    //   return event;
-    // });
-
-    // return { props: { csrfToken, accounts: accounts, events: events } };
   }
 }
