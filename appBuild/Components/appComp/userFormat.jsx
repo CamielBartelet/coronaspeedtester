@@ -15,6 +15,10 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
     updatedAt: accountForm.updatedAt,
     phone: accountForm.phone,
     bsnnumber: accountForm.bsnnumber,
+    firstName : accountForm.firstName,
+    lastName : accountForm.lastName,
+    postalCode : accountForm.postalCode,
+    dateOfBirth : accountForm.dateOfBirth,
   });
 
   const putData = async (form) => {
@@ -105,6 +109,20 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
           className="inputForm"
           style={{ display: "flex", flexDirection: "column" }}
         >
+          <label htmlFor="firstName">Voornaam</label>
+          <input
+            name="firstName"
+            maxLength="50"
+            value={form.firstName}
+            onChange={handleChange}
+          />
+          <label htmlFor="lastName">Achternaam</label>
+          <input
+            name="lastName"
+            maxLength="50"
+            value={form.lastName}
+            onChange={handleChange}
+          />
           <label htmlFor="phone">Telefoon</label>
           <input
             name="phone"
@@ -117,6 +135,20 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
             name="bsnnumber"
             maxLength="4"
             value={form.bsnnumber}
+            onChange={handleChange}
+          />
+          <label htmlFor="postalCode">Postcode</label>
+          <input
+            name="postalCode"
+            maxLength="6"
+            value={form.postalCode}
+            onChange={handleChange}
+          />
+          <label htmlFor="dateOfBirth">Geboortedatum</label>
+          <input
+            name="dateOfBirth"
+            maxLength="8"
+            value={form.dateOfBirth}
             onChange={handleChange}
           />
 

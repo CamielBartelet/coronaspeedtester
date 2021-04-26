@@ -54,6 +54,22 @@ export const UserSchema = new mongoose.Schema({
     type: Number,
     nullable: true,
   },
+  firstName: {
+    type: String,
+    nullable: true,
+  },
+  lastName: {
+    type: String,
+    nullable: true,
+  },
+  postalCode: {
+      type: String,
+      nullable: true,
+  },
+  dateOfBirth: {
+      type: String,
+      nullable: true,
+  },
 });
 
 export default mongoose.models.User || mongoose.model("User", UserSchema);
