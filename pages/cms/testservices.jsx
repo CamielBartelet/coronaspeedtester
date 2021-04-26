@@ -27,7 +27,6 @@ const Users = ({ testorganisations }) => {
       </Link>
       <main className="container">
         <div className="userMng">
-          <h2></h2>
           <table>
             <thead className="table_head">
               <tr className="eventTable">
