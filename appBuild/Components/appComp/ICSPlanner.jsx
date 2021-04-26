@@ -10,11 +10,23 @@ const ICS = ({ cont }) => {
   readData(function (err, content) {
     setICSdata(content);
     console.log(content + "gotit");
+    // getData();
   });
+
+ // function getData(){
+  console.log("results:");
+  // while(content.indexOf("DTSTART") != -1) //while there is still DTSTART in the file
+   //{
+    //  var tempStart = 0;
+    //  tempStart = content.indexOf("DTSTART");
+    //  tempstart = tempstart + 8;
+    //  console.log(content.charAt(tempstart));
+   //}
+ // }
 
   return (
     <div>
-      Gewoon iets:
+      Gewoon iets test:
       <br />
     </div>
   );
