@@ -10,19 +10,19 @@ const ICS = ({ cont }) => {
   readData(function (err, content) {
     setICSdata(content);
     console.log(content + "gotit");
-    // getData();
+    // getData(content);
   });
 
- // function getData(){
+  // function getData(file){
   console.log("results:");
-  // while(content.indexOf("DTSTART") != -1) //while there is still DTSTART in the file
-   //{
-    //  var tempStart = 0;
-    //  tempStart = content.indexOf("DTSTART");
-    //  tempstart = tempstart + 8;
-    //  console.log(content.charAt(tempstart));
-   //}
- // }
+//   while(file.indexOf("DTSTART") != -1) //while there is still DTSTART in the file
+//    {
+//      var tempStart = 0;
+//      tempStart = file.indexOf("DTSTART");
+//      tempstart = tempstart + 8;
+//      console.log(file.charAt(tempstart));
+//    }
+//  }
 
   return (
     <div>
