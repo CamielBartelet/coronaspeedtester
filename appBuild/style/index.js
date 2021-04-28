@@ -255,14 +255,14 @@ export default css.global`
     padding: 0;
   }
 
-  ul {
+  nav ul {
     padding: 25px;
     position: absolute;
     top: 100px;
     width: 230px;
   }
 
-  li {
+  nav li {
     list-style: none;
     margin-bottom: 20px;
     display: flex;
@@ -298,5 +298,11 @@ export default css.global`
     justify-content: center;
     align-items: center;
     cursor: pointer;
+  }
+
+  .verifyrequesttxt {
+  text-align: center;
+  font-weight: 700;
+  color: #1D8175;
   }
 `;
