@@ -98,7 +98,7 @@ export default async function handler(req, res) {
 
     var eventId = body.eventId;
     var ticketId = body.ticketId;
-    var user = body.user;
+    var user = body.user[0];
     var issuer = "BUNQNL2A";
 
     const sessionId = await addToCart(eventId, ticketId);

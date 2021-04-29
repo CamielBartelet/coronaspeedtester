@@ -1,16 +1,37 @@
+import dbConnect from "../util/mongodb";
+import User from "../models/User";
+import { signIn, signOut, getSession } from "next-auth/client";
+
 function Checkout({ link }) {
     return (
-      <a href={link}>Klik mij</a>
+        <h1>Klik <a href={link}>hier</a> om te betalen</h1>
     )
   }
 
 export async function getServerSideProps(context) {
-    console.log("hey")
+
+    const session = await getSession(context);
+    if (!session) {
+        context.res.writeHead(302, { Location: "/profile" });
+        context.res.end();
+      return {};
+    }
+
+    await dbConnect();
+
+    const resultAcc = await User.find({ email: session.user.email });
+
+    const accounts = resultAcc.map((doc) => {
+      const account = JSON.parse(JSON.stringify(doc));
+      return account;
+    });
+
+    console.log(accounts)
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({"eventId":"6YaldE9lRRZMG3LB","ticketId":"8qX7ZMx670Og5DQj","user":{"firstName":"Lars","lastName":"van Erp","email":"larsverp2803@gmail.com","postalCode":"5673RE","dateOfBirth":"28-03-2000","phone":"0647169791"}});
+    var raw = JSON.stringify({"eventId":"6YaldE9lRRZMG3LB","ticketId":"8qX7ZMx670Og5DQj","user": accounts});
 
     var requestOptions = {
     method: 'POST',
@@ -18,7 +39,6 @@ export async function getServerSideProps(context) {
     body: raw,
     redirect: 'follow'
     };
-
 
     const response = await fetch("http://localhost:3000/api/tickets", requestOptions);
     const data = await response.json();
