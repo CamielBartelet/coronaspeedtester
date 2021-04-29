@@ -6,7 +6,13 @@ export default function SignIn({ csrfToken }) {
     <main className="container">
       <div className="mainApp">
         <Verify />
-        <div>Check je e-mail</div>
+        <div className="verifyrequesttxt">
+          Je account is geverifiëerd.
+          <br />
+          Je kunt nu dit account gebruiken voor je volgende activiteit!
+          <br />
+          Klik op de link in je mailbox om je persoonsgegevens aan te vullen.
+        </div>
       </div>
     </main>
   );
