@@ -26,7 +26,6 @@ export async function getServerSideProps(context) {
       return account;
     });
 
-    console.log(accounts)
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
