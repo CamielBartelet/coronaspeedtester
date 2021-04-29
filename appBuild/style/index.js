@@ -305,4 +305,11 @@ export default css.global`
   font-weight: 700;
   color: #1D8175;
   }
+
+  .signInHold {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
 `;

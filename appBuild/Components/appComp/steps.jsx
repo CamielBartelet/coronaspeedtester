@@ -12,7 +12,7 @@ const Steps = () => {
         <Swiper
           spaceBetween={20}
           slidesPerView={4}
-          navigation
+          // navigation
           pagination={{ clickable: true }}
           // onSlideChange={() => console.log("slide change")}
           // onSwiper={(swiper) => console.log(swiper)}

@@ -49,6 +49,21 @@ export default css`
     font-size: 1.1rem;
   }
 
+  .contText::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #f5f5f5;
+  }
+
+  .contText::-webkit-scrollbar {
+    width: 12px;
+    background-color: #f5f5f5;
+  }
+
+  .contText::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #86e4d9;
+  }
+
   .contText p {
     font-size: 1.1rem;
   }

@@ -1,6 +1,7 @@
 import AppCompstyle from "./appCompstyle";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/client";
+import SignInTemp from "./signInTemp";
 
 const SignUp = ({ accounts, csrfToken }) => {
   return (
@@ -18,25 +19,7 @@ const SignUp = ({ accounts, csrfToken }) => {
         </div>
         {accounts == null && (
           <>
-            {/* Not signed in <br /> */}
-            {/* <button onClick={signIn}>Meld je aan</button> */}
-            <form method="post" action="/api/auth/signin/email">
-              <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-              <div className="signupmail">
-                <p>Emailadres</p>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="johndoe@email.com"
-                />
-              </div>
-              <div className="signupbtn">
-                <button className="signbtnCont" type="submit">
-                  Aanmelden op Renorm
-                </button>
-              </div>
-            </form>
+            <SignInTemp csrfToken={csrfToken} />
           </>
         )}
         {accounts && (
