@@ -29,10 +29,10 @@ export const MenuItem = ({ i, account }) => {
   const router = useRouter();
   const menuOpt = [
     {
-      ico: "/icons/aanmelden.svg",
-      txt: "Ingelogd met " + account?.email,
+      ico: "/icons/personaccount.svg",
+      txt: account?.email,
       click: () => {
-        router.push("tempindex");
+        router.push(`/${account?._id}/settings`);
       },
     },
     { ico: "/icons/aanmelden.svg", txt: "Log uit", click: signOut },
