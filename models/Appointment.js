@@ -10,7 +10,7 @@ const AppointmentSchema = new mongoose.Schema({
   starttime: {
     type: String,
   },
-  enddate: {
+  endtime: {
     type: String,
   },
   availableappointments: {
