@@ -2,30 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import AppCompstyle from "./appCompstyle";
 
-function useVisible(initialIsOutside) {
-  const [isOutside, setIsOutside] = useState(initialIsOutside);
-  const ref = useRef(null);
-
-  const handleClickOutside = (event) => {
-    if (ref.current && !ref.current.contains(event.target)) {
-      setIsOutside(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside, true);
-    return () => {
-      document.removeEventListener("click", handleClickOutside, true);
-    };
-  }, []);
-
-  return { ref, isOutside, setIsOutside };
-}
-
 const EventSel = ({ events, account }) => {
   const [selected, setEvent] = useState("");
+  const ref = useRef("zas");
   const router = useRouter();
-  const { ref, isOutside, setIsOutside } = useVisible(false);
 
   return (
     <>
@@ -40,7 +20,11 @@ const EventSel = ({ events, account }) => {
               className="eventRow"
               onClick={() => setEvent(event._id)}
               ref={ref}
-              // style={selected == event._id && { background: "aliceblue" }}
+              style={
+                selected == event._id
+                  ? { background: "aliceblue" }
+                  : { background: "" }
+              }
             >
               <div className="eventImage">
                 <img src={event.image}></img>

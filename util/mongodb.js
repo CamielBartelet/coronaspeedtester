@@ -51,6 +51,7 @@ const connection = {}; /* creating connection object*/
 async function dbConnect() {
   /* check if we have connection to our databse*/
   if (connection.isConnected) {
+
     return;
   }
 

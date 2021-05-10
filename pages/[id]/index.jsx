@@ -5,7 +5,7 @@ import useSWR from "swr";
 import Events from "../../appBuild/Components/appComp/events";
 import dbConnect from "../../util/mongodb";
 import Event from "../../models/Event";
-import HeadMenu from "../../appBuild/Components/appComp/menu";
+import HeadMenu from "../../appBuild/Components/appComp/menu/menu";
 
 const fetcher = (url) =>
   fetch(url)
@@ -30,6 +30,10 @@ const AccountPage = ({ events }) => {
     updatedAt: account.updatedAt,
     phone: account.phone || "",
     bsnnumber: account.bsnnumber || "",
+    firstName : account.firstName || "",
+    lastName : account.lastName || "",
+    postalCode : account.postalCode || "",
+    dateOfBirth : account.dateOfBirth || "",
   };
 
   return (
@@ -43,13 +47,11 @@ const AccountPage = ({ events }) => {
       {account && (
         <>
           <main className="container">
-            Ingelogd met {account.email} <br />
-            <button onClick={signOut}>Log uit</button>
             <div className="mainApp">
               <div className="headerWrap">
-                <HeadMenu loggedIn={true} />
+                <HeadMenu loggedIn={true} account={account} />
               </div>
-              {!account.bsnnumber || !account.phone ? (
+              {!account.bsnnumber || !account.phone || !account.firstName || !account.lastName || !account.postalCode || !account.dateOfBirth ? (
                 <>
                   <div className="headerWrap">Vul je gegevens in</div>
                   <div className="mainContent">
