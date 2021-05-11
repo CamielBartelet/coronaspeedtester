@@ -100,29 +100,6 @@ const CoronaIndex = ({ csrfToken, accounts, events }) => {
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
-  if (!session) {
-    // ctx.res.writeHead(302, { Location: "/auth/signin" });
-    // ctx.res.end();
-    const accounts = null;
-    return { props: { accounts: accounts } };
-  }
-
-  await dbConnect();
-  if (session) {
-    const resultAcc = await User.find({ email: session.user.email });
-
-    const accounts = resultAcc.map((doc) => {
-      const account = JSON.parse(JSON.stringify(doc));
-      return account;
-    });
-    return { props: { accounts: accounts } };
-  }
-}
-
-export default CoronaIndex;
-
-export async function getServerSideProps(ctx) {
-  const session = await getSession(ctx);
   const csrfToken = await getCsrfToken(ctx);
   await dbConnect();
 
@@ -146,3 +123,5 @@ export async function getServerSideProps(ctx) {
     return { props: { csrfToken, accounts: "", events: "" } };
   }
 }
+
+export default CoronaIndex;
