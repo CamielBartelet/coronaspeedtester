@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
+import AppCompstyle from "./appCompstyle";
 
 const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
   const router = useRouter();
@@ -13,8 +14,11 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
     emailVerified: accountForm.emailVerified,
     createdAt: accountForm.createdAt,
     updatedAt: accountForm.updatedAt,
+    name: accountForm.name,
+    surname: accountForm.surname,
     phone: accountForm.phone,
     bsnnumber: accountForm.bsnnumber,
+    postalCode: accountForm.postalCode,
   });
 
   const putData = async (form) => {
@@ -44,30 +48,6 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
     }
   };
 
-  /* The POST method adds a new entry in the mongodb database. */
-  // const postData = async (form) => {
-  //   try {
-  //     const res = await fetch("/api/organisations", {
-  //       method: "POST",
-  //       headers: {
-  //         Accept: contentType,
-  //         "Content-Type": contentType,
-  //       },
-  //       body: JSON.stringify(form),
-  //     });
-
-  //     // Throw error with status code in case Fetch API req failed
-  //     if (!res.ok) {
-  //       throw new Error(res.status);
-  //     }
-
-  //     router.push("/cms/eventorganisers");
-  //     saveModal();
-  //   } catch (error) {
-  //     setMessage("Failed to add organisation");
-  //   }
-  // };
-
   const handleChange = (e) => {
     const target = e.target;
     const value = target.value;
@@ -92,12 +72,14 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
   const formValidate = () => {
     let err = {};
     if (!form.phone) err.phone = "Phone is required";
-    if (!form.bsnnumber) err.bsnnumber = "Phone is required";
+    if (!form.bsnnumber) err.bsnnumber = "Bsnnumber is required";
+    if (!form.postalCode) err.postalCode = "Postalcode is required";
     return err;
   };
 
   return (
     <>
+      <style jsx>{AppCompstyle}</style>
       <div className="inputEv">
         <form
           id={formId}
@@ -105,12 +87,29 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
           className="inputForm"
           style={{ display: "flex", flexDirection: "column" }}
         >
+          <label htmlFor="name">Voornaam</label>
+          <input
+            name="name"
+            maxLength="50"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="John"
+          />
+          <label htmlFor="surname">Achternaam</label>
+          <input
+            name="surname"
+            maxLength="50"
+            value={form.surname}
+            onChange={handleChange}
+            placeholder="Doe"
+          />
           <label htmlFor="phone">Telefoon</label>
           <input
             name="phone"
             maxLength="15"
             value={form.phone}
             onChange={handleChange}
+            placeholder="0612345678"
           />
           <label htmlFor="bsnnumber">BSN nummber (laatste 4 cijfers)</label>
           <input
@@ -118,11 +117,22 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
             maxLength="4"
             value={form.bsnnumber}
             onChange={handleChange}
+            placeholder="5678"
+          />
+          <label htmlFor="postalCode">Postcode</label>
+          <input
+            name="postalCode"
+            maxLength="6"
+            value={form.postalCode}
+            onChange={handleChange}
+            placeholder="1234AB"
           />
 
-          <button type="submit" className="btnSub">
-            Opslaan
-          </button>
+          <div className="signupbtn">
+            <button className="signbtnCont" type="submit">
+              Opslaan
+            </button>
+          </div>
         </form>
         <p>{message}</p>
         <div>

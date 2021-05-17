@@ -28,8 +28,11 @@ const AccountPage = ({ events }) => {
     emailVerified: account.emailVerified,
     createdAt: account.createdAt,
     updatedAt: account.updatedAt,
+    name: account.name || "",
+    surname: account.surname || "",
     phone: account.phone || "",
     bsnnumber: account.bsnnumber || "",
+    postalCode: account.postalCode || "",
   };
 
   return (
@@ -47,7 +50,11 @@ const AccountPage = ({ events }) => {
               <div className="headerWrap">
                 <HeadMenu loggedIn={true} account={account} />
               </div>
-              {!account.bsnnumber || !account.phone ? (
+              {!account.bsnnumber ||
+              !account.phone ||
+              !account.postalCode ||
+              !account.name ||
+              !account.surname ? (
                 <>
                   <div className="headerWrap">Vul je gegevens in</div>
                   <div className="mainContent">

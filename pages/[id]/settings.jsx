@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import { signIn, signOut } from "next-auth/client";
 import UserForm from "../../appBuild/Components/appComp/userFormat";
 import useSWR from "swr";
-import Events from "../../appBuild/Components/appComp/events";
 import dbConnect from "../../util/mongodb";
 import Event from "../../models/Event";
 import HeadMenu from "../../appBuild/Components/appComp/menu/menu";
@@ -30,6 +29,7 @@ const ProfileSettings = ({ events }) => {
     updatedAt: account.updatedAt,
     phone: account.phone || "",
     bsnnumber: account.bsnnumber || "",
+    postalCode: account.postalCode || "",
   };
 
   return (

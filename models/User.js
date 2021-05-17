@@ -54,6 +54,10 @@ export const UserSchema = new mongoose.Schema({
     type: Number,
     nullable: true,
   },
+  postalCode: {
+    type: String,
+    nullable: true,
+  },
 });
 
 export default mongoose.models.User || mongoose.model("User", UserSchema);
