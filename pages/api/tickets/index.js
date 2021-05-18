@@ -30,8 +30,8 @@ async function postCustomer(sessionId, user) {
     "event_id" : "6YaldE9lRRZMG3LB",
         "first_name" : user.firstName,
         "last_name" : user.lastName,
-        "email" : "larsverp2803@gmail.com",
-        "email_confirmation" : "larsverp2803@gmail.com",
+        "email" : "tickets@renorm.nl",
+        "email_confirmation" : "tickets@renorm.nl",
         "phone" : user.phone,
         "accept_eg" : true,
         "fields" : {
@@ -89,7 +89,7 @@ export default async function handler(req, res) {
 
     var body = req.body;
 
-    if(body.eventId == null || body.ticketId == null || body.user == null){
+    if(body.eventId == null || body.ticketId == null || body.user == null || body.issuer == null){
         return res.status(400).json({
             "error" : true,
             "reason" : "One or more required fields are missing."
@@ -99,7 +99,7 @@ export default async function handler(req, res) {
     var eventId = body.eventId;
     var ticketId = body.ticketId;
     var user = body.user[0];
-    var issuer = "BUNQNL2A";
+    var issuer = body.issuer || "BUNQNL2A";
 
     const sessionId = await addToCart(eventId, ticketId);
 
