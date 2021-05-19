@@ -14,11 +14,12 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
     emailVerified: accountForm.emailVerified,
     createdAt: accountForm.createdAt,
     updatedAt: accountForm.updatedAt,
-    firstname: accountForm.firstname,
-    surname: accountForm.surname,
     phone: accountForm.phone,
     bsnnumber: accountForm.bsnnumber,
+    firstName: accountForm.firstName,
+    lastName: accountForm.lastName,
     postalCode: accountForm.postalCode,
+    dateOfBirth: accountForm.dateOfBirth,
   });
 
   const putData = async (form) => {
@@ -74,8 +75,8 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
     if (!form.phone) err.phone = "Phone is required";
     if (!form.bsnnumber) err.bsnnumber = "Bsnnumber is required";
     if (!form.postalCode) err.postalCode = "Postalcode is required";
-    if (!form.firstname) err.firstname = "First name is required";
-    if (!form.surname) err.surname = "Last name is required";
+    if (!form.firstName) err.firstName = "First name is required";
+    if (!form.lastName) err.lastName = "Last name is required";
     return err;
   };
 
@@ -89,21 +90,19 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
           className="inputForm"
           style={{ display: "flex", flexDirection: "column" }}
         >
-          <label htmlFor="firstname">Voornaam</label>
+          <label htmlFor="firstName">Voornaam</label>
           <input
-            name="firstname"
+            name="firstName"
             maxLength="50"
-            value={form.name}
+            value={form.firstName}
             onChange={handleChange}
-            placeholder="John"
           />
-          <label htmlFor="surname">Achternaam</label>
+          <label htmlFor="lastName">Achternaam</label>
           <input
-            name="surname"
+            name="lastName"
             maxLength="50"
-            value={form.surname}
+            value={form.lastName}
             onChange={handleChange}
-            placeholder="Doe"
           />
           <label htmlFor="phone">Telefoon</label>
           <input

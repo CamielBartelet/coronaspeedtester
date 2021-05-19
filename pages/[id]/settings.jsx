@@ -29,7 +29,10 @@ const ProfileSettings = ({ events }) => {
     updatedAt: account.updatedAt,
     phone: account.phone || "",
     bsnnumber: account.bsnnumber || "",
+    firstName: account.firstName || "",
+    lastName: account.lastName || "",
     postalCode: account.postalCode || "",
+    dateOfBirth: account.dateOfBirth || "",
   };
 
   return (

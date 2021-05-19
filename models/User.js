@@ -54,15 +54,19 @@ export const UserSchema = new mongoose.Schema({
     type: Number,
     nullable: true,
   },
+  firstName: {
+    type: String,
+    nullable: true,
+  },
+  lastName: {
+    type: String,
+    nullable: true,
+  },
   postalCode: {
     type: String,
     nullable: true,
   },
-  firstname: {
-    type: String,
-    nullable: true,
-  },
-  surname: {
+  dateOfBirth: {
     type: String,
     nullable: true,
   },
