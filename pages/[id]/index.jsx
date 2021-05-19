@@ -28,7 +28,7 @@ const AccountPage = ({ events }) => {
     emailVerified: account.emailVerified,
     createdAt: account.createdAt,
     updatedAt: account.updatedAt,
-    name: account.name || "",
+    firstname: account.name || "",
     surname: account.surname || "",
     phone: account.phone || "",
     bsnnumber: account.bsnnumber || "",

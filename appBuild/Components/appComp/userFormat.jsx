@@ -14,7 +14,7 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
     emailVerified: accountForm.emailVerified,
     createdAt: accountForm.createdAt,
     updatedAt: accountForm.updatedAt,
-    name: accountForm.name,
+    firstname: accountForm.firstname,
     surname: accountForm.surname,
     phone: accountForm.phone,
     bsnnumber: accountForm.bsnnumber,
@@ -74,6 +74,8 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
     if (!form.phone) err.phone = "Phone is required";
     if (!form.bsnnumber) err.bsnnumber = "Bsnnumber is required";
     if (!form.postalCode) err.postalCode = "Postalcode is required";
+    if (!form.firstname) err.firstname = "First name is required";
+    if (!form.surname) err.surname = "Last name is required";
     return err;
   };
 
@@ -87,9 +89,9 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
           className="inputForm"
           style={{ display: "flex", flexDirection: "column" }}
         >
-          <label htmlFor="name">Voornaam</label>
+          <label htmlFor="firstname">Voornaam</label>
           <input
-            name="name"
+            name="firstname"
             maxLength="50"
             value={form.name}
             onChange={handleChange}

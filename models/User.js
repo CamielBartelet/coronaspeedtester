@@ -58,6 +58,14 @@ export const UserSchema = new mongoose.Schema({
     type: String,
     nullable: true,
   },
+  firstname: {
+    type: String,
+    nullable: true,
+  },
+  surname: {
+    type: String,
+    nullable: true,
+  },
 });
 
 export default mongoose.models.User || mongoose.model("User", UserSchema);
