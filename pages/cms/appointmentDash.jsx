@@ -14,7 +14,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const Users = ({ testorganisations }) => {
+const Appointments = ({ appointments }) => {
   const [modalState, setModal] = useState(false);
 
   const toggleModalstate = () => {
@@ -43,23 +43,23 @@ const Users = ({ testorganisations }) => {
               </tr>
             </thead>
             <tbody>
-              {testorganisations.map((testloc) => (
-                <tr key={testloc._id}>
-                  <td>{testloc.name}</td>
-                  <td>{testloc.region}</td>
-                  <td>{testloc.email}</td>
-                  <td>{testloc.capacity}</td>
+              {appointments.map((appointment) => (
+                <tr key={appointment.id}>
+                  <td>{appointment.location}</td>
+                  <td>{appointment.starttime}</td>
+                  <td>{appointment.endtime}</td>
+                  <td>{appointment.availableappointments}</td>
                   <td>
                     <div className="editOpt">
                       <Link
-                        href="/cms/testlocation/[id]/edit"
-                        as={`/cms/testlocation/${testloc._id}/edit`}
+                        href="/cms/testlocation/[id]/appointment/[id]/edit"
+                        as={`/cms/testlocation/${testloc._id}/appointment/${appointment.id}/edit`} //not sure if this is correct
                       >
                         <a>Edit</a>
                       </Link>
                       <Link
-                        href="/cms/testlocation/[id]"
-                        as={`/cms/testlocation/${testloc._id}`}
+                        href="/cms/testlocation/[id]/appointment/[id]"
+                        as={`/cms/testlocation/${testloc._id}/appointment/${appointment.id}`}
                       >
                         <a>View</a>
                       </Link>
@@ -92,10 +92,10 @@ const Users = ({ testorganisations }) => {
           >
             <Close />
           </Button>
-          <NewTestlocation
+          <NewAppointment
             newId="2"
             toggleModal={toggleModalstate}
-          ></NewTestlocation>
+          ></NewAppointment>
         </Dialog>
       </main>
     </>
@@ -105,14 +105,14 @@ const Users = ({ testorganisations }) => {
 export async function getServerSideProps() {
   await dbConnect();
 
-  const testLocs = await Testlocation.find({});
-  const testorganisations = testLocs.map((doc) => {
-    const testloc = doc.toObject();
-    testloc._id = testloc._id.toString();
-    return testloc;
+  const appts = await Appointment.find({});
+  const appointments = appts.map((doc) => {
+    const appt = doc.toObject();
+    appt.id = appt.id.toString();
+    return appt;
   });
 
-  return { props: { testorganisations: testorganisations } };
+  return { props: { appointments: appointments } };
 }
 
 export default Users;
