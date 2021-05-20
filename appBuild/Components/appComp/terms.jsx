@@ -44,8 +44,7 @@ const Terms = () => {
           <ul>
             <li>
               1. Algemeen
-              <br /> Stichting Open Nederland (de 'Stichting', 'wij' of 'ons')
-              hecht veel belang aan uw privacy. Wij hebben deze
+              <br /> Renorm hecht veel belang aan uw privacy. Wij hebben deze
               Privacyverklaring opgesteld om u te laten weten hoe wij uw
               persoonsgegevens gebruiken. Persoonsgegevens zijn alle informatie
               waarmee wij u direct of indirect kunnen identificeren. Het is

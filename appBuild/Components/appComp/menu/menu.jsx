@@ -219,7 +219,8 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
           <div className="txtOrStepper">
             {page === 1 ||
             router.pathname === "/[id]" ||
-            router.pathname === "/[id]/[idx]" ? (
+            router.pathname === "/[id]/[idx]" ||
+            router.pathname === "/[id]/settings" ? (
               <h3>{pageTitle === 1 ? titles.swipePage : ""}</h3>
             ) : (
               <div className={classes.root}>
