@@ -15,11 +15,11 @@ const AccountSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide your email"],
   },
-  password: {
-    type: String,
-    required: [true, "Please provide a password"],
-    minlength: [8, "Password must be above 8 characters"],
-  },
+  // password: {
+  //   type: String,
+  //   required: [true, "Please provide a password"],
+  //   minlength: [8, "Password must be above 8 characters"],
+  // },
   postalCode: {
     type: String,
     // required: [true, "Please provide your postal code"],

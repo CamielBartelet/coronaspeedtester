@@ -29,9 +29,9 @@ const EditTestlocation = () => {
 
   return (
     <>
-      <Link href="/cms/testservices">
-        <div className="backbutton">Back</div>
-      </Link>
+      <div className="backbutton" onClick={() => router.back()}>
+        Back
+      </div>
       <div className="editEvent">
         <TestlocationForm
           formId="edit-testlocation-form"

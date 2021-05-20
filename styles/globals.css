@@ -168,6 +168,17 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
   font-family: "Poppins";
   min-height: 100vh;
+  /* background-color: #ffea6e; */
+}
+
+html,
+body,
+.wrapper,
+body > div:first-child,
+div#__next,
+div#__next > div {
+  height: 100%;
+  width: 100%;
 }
 
 a {
@@ -181,4 +192,31 @@ a {
 
 p {
   font-size: 0.8rem;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+h4 {
+  font-weight: 300;
+}
+
+.swiper-container {
+  height: 520px;
+}
+
+.swiper-wrapper {
+  height: auto !important;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  flex-direction: column;
+  align-items: center;
 }
