@@ -283,6 +283,7 @@ export default css.global`
     width: 200px;
     height: 30px;
     flex: 1;
+    font-size: 0.9rem;
   }
 
   .refresh {

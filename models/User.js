@@ -63,12 +63,12 @@ export const UserSchema = new mongoose.Schema({
     nullable: true,
   },
   postalCode: {
-      type: String,
-      nullable: true,
+    type: String,
+    nullable: true,
   },
   dateOfBirth: {
-      type: String,
-      nullable: true,
+    type: String,
+    nullable: true,
   },
 });
 
