@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import { signIn, signOut } from "next-auth/client";
 import UserForm from "../../appBuild/Components/appComp/userFormat";
 import useSWR from "swr";
-import Events from "../../appBuild/Components/appComp/events";
 import dbConnect from "../../util/mongodb";
 import Event from "../../models/Event";
 import HeadMenu from "../../appBuild/Components/appComp/menu/menu";
@@ -12,7 +11,7 @@ const fetcher = (url) =>
     .then((res) => res.json())
     .then((json) => json.data);
 
-const AccountPage = ({ events }) => {
+const ProfileSettings = ({ events }) => {
   const router = useRouter();
   const { id } = router.query;
   const { data: account, error } = useSWR(
@@ -30,12 +29,10 @@ const AccountPage = ({ events }) => {
     updatedAt: account.updatedAt,
     phone: account.phone || "",
     bsnnumber: account.bsnnumber || "",
-
     firstName: account.firstName || "",
     lastName: account.lastName || "",
     postalCode: account.postalCode || "",
     dateOfBirth: account.dateOfBirth || "",
-
   };
 
   return (
@@ -53,26 +50,14 @@ const AccountPage = ({ events }) => {
               <div className="headerWrap">
                 <HeadMenu loggedIn={true} account={account} />
               </div>
-
-              {!account.bsnnumber ||
-              !account.phone ||
-              !account.postalCode ||
-              !account.firstName ||
-              !account.lastName ? (
-
-                <>
-                  <div className="headerWrap">Vul je gegevens in</div>
-                  <div className="mainContent">
-                    <UserForm
-                      formId="add-persdata-form"
-                      accountForm={accountForm}
-                      forNewAccount={false}
-                    />
-                  </div>
-                </>
-              ) : (
-                <Events events={events} account={account} />
-              )}
+              <div className="headerWrap">Profiel instellingen</div>
+              <div className="mainContent">
+                <UserForm
+                  formId="add-persdata-form"
+                  accountForm={accountForm}
+                  forNewAccount={false}
+                />
+              </div>
             </div>
           </main>
         </>
@@ -96,4 +81,4 @@ export async function getServerSideProps() {
   return { props: { events: events } };
 }
 
-export default AccountPage;
+export default ProfileSettings;
