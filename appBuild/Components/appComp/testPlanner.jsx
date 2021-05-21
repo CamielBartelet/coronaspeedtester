@@ -70,7 +70,7 @@ const Terms = ({ events, account, appointments }) => {
           style={
             selected != ""
               ? { background: "#86e4d9", cursor: "pointer" }
-              : { background: "#E4E4E4", cursor: "not-allowed" }
+              : { background: "#E4E4E4", cursor: "not-allowed" } 
           }
           onClick={() =>
             selected != "" && router.push(`/${account._id}/${selected}`)
