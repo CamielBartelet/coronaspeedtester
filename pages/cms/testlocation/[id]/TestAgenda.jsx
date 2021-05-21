@@ -3,7 +3,7 @@ import dbConnect from "../../../../util/mongodb";
 import Testlocation from "../../../../models/Testlocation";
 //import FullCalendar from "../../../../appBuild/Components/appComp/fullcalendar";
 //import ICSReader from "../../../../lib/ICSReader";
-import readData from "../../../../lib/ICSreader";
+import readData from "../../../../lib/ICSReader";
 import ICSPlanner from "../../../../appBuild/Components/appComp/ICSPlanner";
 
 const TestAgenda = ({ testOrg }) => {
