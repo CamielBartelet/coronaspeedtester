@@ -6,19 +6,19 @@ const ICS = ({ cont, readData }) => {
     console.log(readable);
   }, 3000);
 
-  readData(function (err, content) {
-    setICSdata(content);
-    console.log(content + "gotit");
+  // readData(function (err, content) {
+  //   setICSdata(content);
+  //   console.log(content + "gotit");
 
-    while (content.indexOf("DTSTART") != -1) {
-      //while there is still DTSTART in the file
-      var tempStart = 0;
-      tempStart = file.indexOf("DTSTART");
-      tempstart = tempstart + 8;
-      console.log(file.charAt(tempstart));
-    }
-    //getData(content);
-  });
+  //   while (content.indexOf("DTSTART") != -1) {
+  //     //while there is still DTSTART in the file
+  //     var tempStart = 0;
+  //     tempStart = file.indexOf("DTSTART");
+  //     tempstart = tempstart + 8;
+  //     console.log(file.charAt(tempstart));
+  //   }
+  //   //getData(content);
+  // });
 
   //   function getData(file){
   //   console.log("results:");
