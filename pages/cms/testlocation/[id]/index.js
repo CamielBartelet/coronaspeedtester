@@ -63,10 +63,10 @@ const ScheduledEvents = ({ events, testlocation }) => {
           <div>
             <a onClick={() => contCheck("planning")}>Planningstool</a>
           </div>
-          <div>
-          href="/cms/testlocation/[id]/appointment/[id]"
-          as={`/cms/testlocation/${testlocID}/appointment/${appointment.id}`} //not sure if this is correct
-          </div>
+          {/* <div
+            href="/cms/testlocation/[id]/appointment/[id]"
+            as={`/cms/testlocation/${testlocID}/appointment/${appointment.id}`}
+          ></div> */}
         </div>
         {showCont === "event" ? (
           <div className="eventMng">

@@ -42,7 +42,7 @@ const Terms = ({ events, account, appointments }) => {
         <h2>Bevestig afspraak</h2>
         <p>Kies een plaats en tijd voor een coronatest.</p>
         <div className="eventTable">
-          {events.map((appointment) => (
+          {appointments.map((appointment) => (
             <div
               key={appointment.id}
               className="eventRow"
@@ -63,8 +63,10 @@ const Terms = ({ events, account, appointments }) => {
           ))}
         </div>
       </div>
-      <div className="passTruBt
-      n">
+      <div
+        className="passTruBt
+      n"
+      >
         <div
           className="btnCont"
           style={
@@ -76,7 +78,9 @@ const Terms = ({ events, account, appointments }) => {
             selected != "" && router.push(`/${account._id}/${selected}`)
           }
         >
-          {selected != "" ? "Bevestig je keuze" : "Selecteer een test tijd en locatie"}
+          {selected != ""
+            ? "Bevestig je keuze"
+            : "Selecteer een test tijd en locatie"}
         </div>
       </div>
       {/* end of just added */}
