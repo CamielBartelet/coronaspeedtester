@@ -3,10 +3,8 @@ import dbConnect from "../../../../util/mongodb";
 import Testlocation from "../../../../models/Testlocation";
 //import FullCalendar from "../../../../appBuild/Components/appComp/fullcalendar";
 //import ICSReader from "../../../../lib/ICSReader";
+import readData from "../../../../lib/ICSreader";
 import ICSPlanner from "../../../../appBuild/Components/appComp/ICSPlanner";
-
-
-
 
 const TestAgenda = ({ testOrg }) => {
   console.log(testOrg);
@@ -18,12 +16,12 @@ const TestAgenda = ({ testOrg }) => {
         <li>{testOrg.name}</li>
         <li>{testOrg.region}</li>
         {/* <li>{testOrg.data}</li> */}
-        <ICSPlanner/>
+        <ICSPlanner readData={readData} />
         <div>
-      {/* <FullCalendar defaultView='dayGridMonth' />
+          {/* <FullCalendar defaultView='dayGridMonth' />
       <FullCalendar defaultView='timeGridWeek' /> */}
-       </div>
-       </div>
+        </div>
+      </div>
     </>
   );
 };
@@ -43,8 +41,8 @@ export async function getServerSideProps({ params }) {
   //const ICSdata =  await ICSReader.data;
   //JSON.stringify(ICSdata);
 
-  return { 
-    props: { testOrg: testorganisations}
+  return {
+    props: { testOrg: testorganisations },
   };
 }
 

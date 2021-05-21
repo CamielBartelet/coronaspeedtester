@@ -1,7 +1,6 @@
-import readData from "../../../lib/ICSreader";
 import { useState } from "react";
 
-const ICS = ({ cont }) => {
+const ICS = ({ cont, readData }) => {
   const [readable, setICSdata] = useState({});
   setTimeout(function () {
     console.log(readable);
