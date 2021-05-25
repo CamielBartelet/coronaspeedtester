@@ -36,8 +36,8 @@ export const MenuItem = ({ i, account }) => {
       },
     },
     {
-      ico: "/icons/aanmelden.svg",
-      txt: "overzicht",
+      ico: "/icons/Ticketontvangen.svg",
+      txt: "Overzicht",
       click: () => {
         router.push(`/${account?._id}/overview`);
       },
@@ -60,7 +60,7 @@ export const MenuItem = ({ i, account }) => {
         onClick={menuOpt[i].click}
       >
         <div className="icon-placeholder">
-          <img src={menuOpt[i].ico} width="30px" height="35px" />
+          <img src={menuOpt[i].ico} width="25px" height="30px" />
         </div>
         <div className="text-placeholder">{menuOpt[i].txt}</div>
       </motion.li>
