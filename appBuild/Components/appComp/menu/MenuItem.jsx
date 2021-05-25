@@ -35,6 +35,13 @@ export const MenuItem = ({ i, account }) => {
         router.push(`/${account?._id}/settings`);
       },
     },
+    {
+      ico: "/icons/aanmelden.svg",
+      txt: "overzicht",
+      click: () => {
+        router.push(`/${account?._id}/overview`);
+      },
+    },
     { ico: "/icons/aanmelden.svg", txt: "Log uit", click: signOut },
     {
       ico: "/icons/aanmelden.svg",

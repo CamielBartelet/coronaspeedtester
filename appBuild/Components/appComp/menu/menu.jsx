@@ -220,7 +220,8 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
             {page === 1 ||
             router.pathname === "/[id]" ||
             router.pathname === "/[id]/[idx]" ||
-            router.pathname === "/[id]/settings" ? (
+            router.pathname === "/[id]/settings" ||
+            router.pathname === "/[id]/overview" ? (
               <h3>{pageTitle === 1 ? titles.swipePage : ""}</h3>
             ) : (
               <div className={classes.root}>
