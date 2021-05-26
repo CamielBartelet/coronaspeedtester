@@ -17,7 +17,7 @@ export const Navigation = ({ account }) => (
     <style jsx>{MenuCompstyle}</style>
     <motion.ul variants={variants}>
       {!account ? (
-        <MenuItem i={2} />
+        <MenuItem i={3} />
       ) : (
         <>
           {itemIds.map((i) => (
@@ -29,4 +29,4 @@ export const Navigation = ({ account }) => (
   </>
 );
 
-const itemIds = [0, 1];
+const itemIds = [0, 1, 2];

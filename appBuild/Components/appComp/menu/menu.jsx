@@ -7,12 +7,21 @@ import clsx from "clsx";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
-import Check from "@material-ui/icons/Check";
+import Button from "@material-ui/core/Button";
+// import Check from "@material-ui/icons/Check";
+import { Faq } from "./faq.tsx";
 import StepConnector from "@material-ui/core/StepConnector";
 import { motion, useCycle } from "framer-motion";
 import { useDimensions } from "../../../../lib/use-dimensions";
 import { MenuToggle } from "./MenuToggle";
 import { Navigation } from "./Navigation";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@material-ui/core/styles";
 
 const sidebar = {
   open: (height = 1000) => ({
@@ -140,11 +149,23 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
   const steps = getSteps();
   const router = useRouter();
   const [isOpen, toggleOpen] = useState(false);
+  const [modalState, setModal] = useState(false);
   const containerRef = useRef("0px");
   const { height } = useDimensions(containerRef);
   const [pageTitle, setTitle] = useState(page);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   const goBack = () => {
     onprev(page - 1);
+  };
+
+  const handleModalOpen = () => {
+    setModal(true);
+  };
+
+  const handleModalClose = () => {
+    setModal(false);
   };
 
   const handleClickOutside = (event) => {
@@ -174,10 +195,36 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
   return (
     <>
       <style jsx>{MenuCompstyle}</style>
+
       {page === 0 ? (
         <img className="renormLogo" src="/img/renormlogo.jpg" />
       ) : (
         <div className="header">
+          <Dialog
+            fullScreen={fullScreen}
+            open={modalState}
+            onClose={handleModalClose}
+            aria-labelledby="responsive-dialog-title"
+          >
+            <DialogTitle id="responsive-dialog-title">
+              {"Veelgestelde vragen"}
+            </DialogTitle>
+            <DialogContent style={{ overflow: "hidden", width: "600px" }}>
+              <DialogContentText>
+                <div className="example-container">
+                  <Faq />
+                </div>
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button autoFocus onClick={handleModalClose} color="primary">
+                Lees meer
+              </Button>
+              <Button onClick={handleModalClose} color="primary" autoFocus>
+                Terug
+              </Button>
+            </DialogActions>
+          </Dialog>
           <div className="appmenu">
             <div className="previousSide">
               {router.pathname === "/[id]" ? (
@@ -203,7 +250,7 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
                 custom={height}
                 ref={containerRef}
               >
-                <div className="menuBtn">
+                <div className="menuBtn" onClick={handleModalOpen}>
                   <img
                     src="/icons/help_outline-24px.svg"
                     width="35px"
@@ -220,7 +267,8 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
             {page === 1 ||
             router.pathname === "/[id]" ||
             router.pathname === "/[id]/[idx]" ||
-            router.pathname === "/[id]/settings" ? (
+            router.pathname === "/[id]/settings" ||
+            router.pathname === "/[id]/overview" ? (
               <h3>{pageTitle === 1 ? titles.swipePage : ""}</h3>
             ) : (
               <div className={classes.root}>
