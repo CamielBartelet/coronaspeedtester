@@ -2,6 +2,7 @@ import React from "react";
 import Events from "./inputEvent";
 import Organiser from "./newOrganiser";
 import Testlocation from "./newTestlocation";
+import Appointment from "./newAppointment";
 import Link from "next/link";
 import DialogContent from "@material-ui/core/DialogContent";
 import { useState } from "react";
@@ -39,6 +40,14 @@ const NewEvent = ({ newId, toggleModal, org }) => {
     capacity: "",
   };
 
+  const appointmentForm = {
+    id: "",
+    location: "",
+    startDate: "",
+    endtime: "",
+    availableappointments: "",
+  };
+
   const forms = [
     {
       name: "new-event",
@@ -70,12 +79,22 @@ const NewEvent = ({ newId, toggleModal, org }) => {
         />
       ),
     },
+    {
+      name: "new-appointment",
+      formcont: (
+        <Appointment
+          formId="add-appointment-form"
+          appointmentForm={appointmentForm}
+          saveModal={saveModal}
+        />
+      ),
+    },
   ];
 
   return (
     <>
       <DialogContent id="modal-slide-description">
-        <div className="addNew">{forms[formDef].formcont}</div>
+        <div className="addNew">{forms[3].formcont}</div>
       </DialogContent>
     </>
   );
