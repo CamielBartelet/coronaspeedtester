@@ -4,6 +4,7 @@ import UserForm from "../../../appBuild/Components/appComp/userFormat";
 import useSWR from "swr";
 import dbConnect from "../../../util/mongodb";
 import Event from "../../../models/Event";
+import Appointment from "../../../models/Appointment";
 import HeadMenu from "../../../appBuild/Components/appComp/menu/menu";
 import TestPlanner from "../../../appBuild/Components/appComp/testPlanner";
 
@@ -12,7 +13,7 @@ const fetcher = (url) =>
     .then((res) => res.json())
     .then((json) => json.data);
 
-const PlanTest = ({ events }) => {
+const PlanTest = ({ events, appointments }) => {
   const router = useRouter();
   const { id } = router.query;
   const { data: account, error } = useSWR(
@@ -59,7 +60,11 @@ const PlanTest = ({ events }) => {
                   </div>
                 </>
               ) : (
-                <TestPlanner events={events} account={account} />
+                <TestPlanner
+                  events={events}
+                  account={account}
+                  appointments={appointments}
+                />
               )}
             </div>
           </main>
@@ -81,7 +86,15 @@ export async function getServerSideProps() {
     return event;
   });
 
-  return { props: { events: events } };
+  const resultAppoint = await Appointment.find({});
+
+  const appointments = resultAppoint.map((doc) => {
+    const appointment = doc.toObject();
+    appointment._id = appointment._id.toString();
+    return appointment;
+  });
+
+  return { props: { events: events, appointments: appointments } };
 }
 
 export default PlanTest;
