@@ -33,6 +33,8 @@ const kopeling = ({accounts}) => {
 
 
     const onsubmit = (e) => {
+        document.getElementById("submit-button").value = "Laden...";
+        document.getElementById("submit-button").disabled = true;
         e.preventDefault();
         postData();
     }
@@ -53,7 +55,7 @@ const kopeling = ({accounts}) => {
             <div>
                 Hier moet nog een overzicht komen van gekozen event en testplaats/testtijd
             </div>
-            <label>Choose a issuer: </label>
+            <label>Kies uw bank: </label>
             <select id="issuer" name="issuer" onChange={(e) => {
               handleChange(e);
             }} form="carform">
@@ -74,7 +76,7 @@ const kopeling = ({accounts}) => {
             </select>
 
             <form onSubmit={onsubmit} id="carform">
-                <input type="submit"></input>
+                <input type="submit" id="submit-button" value="Afronden"></input>
             </form>
         </div>
     )
