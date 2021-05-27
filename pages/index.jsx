@@ -98,8 +98,6 @@ const CoronaIndex = ({ csrfToken, accounts, events }) => {
   );
 };
 
-export default CoronaIndex;
-
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
   const csrfToken = await getCsrfToken(ctx);
@@ -125,3 +123,5 @@ export async function getServerSideProps(ctx) {
     return { props: { csrfToken, accounts: "", events: "" } };
   }
 }
+
+export default CoronaIndex;

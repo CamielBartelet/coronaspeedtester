@@ -1,19 +1,17 @@
 import { useRouter } from "next/router";
 import { signIn, signOut } from "next-auth/client";
-import UserForm from "../../../appBuild/Components/appComp/userFormat";
+import UserForm from "../../appBuild/Components/appComp/userFormat";
 import useSWR from "swr";
-import dbConnect from "../../../util/mongodb";
-import Event from "../../../models/Event";
-import Appointment from "../../../models/Appointment";
-import HeadMenu from "../../../appBuild/Components/appComp/menu/menu";
-import TestPlanner from "../../../appBuild/Components/appComp/testPlanner";
+import dbConnect from "../../util/mongodb";
+import Event from "../../models/Event";
+import HeadMenu from "../../appBuild/Components/appComp/menu/menu";
 
 const fetcher = (url) =>
   fetch(url)
     .then((res) => res.json())
     .then((json) => json.data);
 
-const PlanTest = ({ events, appointments }) => {
+const ProfileSettings = ({ events }) => {
   const router = useRouter();
   const { id } = router.query;
   const { data: account, error } = useSWR(
@@ -31,6 +29,10 @@ const PlanTest = ({ events, appointments }) => {
     updatedAt: account.updatedAt,
     phone: account.phone || "",
     bsnnumber: account.bsnnumber || "",
+    firstName: account.firstName || "",
+    lastName: account.lastName || "",
+    postalCode: account.postalCode || "",
+    dateOfBirth: account.dateOfBirth || "",
   };
 
   return (
@@ -48,24 +50,13 @@ const PlanTest = ({ events, appointments }) => {
               <div className="headerWrap">
                 <HeadMenu loggedIn={true} account={account} />
               </div>
-              {!account.bsnnumber || !account.phone ? (
-                <>
-                  <div className="headerWrap">Vul je gegevens in</div>
-                  <div className="mainContent">
-                    <UserForm
-                      formId="add-persdata-form"
-                      accountForm={accountForm}
-                      forNewAccount={false}
-                    />
-                  </div>
-                </>
-              ) : (
-                <TestPlanner
-                  events={events}
-                  account={account}
-                  appointments={appointments}
+              <div className="mainContent">
+                <UserForm
+                  formId="add-persdata-form"
+                  accountForm={accountForm}
+                  forNewAccount={false}
                 />
-              )}
+              </div>
             </div>
           </main>
         </>
@@ -86,15 +77,7 @@ export async function getServerSideProps() {
     return event;
   });
 
-  const resultAppoint = await Appointment.find({});
-
-  const appointments = resultAppoint.map((doc) => {
-    const appointment = doc.toObject();
-    appointment._id = appointment._id.toString();
-    return appointment;
-  });
-
-  return { props: { events: events, appointments: appointments } };
+  return { props: { events: events } };
 }
 
-export default PlanTest;
+export default ProfileSettings;
