@@ -1,14 +1,15 @@
 import React from "react";
-import dbConnect from "../../util/mongodb";
+import dbConnect from "../../../../util/mongodb";
 import Link from "next/link";
-import Appointment from "../../models/Appointment";
-import NewAppointment from "../../appBuild/Components/camielproto/new";
+import Appointment from "../../../../models/Appointment";
+import NewAppointment from "../../../../appBuild/Components/camielproto/new";
 import Slide from "@material-ui/core/Slide";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Close from "@material-ui/icons/Close";
 import Button from "@material-ui/core/Button";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
@@ -16,10 +17,17 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const Appointments = ({ appointments }) => {
   const [modalState, setModal] = useState(false);
+  const router = useRouter();
 
   const toggleModalstate = () => {
     setModal(false);
   };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    router.push(href);
+  };
+
   return (
     <>
       <Link href="/apicms">
@@ -45,6 +53,7 @@ const Appointments = ({ appointments }) => {
             <tbody>
               {appointments.map((appointment) => (
                 <tr key={appointment.id}>
+                  <td>{appointment.id}</td>
                   <td>{appointment.location}</td>
                   <td>{appointment.starttime}</td>
                   <td>{appointment.endtime}</td>
@@ -53,13 +62,13 @@ const Appointments = ({ appointments }) => {
                     <div className="editOpt">
                       <Link
                         href="/cms/testlocation/[id]/appointment/[id]/edit"
-                        as={`/cms/testlocation/${testloc._id}/appointment/${appointment.id}/edit`} //not sure if this is correct
+                        as={`/cms/testlocation/${router.query.id}/${appointment.id}/edit`}
                       >
                         <a>Edit</a>
                       </Link>
                       <Link
                         href="/cms/testlocation/[id]/appointment/[id]"
-                        as={`/cms/testlocation/${testloc._id}/appointment/${appointment.id}`}
+                        as={`/cms/testlocation/${router.query.id}/${appointment.id}`}
                       >
                         <a>View</a>
                       </Link>
@@ -93,7 +102,7 @@ const Appointments = ({ appointments }) => {
             <Close />
           </Button>
           <NewAppointment
-            newId="2"
+            newId="3"
             toggleModal={toggleModalstate}
           ></NewAppointment>
         </Dialog>
@@ -108,7 +117,7 @@ export async function getServerSideProps() {
   const appts = await Appointment.find({});
   const appointments = appts.map((doc) => {
     const appt = doc.toObject();
-    appt.id = appt.id.toString();
+    appt._id = appt._id.toString();
     return appt;
   });
 
