@@ -29,7 +29,7 @@ const Terms = ({ events, account }) => {
               ? { background: "#86e4d9", cursor: "pointer" }
               : { background: "#E4E4E4", cursor: "not-allowed" }
           }
-          onClick={() => selected == true && router.push(`/${account._id}`)}
+          onClick={() => selected == true && router.push(`/checkout`)}
         >
           {selected == true
             ? "Reserveer deze testlocatie"

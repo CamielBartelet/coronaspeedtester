@@ -30,7 +30,7 @@ export async function getServerSideProps(context) {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({"eventId":"6YaldE9lRRZMG3LB","ticketId":"8qX7ZMx670Og5DQj","user": accounts, "issuer":"ABNANL2A"});
+    var raw = JSON.stringify({"eventId":"6YaldE9lRRZMG3LB","ticketId":"8qX7ZMx670Og5DQj","user": accounts, "issuer":"BUNQNL2A"});
 
     var requestOptions = {
     method: 'POST',

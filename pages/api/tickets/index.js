@@ -62,6 +62,7 @@ async function selectPaymentIssuer(sessionId, eventId, issuer) {
     var body = JSON.stringify({
         "event_id" : eventId,
         "payment_method_id" : "zQaj9N2LbE85WKn1",
+        "return_url" : "https://renorm.nl",
         "issuer" : issuer
     });
 

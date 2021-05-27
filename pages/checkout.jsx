@@ -1,30 +1,63 @@
 import dbConnect from "../util/mongodb";
 import User from "../models/User";
 import { useState } from "react";
-import { signIn, signOut, getSession } from "next-auth/client";
+import { getSession } from "next-auth/client";
+import { useRouter } from "next/router";
 
-const kopeling = () => {
+const kopeling = ({accounts}) => {
     const [issue, setIssue] = useState("");
+
+    const router = useRouter();
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        const target = e.target;
+        const value = target.value;
+        setIssue(value);
+        requestOptions.body = raw;
+    };
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({"eventId":"6YaldE9lRRZMG3LB","ticketId":"8qX7ZMx670Og5DQj","user": accounts, "issuer": issue });
 
+    console.log(raw)
+
     var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: raw,
-    redirect: 'follow'
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
     };
 
-    const response = await fetch("http://localhost:3000/api/tickets", requestOptions);
-    const data = await response.json();
-    const link = data.redirect_url;
+
+    const onsubmit = (e) => {
+        e.preventDefault();
+        postData();
+    }
+
+    const postData = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/api/tickets", requestOptions);
+            const data = await response.json();
+            const link = data.redirect_url;
+            router.push(link);
+        } catch (error) {
+            console.log("Error is in making API call")
+            console.log(error);
+        }
+    }
     return (
         <div>
-            <label>Choose a issuer:</label>
-            <select id="issuer" name="issuer" form="carform">
+            <div>
+                Hier moet nog een overzicht komen van gekozen event en testplaats/testtijd
+            </div>
+            <label>Choose a issuer: </label>
+            <select id="issuer" name="issuer" onChange={(e) => {
+              handleChange(e);
+            }} form="carform">
+                <option value=""></option>
                 <option value="ABNANL2A">ABN</option>
                 <option value="ASNBNL21">ASN</option>
                 <option value="INGBNL2A">ING</option>
@@ -40,7 +73,7 @@ const kopeling = () => {
                 <option value="REVOLT21">Revolut</option>
             </select>
 
-            <form onsubmit="callAPI()" id="carform">
+            <form onSubmit={onsubmit} id="carform">
                 <input type="submit"></input>
             </form>
         </div>
@@ -67,7 +100,7 @@ export async function getServerSideProps(context) {
 
     return {
       props: {
-        link,
+        accounts : accounts,
       },
     }
   }
