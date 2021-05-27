@@ -12,7 +12,10 @@ const Terms = ({ events, account, appointments }) => {
         <h2>Reserveer een testlocatie</h2>
       </div>
       <div className="contText">
-        <p>Kies eerst een testlocatie die jou het beste uitkomt!</p>
+        <p>
+          Kies eerst een testlocatie die jou het beste uitkomt! (Klik op de
+          kaart)
+        </p>
       </div>
       <div
         className="regionMap"

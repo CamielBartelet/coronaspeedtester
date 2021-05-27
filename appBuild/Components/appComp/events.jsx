@@ -40,6 +40,7 @@ const EventSel = ({ events, account }) => {
       <div className="passTruBtn">
         <div
           className="btnCont"
+          disabled={selected != "" ? true : false}
           style={
             selected != ""
               ? { background: "#86e4d9", cursor: "pointer" }
