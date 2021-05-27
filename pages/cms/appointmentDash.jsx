@@ -115,4 +115,4 @@ export async function getServerSideProps() {
   return { props: { appointments: appointments } };
 }
 
-export default Users;
+export default Appointments;

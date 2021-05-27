@@ -64,8 +64,7 @@ const Terms = ({ events, account, appointments }) => {
         </div>
       </div>
       <div
-        className="passTruBt
-      n"
+        className="passTruBtn"
       >
         <div
           className="btnCont"

@@ -37,8 +37,7 @@ const EventSel = ({ events, account }) => {
           ))}
         </div>
       </div>
-      <div className="passTruBt
-      n">
+      <div className="passTruBtn">
         <div
           className="btnCont"
           style={
