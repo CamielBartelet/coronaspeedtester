@@ -217,10 +217,10 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
               </DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button autoFocus onClick={handleModalClose} color="primary">
+              <Button onClick={handleModalClose} color="primary">
                 Lees meer
               </Button>
-              <Button onClick={handleModalClose} color="primary" autoFocus>
+              <Button onClick={handleModalClose} color="primary">
                 Terug
               </Button>
             </DialogActions>
@@ -269,7 +269,7 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
             router.pathname === "/[id]/[idx]" ||
             router.pathname === "/[id]/settings" ||
             router.pathname === "/[id]/overview" ? (
-              <h3>{pageTitle === 1 ? titles.swipePage : ""}</h3>
+              <h3>{page === 1 ? titles.swipePage : ""}</h3>
             ) : (
               <div className={classes.root}>
                 <Stepper
