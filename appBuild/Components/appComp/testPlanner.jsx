@@ -5,6 +5,8 @@ import AppCompstyle from "./appCompstyle";
 const Terms = ({ events, account, appointments }) => {
   const router = useRouter();
   const [selected, setReservation] = useState("false");
+  const [apptselect, setAppointment] = useState("");
+
   return (
     <>
       <style jsx>{AppCompstyle}</style>
@@ -12,7 +14,10 @@ const Terms = ({ events, account, appointments }) => {
         <h2>Reserveer een testlocatie</h2>
       </div>
       <div className="contText">
-        <p>Kies eerst een testlocatie die jou het beste uitkomt!</p>
+        <p>
+          Kies eerst een testlocatie die jou het beste uitkomt! (Klik op de
+          kaart)
+        </p>
       </div>
       <div
         className="regionMap"
@@ -46,38 +51,42 @@ const Terms = ({ events, account, appointments }) => {
             <div
               key={appointment.id}
               className="eventRow"
-              onClick={() => setEvent(appointment.id)}
-              ref={ref}
+              onClick={() => setAppointment(appointment._id)}
               style={
-                selected == appointment.id
+                apptselect == appointment.id
                   ? { background: "aliceblue" }
                   : { background: "" }
               }
             >
               <div className="appointment">
                 <h3>{appointment.location}</h3>
-                <h4>{appointment.starttime}</h4>
-                <h5>{appointment.endtime}</h5>
+                <h4>
+                  {appointment.starttime}
+                  {appointment.endtime}
+                </h4>
               </div>
             </div>
           ))}
         </div>
       </div>
-      <div
-        className="passTruBtn"
-      >
+      <div className="passTruBtn">
         <div
           className="btnCont"
+          disabled={selected != "" ? true : false}
           style={
-            selected != ""
+            apptselect != ""
               ? { background: "#86e4d9", cursor: "pointer" }
-              : { background: "#E4E4E4", cursor: "not-allowed" }  
+              : { background: "#E4E4E4", cursor: "not-allowed" }
           }
-          onClick={() =>
-            selected != "" && router.push(`/${account._id}/${selected}`)
-          }
+          onClick={() => {
+            console.log(apptselect);
+            apptselect != "" &&
+              router.push(
+                `/${router.query.id}/${router.query.idx}/${apptselect}`
+              );
+          }}
         >
-          {selected != ""
+          {apptselect != ""
             ? "Bevestig je keuze"
             : "Selecteer een test tijd en locatie"}
         </div>

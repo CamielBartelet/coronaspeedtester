@@ -35,7 +35,6 @@ const AccountPage = ({ events }) => {
     lastName: account.lastName || "",
     postalCode: account.postalCode || "",
     dateOfBirth: account.dateOfBirth || "",
-
   };
 
   return (
@@ -59,7 +58,6 @@ const AccountPage = ({ events }) => {
               !account.postalCode ||
               !account.firstName ||
               !account.lastName ? (
-
                 <>
                   <div className="headerWrap">Vul je gegevens in</div>
                   <div className="mainContent">
