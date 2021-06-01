@@ -42,7 +42,7 @@ export default css.global`
 
   .headerWrap {
     width: 100%;
-    height: 23vh;
+    height: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,7 +55,7 @@ export default css.global`
 
   .mainContent {
     width: 100%;
-    // height: 70%;
+    height: 60%;
     padding: 10px;
     z-index: 1;
     display: flex;
@@ -63,7 +63,7 @@ export default css.global`
   }
 
   .optBtn {
-    height: 100px;
+    height: 15%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -74,7 +74,7 @@ export default css.global`
   .yellowSpace {
     content: "";
     width: 100%;
-    height: 45vh;
+    min-height: 45vh;
     background: #FFEA6E;
     bottom: 0;
     position: absolute;

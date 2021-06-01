@@ -43,6 +43,26 @@ const sidebar = {
   },
 };
 
+const menuBar = {
+  open: (height = 1000) => ({
+    maxHeight: "100%",
+    transition: {
+      type: "spring",
+      stiffness: 20,
+      restDelta: 2,
+    },
+  }),
+  closed: {
+    maxHeight: "80px",
+    transition: {
+      delay: 1,
+      type: "spring",
+      stiffness: 400,
+      damping: 40,
+    },
+  },
+};
+
 const QontoConnector = withStyles({
   alternativeLabel: {
     top: 13,
@@ -150,7 +170,7 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
   const router = useRouter();
   const [isOpen, toggleOpen] = useState(false);
   const [modalState, setModal] = useState(false);
-  const containerRef = useRef("0px");
+  const containerRef = useRef({ width: 0, height: 0 });
   const { height } = useDimensions(containerRef);
   const [pageTitle, setTitle] = useState(page);
   const theme = useTheme();
@@ -209,7 +229,7 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
             <DialogTitle id="responsive-dialog-title">
               {"Veelgestelde vragen"}
             </DialogTitle>
-            <DialogContent style={{ overflow: "hidden", width: "600px" }}>
+            <DialogContent style={{ overflow: "hidden", width: "100%" }}>
               <DialogContentText>
                 <div className="example-container">
                   <Faq />
@@ -249,6 +269,7 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
                 animate={isOpen ? "open" : "closed"}
                 custom={height}
                 ref={containerRef}
+                variants={menuBar}
               >
                 <div className="menuBtn" onClick={handleModalOpen}>
                   <img

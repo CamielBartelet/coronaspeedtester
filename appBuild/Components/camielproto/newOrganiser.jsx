@@ -47,6 +47,7 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
   /* The POST method adds a new entry in the mongodb database. */
   const postData = async (form) => {
     try {
+      console.log(form);
       const res = await fetch("/api/organisations", {
         method: "POST",
         headers: {

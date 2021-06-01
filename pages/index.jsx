@@ -90,7 +90,7 @@ const CoronaIndex = ({ csrfToken, accounts, events }) => {
           </div>
           <div
             className="yellowSpace"
-            style={{ height: pages[page].height }}
+            style={{ minHeight: pages[page].height }}
           ></div>
         </div>
       </main>
