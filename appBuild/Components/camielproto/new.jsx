@@ -94,7 +94,7 @@ const NewEvent = ({ newId, toggleModal, org }) => {
   return (
     <>
       <DialogContent id="modal-slide-description">
-        <div className="addNew">{forms[3].formcont}</div>
+        <div className="addNew">{forms[newId].formcont}</div>
       </DialogContent>
     </>
   );
