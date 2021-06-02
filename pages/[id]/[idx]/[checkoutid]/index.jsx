@@ -1,11 +1,14 @@
 import dbConnect from "../../../../util/mongodb";
 import User from "../../../../models/User";
+import Event from "../../../../models/Event";
 import { useState } from "react";
 import { getSession } from "next-auth/client";
 import { useRouter } from "next/router";
 
-const kopeling = ({accounts}) => {
+const kopeling = ({accounts, selectedEvent, selectedTest}) => {
     const [issue, setIssue] = useState("");
+
+    const event = JSON.parse(selectedEvent);
 
     const router = useRouter();
 
@@ -53,7 +56,7 @@ const kopeling = ({accounts}) => {
     return (
         <div>
             <div>
-                Hier moet nog een overzicht komen van gekozen event en testplaats/testtijd
+                Geselecteerde event is: {event.name}
             </div>
             <label>Kies uw bank: </label>
             <select id="issuer" name="issuer" onChange={(e) => {
@@ -83,13 +86,15 @@ const kopeling = ({accounts}) => {
 }
 
 export async function getServerSideProps(context) {
-
     const session = await getSession(context);
     if (!session) {
         context.res.writeHead(302, { Location: "/profile" });
         context.res.end();
       return {};
     }
+
+    const { req, res } = context;
+    const { cookies } = req;
 
     await dbConnect();
 
@@ -100,9 +105,15 @@ export async function getServerSideProps(context) {
       return account;
     });
 
+    const resultEvent = await Event.findOne({ _id: cookies.selectedEvent })
+    console.log(resultEvent)
+
     return {
       props: {
         accounts : accounts,
+        selectedEvent : JSON.stringify(resultEvent),
+        selectedTest : cookies.selectedTest
+
       },
     }
   }

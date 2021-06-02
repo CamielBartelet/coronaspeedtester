@@ -1,11 +1,25 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AppCompstyle from "./appCompstyle";
+import Cookie from "js-cookie";
 
 const Terms = ({ events, account, appointments }) => {
   const router = useRouter();
   const [selected, setReservation] = useState("false");
   const [apptselect, setAppointment] = useState("");
+
+  const dummyData = {
+      "testlocation": "Nuenen",
+      "testDate": new Date("2021-05-31"),
+      "testTime": {
+          "startTime": new Date("2021-05-31 12:00"),
+          "endTime": new Date("2021-05-31 12:05")
+      }
+  }
+
+  useEffect(() => {
+    Cookie.set("selectedTest", dummyData);
+  }, [dummyData])
 
   return (
     <>
