@@ -1,11 +1,16 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import AppCompstyle from "./appCompstyle";
+import Cookie from "js-cookie";
 
 const EventSel = ({ events, account }) => {
   const [selected, setEvent] = useState("");
   const ref = useRef("zas");
   const router = useRouter();
+
+  useEffect(() => {
+    Cookie.set("selectedEvent", selected);
+  }, [selected])
 
   return (
     <>
