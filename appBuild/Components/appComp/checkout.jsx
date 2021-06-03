@@ -26,10 +26,7 @@ export async function getServerSideProps(context) {
     redirect: "follow",
   };
 
-  const response = await fetch(
-    "http://localhost:3000/api/tickets",
-    requestOptions
-  );
+  const response = await fetch("/api/tickets", requestOptions);
   const data = await response.json();
   const link = data.redirect_url;
 
