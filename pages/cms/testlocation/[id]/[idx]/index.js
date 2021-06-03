@@ -1,5 +1,5 @@
 import dbConnect from "../../../../../util/mongodb";
-import Models from "../../../../../models";
+import User from "../../../../../models/User";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -26,8 +26,8 @@ const Users = ({ accounts }) => {
             <tbody>
               {accounts.reverse().map((account) => (
                 <tr key={account._id}>
-                  <td>{account.name}</td>
-                  <td>{account.lastname}</td>
+                  <td>{account.firstName}</td>
+                  <td>{account.lastName}</td>
                   <td>{account.email}</td>
                 </tr>
               ))}
@@ -42,9 +42,13 @@ const Users = ({ accounts }) => {
 export async function getServerSideProps() {
   await dbConnect();
 
-  const resultAcc = await Models.User.find({});
+  const resultAcc = await User.find({});
+
   const accounts = resultAcc.map((doc) => {
     const account = doc.toObject();
+    account.emailVerified = account.emailVerified.toString();
+    account.createdAt = account.createdAt.toString();
+    account.updatedAt = account.updatedAt.toString();
     account._id = account._id.toString();
     return account;
   });

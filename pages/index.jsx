@@ -90,15 +90,13 @@ const CoronaIndex = ({ csrfToken, accounts, events }) => {
           </div>
           <div
             className="yellowSpace"
-            style={{ height: pages[page].height }}
+            style={{ minHeight: pages[page].height }}
           ></div>
         </div>
       </main>
     </>
   );
 };
-
-export default CoronaIndex;
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
@@ -125,3 +123,5 @@ export async function getServerSideProps(ctx) {
     return { props: { csrfToken, accounts: "", events: "" } };
   }
 }
+
+export default CoronaIndex;

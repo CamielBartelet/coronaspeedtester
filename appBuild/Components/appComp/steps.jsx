@@ -10,12 +10,28 @@ const Steps = () => {
       <style jsx>{AppCompstyle}</style>
       <div className="stepComp">
         <Swiper
-          spaceBetween={20}
-          slidesPerView={4}
+          spaceBetween={10}
+          slidesPerView={1}
           // navigation
           pagination={{ clickable: true }}
-          // onSlideChange={() => console.log("slide change")}
-          // onSwiper={(swiper) => console.log(swiper)}
+          breakpoints={{
+            640: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 40,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 50,
+            },
+            1280: {
+              slidesPerView: 4,
+              spaceBetween: 50,
+            },
+          }}
         >
           <SwiperSlide>
             <div className="stepImg">

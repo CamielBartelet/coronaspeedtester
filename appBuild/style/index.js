@@ -42,7 +42,7 @@ export default css.global`
 
   .headerWrap {
     width: 100%;
-    height: 23vh;
+    height: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,7 +55,7 @@ export default css.global`
 
   .mainContent {
     width: 100%;
-    // height: 70%;
+    height: 60%;
     padding: 10px;
     z-index: 1;
     display: flex;
@@ -63,7 +63,7 @@ export default css.global`
   }
 
   .optBtn {
-    height: 100px;
+    height: 15%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -74,7 +74,7 @@ export default css.global`
   .yellowSpace {
     content: "";
     width: 100%;
-    height: 45vh;
+    min-height: 45vh;
     background: #FFEA6E;
     bottom: 0;
     position: absolute;
@@ -259,7 +259,7 @@ export default css.global`
     padding: 25px;
     position: absolute;
     top: 100px;
-    width: 230px;
+    width: 100%;
   }
 
   nav li {
@@ -276,6 +276,8 @@ export default css.global`
     border-radius: 50%;
     flex: 40px 0;
     margin-right: 20px;
+    display: flex;
+    justify-content: center;
   }
 
   .text-placeholder {
@@ -283,7 +285,7 @@ export default css.global`
     width: 200px;
     height: 30px;
     flex: 1;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 
   .refresh {
@@ -312,5 +314,81 @@ export default css.global`
     justify-content: center;
     align-items: center;
     height: 100%;
+  }
+
+  /*faq accordion*/
+  
+  .example-container {
+    padding: 20px;
+  }
+
+  .refresh {
+    padding: 10px;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .content-placeholder {
+    padding: 20px;
+    transform-origin: top center;
+  }
+
+  .faqheader {
+    background: #0055ff;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 40px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+  }
+
+  .word {
+    height: 18px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 8px;
+    margin-right: 8px;
+    background: #0055ff;
+    border-radius: 10px;
+    display: inline-block;
+  }
+
+  .paragraph {
+    margin-bottom: 20px;
+  }
+
+  section {
+    overflow: hidden;
+  }
+
+  @media (max-width: 600px) {
+    .content-placeholder {
+      padding-left: 20px;
+    }
+
+    .faqheader .word {
+      height: 30px;
+    }
+
+    .word {
+      height: 14px;
+      margin-bottom: 5px;
+      margin-right: 5px;
+    }
+
+    .paragraph {
+      margin-bottom: 20px;
+    }
   }
 `;

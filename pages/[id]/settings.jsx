@@ -50,7 +50,6 @@ const ProfileSettings = ({ events }) => {
               <div className="headerWrap">
                 <HeadMenu loggedIn={true} account={account} />
               </div>
-              <div className="headerWrap">Profiel instellingen</div>
               <div className="mainContent">
                 <UserForm
                   formId="add-persdata-form"

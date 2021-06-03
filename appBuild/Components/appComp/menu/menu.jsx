@@ -7,12 +7,21 @@ import clsx from "clsx";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
-import Check from "@material-ui/icons/Check";
+import Button from "@material-ui/core/Button";
+// import Check from "@material-ui/icons/Check";
+import { Faq } from "./faq.tsx";
 import StepConnector from "@material-ui/core/StepConnector";
 import { motion, useCycle } from "framer-motion";
 import { useDimensions } from "../../../../lib/use-dimensions";
 import { MenuToggle } from "./MenuToggle";
 import { Navigation } from "./Navigation";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@material-ui/core/styles";
 
 const sidebar = {
   open: (height = 1000) => ({
@@ -27,6 +36,26 @@ const sidebar = {
     clipPath: "circle(25px at 280px 40px)",
     transition: {
       delay: 0.5,
+      type: "spring",
+      stiffness: 400,
+      damping: 40,
+    },
+  },
+};
+
+const menuBar = {
+  open: (height = 1000) => ({
+    maxHeight: "100%",
+    transition: {
+      type: "spring",
+      stiffness: 20,
+      restDelta: 2,
+    },
+  }),
+  closed: {
+    maxHeight: "80px",
+    transition: {
+      delay: 1,
       type: "spring",
       stiffness: 400,
       damping: 40,
@@ -140,11 +169,23 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
   const steps = getSteps();
   const router = useRouter();
   const [isOpen, toggleOpen] = useState(false);
-  const containerRef = useRef("0px");
+  const [modalState, setModal] = useState(false);
+  const containerRef = useRef({ width: 0, height: 0 });
   const { height } = useDimensions(containerRef);
   const [pageTitle, setTitle] = useState(page);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   const goBack = () => {
     onprev(page - 1);
+  };
+
+  const handleModalOpen = () => {
+    setModal(true);
+  };
+
+  const handleModalClose = () => {
+    setModal(false);
   };
 
   const handleClickOutside = (event) => {
@@ -174,10 +215,36 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
   return (
     <>
       <style jsx>{MenuCompstyle}</style>
+
       {page === 0 ? (
         <img className="renormLogo" src="/img/renormlogo.jpg" />
       ) : (
         <div className="header">
+          <Dialog
+            fullScreen={fullScreen}
+            open={modalState}
+            onClose={handleModalClose}
+            aria-labelledby="responsive-dialog-title"
+          >
+            <DialogTitle id="responsive-dialog-title">
+              {"Veelgestelde vragen"}
+            </DialogTitle>
+            <DialogContent style={{ overflow: "hidden", width: "100%" }}>
+              <DialogContentText>
+                <div className="example-container">
+                  <Faq />
+                </div>
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleModalClose} color="primary">
+                Lees meer
+              </Button>
+              <Button onClick={handleModalClose} color="primary">
+                Terug
+              </Button>
+            </DialogActions>
+          </Dialog>
           <div className="appmenu">
             <div className="previousSide">
               {router.pathname === "/[id]" ? (
@@ -202,8 +269,9 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
                 animate={isOpen ? "open" : "closed"}
                 custom={height}
                 ref={containerRef}
+                variants={menuBar}
               >
-                <div className="menuBtn">
+                <div className="menuBtn" onClick={handleModalOpen}>
                   <img
                     src="/icons/help_outline-24px.svg"
                     width="35px"
@@ -220,8 +288,9 @@ const HeadMenu = ({ page, onprev, loggedIn, account }) => {
             {page === 1 ||
             router.pathname === "/[id]" ||
             router.pathname === "/[id]/[idx]" ||
-            router.pathname === "/[id]/settings" ? (
-              <h3>{pageTitle === 1 ? titles.swipePage : ""}</h3>
+            router.pathname === "/[id]/settings" ||
+            router.pathname === "/[id]/overview" ? (
+              <h3>{page === 1 ? titles.swipePage : ""}</h3>
             ) : (
               <div className={classes.root}>
                 <Stepper

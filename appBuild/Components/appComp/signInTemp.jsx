@@ -1,6 +1,9 @@
+import React, { useState } from "react";
 import AppCompstyle from "./appCompstyle";
 
 const SignInTemp = ({ csrfToken }) => {
+  const [isFilled, setIsFilled] = useState("");
+
   return (
     <>
       <style jsx>{AppCompstyle}</style>
@@ -14,10 +17,20 @@ const SignInTemp = ({ csrfToken }) => {
             id="email"
             name="email"
             placeholder="johndoe@email.com"
+            onChange={(e) => setIsFilled(e.target.value)}
           />
         </div>
         <div className="signupbtn">
-          <button className="signbtnCont" type="submit">
+          <button
+            className="signbtnCont"
+            disabled={isFilled != "" ? false : true}
+            type="submit"
+            style={
+              isFilled != ""
+                ? { background: "#86e4d9", cursor: "pointer" }
+                : { background: "#E4E4E4", cursor: "not-allowed" }
+            }
+          >
             Aanmelden op Renorm
           </button>
         </div>
