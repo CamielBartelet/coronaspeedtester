@@ -4,8 +4,6 @@ import AppCompstyle from "./appCompstyle";
 const SignInTemp = ({ csrfToken }) => {
   const [isFilled, setIsFilled] = useState("");
 
-  console.log(isFilled);
-
   return (
     <>
       <style jsx>{AppCompstyle}</style>

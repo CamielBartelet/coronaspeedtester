@@ -15,8 +15,6 @@ const faqText = [
 ];
 
 export const ContentPlaceholder = ({ id }) => {
-  console.log(id);
-
   return (
     <motion.div
       variants={{ collapsed: { scale: 0.9 }, open: { scale: 0.98 } }}

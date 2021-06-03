@@ -7,7 +7,7 @@ export default function SignIn({ csrfToken }) {
       <div className="mainApp">
         <Verify />
         <div className="verifyrequesttxt">
-          Je account is geverifiëerd.
+          Je account is aangemaakt.
           <br />
           Je kunt nu dit account gebruiken voor je volgende activiteit!
           <br />
