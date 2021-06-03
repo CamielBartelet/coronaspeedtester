@@ -9,6 +9,7 @@ const kopeling = ({accounts, selectedEvent, selectedTest}) => {
     const [issue, setIssue] = useState("");
 
     const event = JSON.parse(selectedEvent);
+    const test = JSON.parse(selectedTest);
 
     const router = useRouter();
 
@@ -56,7 +57,8 @@ const kopeling = ({accounts, selectedEvent, selectedTest}) => {
     return (
         <div>
             <div>
-                Geselecteerde event is: {event.name}
+                <p>Geselecteerde event is: {event.name}</p>
+                <p>Gelecteerde test is: {test}</p>
             </div>
             <label>Kies uw bank: </label>
             <select id="issuer" name="issuer" onChange={(e) => {
@@ -112,7 +114,7 @@ export async function getServerSideProps(context) {
       props: {
         accounts : accounts,
         selectedEvent : JSON.stringify(resultEvent),
-        selectedTest : cookies.selectedTest
+        selectedTest : JSON.stringify(cookies.selectedTest)
 
       },
     }
