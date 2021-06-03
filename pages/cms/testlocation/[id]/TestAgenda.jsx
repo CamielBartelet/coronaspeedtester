@@ -7,7 +7,6 @@ import readData from "../../../../lib/ICSReader";
 import ICSPlanner from "../../../../appBuild/Components/appComp/ICSPlanner";
 
 const TestAgenda = ({ testOrg }) => {
-  console.log(testOrg);
   return (
     <>
       <div>De Agenda</div>

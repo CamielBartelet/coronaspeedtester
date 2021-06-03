@@ -91,8 +91,6 @@ const NewEvent = ({ newId, toggleModal, org }) => {
     },
   ];
 
-  console.log(newId);
-
   return (
     <>
       <DialogContent id="modal-slide-description">
