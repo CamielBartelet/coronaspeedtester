@@ -125,6 +125,7 @@ const Terms = ({ events, account, appointments }) => {
                       <div className="appointment">
                         <h3>{appointment.location}</h3>
                         <h4>
+                          {appointment.date}
                           {appointment.starttime}
                           {appointment.endtime}
                         </h4>
