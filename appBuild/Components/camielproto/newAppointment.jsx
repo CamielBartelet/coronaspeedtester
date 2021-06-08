@@ -134,7 +134,7 @@ const newTestlocation = ({
           <input
             type="text"
             maxLength="20"
-            name="location"
+            name="date"
             value={form.date}
             onChange={handleChange}
             required
