@@ -17,6 +17,7 @@ const newTestlocation = ({
   const [form, setForm] = useState({
     id: appointmentForm.id,
     location: appointmentForm.location,
+    date: appointmentForm.date,
     starttime: appointmentForm.starttime,
     endtime: appointmentForm.endtime,
     availableappointments: appointmentForm.availableappointments,
@@ -126,6 +127,15 @@ const newTestlocation = ({
             maxLength="20"
             name="location"
             value={form.location}
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="date">Datum</label>
+          <input
+            type="text"
+            maxLength="20"
+            name="location"
+            value={form.date}
             onChange={handleChange}
             required
           />
