@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { signIn, signOut } from "next-auth/client";
 import UserForm from "../../../appBuild/Components/appComp/userFormat";
 import useSWR from "swr";
@@ -7,6 +8,7 @@ import Event from "../../../models/Event";
 import Appointment from "../../../models/Appointment";
 import HeadMenu from "../../../appBuild/Components/appComp/menu/menu";
 import TestPlanner from "../../../appBuild/Components/appComp/testPlanner";
+// import GoogleMap from "../../../appBuild/Components/appComp/reactgmap";
 
 const fetcher = (url) =>
   fetch(url)
@@ -14,6 +16,7 @@ const fetcher = (url) =>
     .then((json) => json.data);
 
 const PlanTest = ({ events, appointments }) => {
+  const [locations, setLocations] = useState([]);
   const router = useRouter();
   const { id } = router.query;
   const { data: account, error } = useSWR(
@@ -21,8 +24,23 @@ const PlanTest = ({ events, appointments }) => {
     fetcher
   );
 
+  const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/5644EV.json?access_token=${process.env.MAPBOX_KEY}&bbox=5.449445423524878,51.41544961743736,5.51083005810591,51.45596102749366&limit=10`;
+
   if (error) return <p>Failed to load</p>;
   if (!account) return <p>Loading...</p>;
+
+  useEffect(() => {
+    const fetchLocations = async () => {
+      await fetch(url)
+        .then((response) => response.text())
+        .then((res) => JSON.parse(res))
+        .then((json) => {
+          setLocations(json.features);
+        })
+        .catch((err) => console.log({ err }));
+    };
+    fetchLocations();
+  }, []);
 
   const accountForm = {
     email: account.email,
@@ -60,11 +78,14 @@ const PlanTest = ({ events, appointments }) => {
                   </div>
                 </>
               ) : (
-                <TestPlanner
-                  events={events}
-                  account={account}
-                  appointments={appointments}
-                />
+                <>
+                  <TestPlanner
+                    events={events}
+                    account={account}
+                    appointments={appointments}
+                    locations={locations}
+                  />
+                </>
               )}
             </div>
           </main>
