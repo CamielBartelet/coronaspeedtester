@@ -11,7 +11,6 @@ const kopeling = ({ accounts, selectedEvent, selectedTest }) => {
 
   const event = JSON.parse(selectedEvent);
   const test = JSON.parse(selectedTest);
-  console.log(JSON.parse(selectedTest));
 
   const router = useRouter();
 
