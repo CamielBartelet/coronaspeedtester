@@ -120,22 +120,11 @@ export async function getServerSideProps(context) {
     return account;
   });
 
-  console.log(context.params.checkoutid);
-
   const apptsReq = await Appointment.findOne({
     _id: context.params.checkoutid,
   });
 
-  // const appts = apptsReq.map((doc) => {
-  //   const appt = JSON.parse(JSON.stringify(doc));
-  //   return appt;
-  // });
-
   const resultEvent = await Event.findOne({ _id: cookies.selectedEvent });
-
-  console.log(apptsReq);
-  console.log(accounts);
-  console.log(resultEvent);
 
   return {
     props: {
