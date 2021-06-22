@@ -63,13 +63,13 @@ const Appointments = ({ appointments }) => {
                   <td>
                     <div className="editOpt">
                       <Link
-                        href="/cms/testlocation/[id]/appointment/[id]/edit"
+                        href="/cms/testlocation/[id]/[id]/edit"
                         as={`/cms/testlocation/${router.query.id}/${appointment.id}/edit`}
                       >
                         <a>Edit</a>
                       </Link>
                       <Link
-                        href="/cms/testlocation/[id]/appointment/[id]"
+                        href="/cms/testlocation/[id]/[id]"
                         as={`/cms/testlocation/${router.query.id}/${appointment.id}`}
                       >
                         <a>View</a>
