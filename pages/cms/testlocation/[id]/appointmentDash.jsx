@@ -64,13 +64,13 @@ const Appointments = ({ appointments }) => {
                     <div className="editOpt">
                       <Link
                         href="/cms/testlocation/[id]/[id]/edit"
-                        as={`/cms/testlocation/${router.query.id}/${appointment.id}/edit`}
+                        as={`/cms/testlocation/${router.query.id}/${appointment._id}/edit`}
                       >
                         <a>Edit</a>
                       </Link>
                       <Link
                         href="/cms/testlocation/[id]/[id]"
-                        as={`/cms/testlocation/${router.query.id}/${appointment.id}`}
+                        as={`/cms/testlocation/${router.query.id}/${appointment._id}`}
                       >
                         <a>View</a>
                       </Link>
