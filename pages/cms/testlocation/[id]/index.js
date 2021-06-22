@@ -55,12 +55,12 @@ const ScheduledEvents = ({ events, testlocation }) => {
           <button onClick={() => setWarning(true)}>Delete Testlocation</button>
         </div>
         <div className="testLocDashboard">
-          <div>
+          <div className="testmenuopts">
             <a onClick={() => contCheck("event")}>
               Evenement en bezoekersgegevens
             </a>
           </div>
-          <div>
+          <div className="testmenuopts">
             <a onClick={() => contCheck("planning")}>Planningstool</a>
           </div>
           {/* <div

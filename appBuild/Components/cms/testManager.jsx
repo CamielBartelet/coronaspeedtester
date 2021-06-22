@@ -7,13 +7,13 @@ const TestManager = ({ testId }) => {
         href="../../../cms/testlocation/[id]/edit"
         as={`../../../cms/testlocation/${testId}/edit`}
       >
-        <div>Gegevens</div>
+        <div className="testmenuopts">Gegevens</div>
       </Link>
       <Link
         href="../../../cms/testlocation/[id]/appointmentDash"
         as={`../../../cms/testlocation/${testId}/appointmentDash`}
       >
-        <div>Agenda</div>
+        <div className="testmenuopts">Agenda</div>
       </Link>
     </>
   );
