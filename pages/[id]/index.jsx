@@ -59,7 +59,9 @@ const AccountPage = ({ events }) => {
               !account.firstName ||
               !account.lastName ? (
                 <>
-                  <div className="headerWrap">Vul je gegevens in</div>
+                  <div className="headerWrap" style={{ width: "600px" }}>
+                    Vul je gegevens in
+                  </div>
                   <div className="mainContent">
                     <UserForm
                       formId="add-persdata-form"
