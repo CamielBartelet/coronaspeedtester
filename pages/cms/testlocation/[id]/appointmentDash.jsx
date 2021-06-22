@@ -40,6 +40,7 @@ const Appointments = ({ appointments }) => {
               <tr className="eventTable">
                 <th>Id</th>
                 <th>Locatie</th>
+                <th>Datum</th>
                 <th>Start tijd</th>
                 <th>Eind tijd</th>
                 <th>Beschikbare afspraken</th>
@@ -55,6 +56,7 @@ const Appointments = ({ appointments }) => {
                 <tr key={appointment.id}>
                   <td>{appointment.id}</td>
                   <td>{appointment.location}</td>
+                  <td>{appointment.date}</td>
                   <td>{appointment.starttime}</td>
                   <td>{appointment.endtime}</td>
                   <td>{appointment.availableappointments}</td>
