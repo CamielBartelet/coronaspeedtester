@@ -7,6 +7,9 @@ const AppointmentSchema = new mongoose.Schema({
   location: {
     type: String,
   },
+  date: {
+    type: String,
+  },
   starttime: {
     type: String,
   },
