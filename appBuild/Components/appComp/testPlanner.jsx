@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import AppCompstyle from "./appCompstyle";
-import Cookie from "js-cookie";
 import dynamic from "next/dynamic";
 
 const Map = dynamic(() => import("../../../appBuild/Components/appComp/Map"), {
@@ -9,19 +8,6 @@ const Map = dynamic(() => import("../../../appBuild/Components/appComp/Map"), {
 });
 
 const Terms = ({ events, account, appointments, locations }) => {
-  const dummyData = {
-    testlocation: "Nuenen",
-    testDate: new Date("2021-05-31"),
-    testTime: {
-      startTime: new Date("2021-05-31 12:00"),
-      endTime: new Date("2021-05-31 12:05"),
-    },
-  };
-
-  useEffect(() => {
-    Cookie.set("selectedTest", dummyData);
-  }, [dummyData]);
-
   return (
     <>
       <style jsx>{AppCompstyle}</style>

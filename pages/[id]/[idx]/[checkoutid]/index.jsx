@@ -4,12 +4,14 @@ import Event from "../../../../models/Event";
 import { useState } from "react";
 import { getSession } from "next-auth/client";
 import { useRouter } from "next/router";
+import Appointment from "../../../../models/Appointment";
 
 const kopeling = ({ accounts, selectedEvent, selectedTest }) => {
   const [issue, setIssue] = useState("");
 
   const event = JSON.parse(selectedEvent);
   const test = JSON.parse(selectedTest);
+  console.log(JSON.parse(selectedTest));
 
   const router = useRouter();
 
@@ -60,7 +62,11 @@ const kopeling = ({ accounts, selectedEvent, selectedTest }) => {
     <div>
       <div>
         <p>Geselecteerde event is: {event.name}</p>
-        <p>Gelecteerde test is: {test}</p>
+        <p>Gelecteerde test locatie: {test.location}</p>
+        <p>Gelecteerde test datum: {test.date}</p>
+        <p>
+          Gelecteerde test tijd: {test.starttime} -{test.endtime}
+        </p>
       </div>
       <label>Kies uw bank: </label>
       <select
@@ -114,13 +120,28 @@ export async function getServerSideProps(context) {
     return account;
   });
 
+  console.log(context.params.checkoutid);
+
+  const apptsReq = await Appointment.findOne({
+    _id: context.params.checkoutid,
+  });
+
+  // const appts = apptsReq.map((doc) => {
+  //   const appt = JSON.parse(JSON.stringify(doc));
+  //   return appt;
+  // });
+
   const resultEvent = await Event.findOne({ _id: cookies.selectedEvent });
+
+  console.log(apptsReq);
+  console.log(accounts);
+  console.log(resultEvent);
 
   return {
     props: {
       accounts: accounts,
       selectedEvent: JSON.stringify(resultEvent),
-      selectedTest: JSON.stringify(cookies.selectedTest),
+      selectedTest: JSON.stringify(apptsReq),
     },
   };
 }
