@@ -115,7 +115,6 @@ export async function getServerSideProps(context) {
   });
 
   const resultEvent = await Event.findOne({ _id: cookies.selectedEvent });
-  console.log(resultEvent);
 
   return {
     props: {
