@@ -1,14 +1,9 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
-import camielStyles from "./camielStyles";
+import formStyles from "./formStyles";
 
-const newTestlocation = ({
-  formId,
-  eventForm,
-  forNewEvent = true,
-  saveModal,
-}) => {
+const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
   const router = useRouter();
   const contentType = "application/json";
   const [errors, setErrors] = useState({});
@@ -26,7 +21,7 @@ const newTestlocation = ({
     const { id } = router.query;
 
     try {
-      const res = await fetch(`/api/testlocations/${id}`, {
+      const res = await fetch(`/api/organisations/${id}`, {
         method: "PUT",
         headers: {
           Accept: contentType,
@@ -42,17 +37,17 @@ const newTestlocation = ({
 
       const { data } = await res.json();
 
-      mutate(`/api/testlocations/${id}`, data, false); // Update the local data without a revalidation
-      router.push(`/cms/testlocation/${id}`);
+      mutate(`/api/organisations/${id}`, data, false); // Update the local data without a revalidation
+      router.push(`/cms/eventorganiser/${id}`);
     } catch (error) {
-      setMessage("Failed to update testlocation");
+      setMessage("Failed to update organisation");
     }
   };
 
   /* The POST method adds a new entry in the mongodb database. */
   const postData = async (form) => {
     try {
-      const res = await fetch("/api/testlocations", {
+      const res = await fetch("/api/organisations", {
         method: "POST",
         headers: {
           Accept: contentType,
@@ -66,18 +61,18 @@ const newTestlocation = ({
         throw new Error(res.status);
       }
 
-      router.push("/cms/testservices");
+      router.push("/cms/eventorganisers");
       saveModal();
     } catch (error) {
       setMessage("Failed to add organisation");
     }
   };
 
-  // const options = [
-  //   { value: "Eindhoven", label: "Eindhoven", capacity: "500" },
-  //   { value: "Amsterdam", label: "Amsterdam", capacity: "1000" },
-  //   { value: "Maastricht", label: "Maastricht", capacity: "250" },
-  // ];
+  const options = [
+    { value: "Eindhoven", label: "Eindhoven", capacity: "500" },
+    { value: "Amsterdam", label: "Amsterdam", capacity: "1000" },
+    { value: "Maastricht", label: "Maastricht", capacity: "250" },
+  ];
 
   const handleChange = (e) => {
     const target = e.target;
@@ -106,19 +101,19 @@ const newTestlocation = ({
     return err;
   };
 
-  // const regionCheck = (e) => {
-  //   const target = e.target;
-  //   const value = target.value;
-  //   setForm({
-  //     ...form,
-  //     region: value,
-  //     capacity: options.find((e) => e.value === value).capacity,
-  //   });
-  // };
+  const regionCheck = (e) => {
+    const target = e.target;
+    const value = target.value;
+    setForm({
+      ...form,
+      region: value,
+      capacity: options.find((e) => e.value === value).capacity,
+    });
+  };
 
   return (
     <>
-      <style jsx>{camielStyles}</style>
+      <style jsx>{formStyles}</style>
       <div className="inputEv">
         <form
           id={formId}
@@ -137,24 +132,7 @@ const newTestlocation = ({
           />
 
           <label htmlFor="region">Locatie/Regio</label>
-          <input
-            type="text"
-            maxLength="20"
-            name="region"
-            value={form.region}
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="region">Capaciteit</label>
-          <input
-            type="text"
-            maxLength="20"
-            name="capacity"
-            value={form.capacity}
-            onChange={handleChange}
-            required
-          />
-          {/* <select
+          <select
             name="region"
             onChange={(e) => {
               handleChange(e);
@@ -192,7 +170,7 @@ const newTestlocation = ({
                 required
               ></input>
             </>
-          )} */}
+          )}
 
           <label htmlFor="email">E-mail</label>
           <input
@@ -225,4 +203,4 @@ const newTestlocation = ({
   );
 };
 
-export default newTestlocation;
+export default newOrganiser;

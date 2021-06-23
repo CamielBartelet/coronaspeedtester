@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import dbConnect from "../../../../util/mongodb";
 import Event from "../../../../models/Event";
-import NewTestLoc from "../../../../appBuild/Components/camielproto/new";
+import NewTestLoc from "../../../../appBuild/Components/manage/new";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Testlocation from "../../../../models/Testlocation";

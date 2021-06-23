@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
-import camielStyles from "./camielStyles";
+import formStyles from "./formStyles";
 
-const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
+const inputEvents = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
   const router = useRouter();
   const contentType = "application/json";
   const [errors, setErrors] = useState({});
@@ -11,9 +11,12 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
 
   const [form, setForm] = useState({
     name: eventForm.name,
-    region: eventForm.region,
+    owner_name: eventForm.owner_name,
+    location: eventForm.location,
+    date: eventForm.date,
     email: eventForm.email,
     phone: eventForm.phone,
+    image: eventForm.image,
     capacity: eventForm.capacity,
   });
 
@@ -21,7 +24,7 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
     const { id } = router.query;
 
     try {
-      const res = await fetch(`/api/organisations/${id}`, {
+      const res = await fetch(`/api/events/${router.query.idx}`, {
         method: "PUT",
         headers: {
           Accept: contentType,
@@ -37,17 +40,17 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
 
       const { data } = await res.json();
 
-      mutate(`/api/organisations/${id}`, data, false); // Update the local data without a revalidation
-      router.push(`/cms/eventorganiser/${id}`);
+      mutate(`/api/events/${router.query.idx}`, data, false); // Update the local data without a revalidation
+      router.push(`/cms/eventorganiser/${router.query.id}/${router.query.idx}`);
     } catch (error) {
-      setMessage("Failed to update organisation");
+      setMessage("Failed to update event");
     }
   };
 
   /* The POST method adds a new entry in the mongodb database. */
   const postData = async (form) => {
     try {
-      const res = await fetch("/api/organisations", {
+      const res = await fetch("/api/events", {
         method: "POST",
         headers: {
           Accept: contentType,
@@ -61,10 +64,10 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
         throw new Error(res.status);
       }
 
-      router.push("/cms/eventorganisers");
+      router.push(`/cms/eventorganiser/${router.query.id}`);
       saveModal();
     } catch (error) {
-      setMessage("Failed to add organisation");
+      setMessage("Failed to add event");
     }
   };
 
@@ -98,6 +101,8 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
   const formValidate = () => {
     let err = {};
     if (!form.name) err.name = "Name is required";
+    if (!form.owner_name) err.owner_name = "Owner is required";
+    if (!form.image) err.image = "Image URL is required";
     return err;
   };
 
@@ -106,14 +111,14 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
     const value = target.value;
     setForm({
       ...form,
-      region: value,
+      location: value,
       capacity: options.find((e) => e.value === value).capacity,
     });
   };
 
   return (
     <>
-      <style jsx>{camielStyles}</style>
+      <style jsx>{formStyles}</style>
       <div className="inputEv">
         <form
           id={formId}
@@ -131,18 +136,26 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
             required
           />
 
-          <label htmlFor="region">Locatie/Regio</label>
+          <label htmlFor="owner_name">Organisatie</label>
+          <input
+            type="text"
+            maxLength="20"
+            name="owner_name"
+            value={form.owner_name}
+            onChange={handleChange}
+            required
+          />
+
+          <label htmlFor="location">Locatie/Regio</label>
           <select
-            name="region"
+            name="location"
             onChange={(e) => {
               handleChange(e);
               regionCheck(e);
             }}
+            value={form.location}
             required
           >
-            <option disabled selected value>
-              -- select an option --
-            </option>
             {options.map((option) => (
               <option value={option.value} key={option.label}>
                 {option.value}
@@ -150,13 +163,13 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
             ))}
           </select>
 
-          {!form.region ? (
+          {!form.location ? (
             ""
           ) : (
             <>
               <label htmlFor="maxcap">
                 Bezoekersaantal (max:
-                {options.find((e) => e.value === form.region).capacity})
+                {options.find((e) => e.value === form.location).capacity})
               </label>
 
               <input
@@ -165,12 +178,20 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
                 // defaultValue={form.capacity}
                 min="0"
                 value={form.capacity}
-                max={options.find((e) => e.value === form.region).capacity}
+                max={options.find((e) => e.value === form.location).capacity}
                 onChange={handleChange}
                 required
               ></input>
             </>
           )}
+
+          <label htmlFor="date">Datum</label>
+          <input
+            name="date"
+            maxLength="60"
+            value={form.date}
+            onChange={handleChange}
+          />
 
           <label htmlFor="email">E-mail</label>
           <input
@@ -185,6 +206,14 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
             name="phone"
             maxLength="60"
             value={form.phone}
+            onChange={handleChange}
+          />
+
+          <label htmlFor="image">Afbeelding evenement</label>
+          <input
+            type="url"
+            name="image"
+            value={form.image}
             onChange={handleChange}
           />
 
@@ -203,4 +232,4 @@ const newOrganiser = ({ formId, eventForm, forNewEvent = true, saveModal }) => {
   );
 };
 
-export default newOrganiser;
+export default inputEvents;

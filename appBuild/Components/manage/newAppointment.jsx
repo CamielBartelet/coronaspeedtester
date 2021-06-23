@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
-import camielStyles from "./camielStyles";
+import formStyles from "./formStyles";
 
 const newTestlocation = ({
   formId,
@@ -104,7 +104,7 @@ const newTestlocation = ({
 
   return (
     <>
-      <style jsx>{camielStyles}</style>
+      <style jsx>{formStyles}</style>
       <div className="inputEv">
         <form
           id={formId}

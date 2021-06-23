@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import dbConnect from "../../../../util/mongodb";
 import Event from "../../../../models/Event";
-import NewEvent from "../../../../appBuild/Components/camielproto/new";
+import NewEvent from "../../../../appBuild/Components/manage/new";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Organisation from "../../../../models/Organisation";

@@ -6,7 +6,7 @@ import { getSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import Appointment from "../../../../models/Appointment";
 
-const kopeling = ({ accounts, selectedEvent, selectedTest }) => {
+const CheckoutConnect = ({ accounts, selectedEvent, selectedTest }) => {
   const [issue, setIssue] = useState("");
 
   const event = JSON.parse(selectedEvent);
@@ -134,4 +134,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default kopeling;
+export default CheckoutConnect;

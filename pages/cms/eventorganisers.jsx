@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import dbConnect from "../../util/mongodb";
 import Organiser from "../../models/Organisation";
-import NewOrg from "../../appBuild/Components/camielproto/new";
+import NewOrg from "../../appBuild/Components/manage/new";
 import Slide from "@material-ui/core/Slide";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
