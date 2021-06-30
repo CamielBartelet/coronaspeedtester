@@ -45,10 +45,10 @@ RESPONSECHECKOUT_URL=http://localhost:3000/api/tickets
 MAPBOX_KEY=<mapbox key>
   
 ## Codebase Structure
-Appbuild -> Components
-Lib -> Separted libraries for use in multiple facets app
-Models -> Database models
-Pages -> Server side rendered front-end pages and api files
-Public -> Fonts and media
-Styles -> Global stylsheets
-Util -> Db utilities
+Appbuild -> Components\
+Lib -> Separted libraries for use in multiple facets app\
+Models -> Database models\
+Pages -> Server side rendered front-end pages and api files\
+Public -> Fonts and media\
+Styles -> Global stylsheets\
+Util -> Db utilities\
