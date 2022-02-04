@@ -128,13 +128,6 @@ const UserSettings = ({ formId, accountForm, forNewEvent = true }) => {
             onChange={handleChange}
             placeholder="1234AB"
           />
-          <label htmlFor="postalCode">Postcode</label>
-          <input
-            name="postalCode"
-            maxLength="6"
-            value={form.postalCode}
-            onChange={handleChange}
-          />
           <label htmlFor="dateOfBirth">Geboortedatum</label>
           <input
             name="dateOfBirth"

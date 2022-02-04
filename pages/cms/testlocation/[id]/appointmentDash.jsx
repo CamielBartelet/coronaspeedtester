@@ -2,7 +2,7 @@ import React from "react";
 import dbConnect from "../../../../util/mongodb";
 import Link from "next/link";
 import Appointment from "../../../../models/Appointment";
-import NewAppointment from "../../../../appBuild/Components/camielproto/new";
+import NewAppointment from "../../../../appBuild/Components/manage/new";
 import Slide from "@material-ui/core/Slide";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -63,14 +63,14 @@ const Appointments = ({ appointments }) => {
                   <td>
                     <div className="editOpt">
                       <Link
-                        href="/cms/testlocation/[id]/appointment/[id]/edit"
-                        as={`/cms/testlocation/${router.query.id}/${appointment.id}/edit`}
+                        href="/cms/testlocation/[id]/[id]/edit"
+                        as={`/cms/testlocation/${router.query.id}/${appointment._id}/edit`}
                       >
                         <a>Edit</a>
                       </Link>
                       <Link
-                        href="/cms/testlocation/[id]/appointment/[id]"
-                        as={`/cms/testlocation/${router.query.id}/${appointment.id}`}
+                        href="/cms/testlocation/[id]/[id]"
+                        as={`/cms/testlocation/${router.query.id}/${appointment._id}`}
                       >
                         <a>View</a>
                       </Link>

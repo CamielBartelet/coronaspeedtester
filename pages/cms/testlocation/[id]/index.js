@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import dbConnect from "../../../../util/mongodb";
 import Event from "../../../../models/Event";
-import NewTestLoc from "../../../../appBuild/Components/camielproto/new";
+import NewTestLoc from "../../../../appBuild/Components/manage/new";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Testlocation from "../../../../models/Testlocation";
@@ -55,12 +55,12 @@ const ScheduledEvents = ({ events, testlocation }) => {
           <button onClick={() => setWarning(true)}>Delete Testlocation</button>
         </div>
         <div className="testLocDashboard">
-          <div>
+          <div className="testmenuopts">
             <a onClick={() => contCheck("event")}>
               Evenement en bezoekersgegevens
             </a>
           </div>
-          <div>
+          <div className="testmenuopts">
             <a onClick={() => contCheck("planning")}>Planningstool</a>
           </div>
           {/* <div

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import Link from "next/link";
-import OrganiserForm from "../../../../appBuild/Components/camielproto/newOrganiser";
+import OrganiserForm from "../../../../appBuild/Components/manage/newOrganiser";
 
 const fetcher = (url) =>
   fetch(url)

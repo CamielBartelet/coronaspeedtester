@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
-import camielStyles from "./camielStyles";
+import formStyles from "./formStyles";
 
 const newTestlocation = ({
   formId,
@@ -44,7 +44,7 @@ const newTestlocation = ({
       const { data } = await res.json();
 
       mutate(`/api/appointments/${id}`, data, false); // Update the local data without a revalidation
-      router.push(`/cms/testlocation/${id}`);
+      router.push(`/cms/testlocation/${id}/appointmentDash`);
     } catch (error) {
       setMessage("Failed to update testlocation");
     }
@@ -52,6 +52,7 @@ const newTestlocation = ({
 
   /* The POST method adds a new entry in the mongodb database. */
   const postData = async (form) => {
+    const { id } = router.query;
     try {
       const res = await fetch("/api/appointments", {
         method: "POST",
@@ -67,7 +68,7 @@ const newTestlocation = ({
         throw new Error(res.status);
       }
 
-      router.push("/cms/appointmentDash");
+      router.push(`/cms/testlocation/${id}/appointmentDash`);
       saveModal();
     } catch (error) {
       setMessage("Failed to add appointment");
@@ -103,7 +104,7 @@ const newTestlocation = ({
 
   return (
     <>
-      <style jsx>{camielStyles}</style>
+      <style jsx>{formStyles}</style>
       <div className="inputEv">
         <form
           id={formId}

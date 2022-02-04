@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import { useRouter } from "next/router";
 import Button from "@material-ui/core/Button";
@@ -9,6 +9,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 import AppCompstyle from "./appCompstyle";
+import Cookie from "js-cookie";
 
 export default function Map({ locations, appointments }) {
   const [selected, setReservation] = useState("false");
@@ -16,6 +17,22 @@ export default function Map({ locations, appointments }) {
   const router = useRouter();
   const [apptselect, setAppointment] = useState("");
   const [modalState, setModal] = useState(false);
+
+  const dummyData = [
+    {
+      testlocation: "Eindhoven",
+      testID: apptselect,
+      testDate: new Date("2021-05-31"),
+      testTime: {
+        startTime: new Date("2021-05-31 12:00"),
+        endTime: new Date("2021-05-31 12:05"),
+      },
+    },
+  ];
+
+  useEffect(() => {
+    Cookie.set("selectedTest", dummyData);
+  }, [dummyData]);
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -114,11 +131,11 @@ export default function Map({ locations, appointments }) {
                 <div className="eventTable">
                   {appointments.map((appointment) => (
                     <div
-                      key={appointment.id}
+                      key={appointment._id}
                       className="eventRow"
                       onClick={() => setAppointment(appointment._id)}
                       style={
-                        apptselect == appointment.id
+                        apptselect == appointment._id
                           ? { background: "aliceblue" }
                           : { background: "" }
                       }

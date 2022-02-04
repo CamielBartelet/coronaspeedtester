@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import Link from "next/link";
-import TestlocationForm from "../../../../appBuild/Components/camielproto/newTestlocation";
+import TestlocationForm from "../../../../appBuild/Components/manage/newTestlocation";
 
 const fetcher = (url) =>
   fetch(url)

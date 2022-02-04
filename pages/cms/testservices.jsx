@@ -2,7 +2,7 @@ import React from "react";
 import dbConnect from "../../util/mongodb";
 import Link from "next/link";
 import Testlocation from "../../models/Testlocation";
-import NewTestlocation from "../../appBuild/Components/camielproto/new";
+import NewTestlocation from "../../appBuild/Components/manage/new";
 import Slide from "@material-ui/core/Slide";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";

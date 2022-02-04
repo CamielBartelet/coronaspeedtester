@@ -4,8 +4,9 @@ import Event from "../../../../models/Event";
 import { useState } from "react";
 import { getSession } from "next-auth/client";
 import { useRouter } from "next/router";
+import Appointment from "../../../../models/Appointment";
 
-const kopeling = ({ accounts, selectedEvent, selectedTest }) => {
+const CheckoutConnect = ({ accounts, selectedEvent, selectedTest }) => {
   const [issue, setIssue] = useState("");
 
   const event = JSON.parse(selectedEvent);
@@ -60,7 +61,11 @@ const kopeling = ({ accounts, selectedEvent, selectedTest }) => {
     <div>
       <div>
         <p>Geselecteerde event is: {event.name}</p>
-        <p>Gelecteerde test is: {test}</p>
+        <p>Gelecteerde test locatie: {test.location}</p>
+        <p>Gelecteerde test datum: {test.date}</p>
+        <p>
+          Gelecteerde test tijd: {test.starttime} -{test.endtime}
+        </p>
       </div>
       <label>Kies uw bank: </label>
       <select
@@ -114,15 +119,19 @@ export async function getServerSideProps(context) {
     return account;
   });
 
+  const apptsReq = await Appointment.findOne({
+    _id: context.params.checkoutid,
+  });
+
   const resultEvent = await Event.findOne({ _id: cookies.selectedEvent });
 
   return {
     props: {
       accounts: accounts,
       selectedEvent: JSON.stringify(resultEvent),
-      selectedTest: JSON.stringify(cookies.selectedTest),
+      selectedTest: JSON.stringify(apptsReq),
     },
   };
 }
 
-export default kopeling;
+export default CheckoutConnect;

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import dbConnect from "../../../../../util/mongodb";
 import User from "../../../../../models/User";
 import { useRouter } from "next/router";
@@ -5,14 +6,31 @@ import Link from "next/link";
 
 const Users = ({ accounts }) => {
   const router = useRouter();
+  const [message, setMessage] = useState("");
+  const locID = router.query.id;
+  const apptID = router.query.idx;
+
+  console.log(router.query.idx);
+
+  const handleDelete = async () => {
+    try {
+      await fetch(`/api/appointments/${apptID}`, {
+        method: "Delete",
+      });
+      router.push(`/cms/testlocation/${locID}/appointmentDash`);
+    } catch (error) {
+      setMessage("Failed to delete the appointment.");
+    }
+  };
   return (
     <>
       <Link href={`/cms/testlocation/${router.query.id}`}>
         <div className="backbutton">Back</div>
       </Link>
       <main className="container">
+        <button onClick={handleDelete}>Delete appointment slot</button>
         <div className="userMng">
-          <h2>Gebruikers:</h2>
+          <h2>Testpersonen:</h2>
           <table>
             <thead className="table_head">
               <tr className="eventTable">
@@ -34,6 +52,7 @@ const Users = ({ accounts }) => {
             </tbody>
           </table>
         </div>
+        {message && <p>{message}</p>}
       </main>
     </>
   );

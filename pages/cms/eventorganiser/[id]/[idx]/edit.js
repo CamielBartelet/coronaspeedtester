@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import Form from "../../../../../appBuild/Components/camielproto/inputEvent";
+import Form from "../../../../../appBuild/Components/manage/inputEvent";
 
 const fetcher = (url) =>
   fetch(url)

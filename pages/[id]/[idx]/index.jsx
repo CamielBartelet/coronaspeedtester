@@ -24,7 +24,7 @@ const PlanTest = ({ events, appointments }) => {
     fetcher
   );
 
-  const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/5644EV.json?access_token=${process.env.MAPBOX_KEY}&bbox=5.449445423524878,51.41544961743736,5.51083005810591,51.45596102749366&limit=10`;
+  const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/5644RX.json?access_token=${process.env.MAPBOX_KEY}&bbox=5.449445423524878,51.41544961743736,5.51083005810591,51.45596102749366&limit=10`;
 
   if (error) return <p>Failed to load</p>;
   if (!account) return <p>Loading...</p>;

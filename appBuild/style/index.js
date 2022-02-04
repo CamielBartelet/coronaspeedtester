@@ -109,7 +109,17 @@ export default css.global`
   .testLocDashboard > div {
     width: 300px;
     height: 100px;
-    
+  }
+
+  .testmenuopts {
+    display: flex;
+    cursor: pointer;
+    margin: 10px;
+    background-color: aliceblue;
+    border-radius: 20px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
   }
 
   .addNew,
